@@ -16,8 +16,6 @@
 
   gtag('config', 'UA-43238538-1');
 </script>
-
-
   <title>
     {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}
   </title>
@@ -25,7 +23,6 @@
     content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-
 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
@@ -54,4 +51,7 @@
   <meta name="google-site-verification" content="ycSlJt4HhT5FCbOJU0K9RSp8tfhltGo3p7MMsfLnkSA" />
   <!-- spcr.me verification -->
   <meta name="google-site-verification" content="uMfauSWYA6jbC2Y_De011yUPNsqSzcTnTc5ECVxrTjQ" />
+  <!-- mastodon verification -->
+  <link rel="me" href="https://mastodon.social/@joshspicer" />
+
 </head>
