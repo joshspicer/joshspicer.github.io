@@ -6,7 +6,7 @@ redirect_from:
   - /about
 ---
 
-Hi - I'm **Josh**.  I grew up and and went to school around Boston, where I graduated from [Northeastern University](https://ccs.neu.edu/home/joshua) with a degree in computer science.
+Hi - I'm **Josh**.  I graduated from [Northeastern University](https://ccs.neu.edu/home/joshua) with a degree in computer science.
 
 📍 I currently live in Seattle, WA and work at Microsoft. I am building [GitHub Codespaces](https://github.com/features/codespaces) & [Dev Containers](https://containers.dev).
 
