@@ -327,8 +327,15 @@ It has now been 2.5 weeks since my appointment.  Based on other peoples' experie
 
 You're able to check online whether USPS money orders have been cashed (make sure to take note of the serial number _before_ handing it over).  To my excitement, USPS now lists the money order as cashed! 💸
 
+
 ![money-order.png]({{site.url}}/assets/resources-jure-sanguinis/money-order.png)
 
+
+## Nov 9, 2023
+
+Warning: no new news yet :')  
+
+It's now been 26+ months since my appointment.  I haven't heard anything from the consulate, although in keeping an eye on the Facebook group that seems par for the course. Several folks around my appointment date have recently (within the past ~2 weeks) been recognized, so i'm hoping my time is coming up soon 🤞.
 
 ### TBD
 
