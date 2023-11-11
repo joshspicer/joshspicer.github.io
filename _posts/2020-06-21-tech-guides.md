@@ -4,6 +4,7 @@ title: "Suggested Tech Guides (a growing list)"
 date: 2020-06-21
 permalink: tech-guides
 ---
+> Updated { site.time | date: '%A, %B %e, %Y' }}
 
 > I follow a lot of guide & writeups online covering a range of topics.  Here I will leave an (ever growing) list of guides I found useful!
 
@@ -19,3 +20,4 @@ permalink: tech-guides
 * [The k3OS imager tool for Raspi](https://github.com/sgielen/picl-k3os-image-generator)
 * [Traefik + Kubernetes setup for dummies](https://medium.com/@geraldcroes/kubernetes-traefik-101-when-simplicity-matters-957eeede2cf8)
 * [Syslog remote services with Influx/Telegraf/Granfana Stack](https://henrikhain.io/post/raspberry-pi-as-log-server-with-rsyslog-influx-telegraf-and-grafana/)
+* [Using 4G LTE Wireless Modems on a Raspberry Pi](https://www.jeffgeerling.com/blog/2022/using-4g-lte-wireless-modems-on-raspberry-pi)
