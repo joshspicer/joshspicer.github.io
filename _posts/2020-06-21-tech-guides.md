@@ -4,8 +4,6 @@ title: "Suggested Tech Guides (a growing list)"
 date: 2020-06-21
 permalink: tech-guides
 ---
-> Updated {{ site.time | date: '%A, %B %e, %Y' }}
-
 > I follow a lot of guide & writeups online covering a range of topics.  Here I will leave an (ever growing) list of guides I found useful!
 
 * [How to Install Minecraft Server on Ubuntu 18.04 (includes some best practices/tips)](https://linuxize.com/post/how-to-install-minecraft-server-on-ubuntu-18-04/)
