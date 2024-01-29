@@ -3,7 +3,7 @@ layout: post
 title: "Hacking my Air Purifier 🌪️"
 date: 2022-05-07
 permalink: hack-air-purifier
-tags: networking linux hacking
+tags: networking linux hacking iot
 ---
 
 A while back, I got one of those "smart" air purifiers to sit in my room while I work-from-home.  Like a lot of IoT devices, this fan works only with a proprietary app, requires a constant internet connection, and is _very_ chatting to a bunch of domains that resolve to IPs in foreign countries.  Below are my ramblings/notes as I try to reverse engineer how the device works, with the goal of getting the "smarts" to work "detached" from the proprietary mobile app and API service.
