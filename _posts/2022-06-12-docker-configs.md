@@ -193,3 +193,37 @@ SOURCE="/home/josh/backups/auto"
 /usr/bin/azcopy sync "$SOURCE" "$SAS" --recursive | tee /home/josh/backups/az_logs/$(date -u +'%Y-%m-%d_%H:%M')
 
 ```
+
+## Frigate
+
+I use frigate as my NVR with a Google Coral ML accelerator. This also runs in an LXC container on my proxmox machine, writing to an attached SSD mounted here on the host side as `/data`:
+
+```yml
+version: "3.9"
+services:
+  frigate:
+    container_name: frigate
+    privileged: true 
+    restart: unless-stopped
+    image: ghcr.io/blakeblackshear/frigate:stable
+    shm_size: "64mb" 
+    devices:
+      - /dev/bus/usb:/dev/bus/usb # passes the USB Coral
+      - /dev/dri/renderD128 # for intel hwaccel, needs to be updated for your hardware
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /data/frigate/config:/config
+      - /data/frigate/cctv_clips:/media/frigate
+      - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
+        target: /tmp/cache
+        tmpfs:
+          size: 1000000000
+    ports:
+      - "5000:5000"
+      - "8554:8554" # RTSP feeds
+      - "8555:8555/tcp" # WebRTC over tcp
+      - "8555:8555/udp" # WebRTC over udp
+    environment:
+      FRIGATE_RTSP_PASSWORD: "******"
+```
+
