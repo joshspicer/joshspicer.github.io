@@ -20,4 +20,4 @@ permalink: tech-guides
 * [Syslog remote services with Influx/Telegraf/Granfana Stack](https://henrikhain.io/post/raspberry-pi-as-log-server-with-rsyslog-influx-telegraf-and-grafana/)
 * [Using 4G LTE Wireless Modems on a Raspberry Pi](https://www.jeffgeerling.com/blog/2022/using-4g-lte-wireless-modems-on-raspberry-pi)
 * [On Unsharing linux namespaces](https://benjamintoll.com/2022/08/08/on-unsharing-namespaces-part-one/)
-* [Multipart seris on on "Linux Rootkits"](https://xcellerator.github.io/posts/linux_rootkits_01/)
+* [Multipart series on "Linux Rootkits"](https://xcellerator.github.io/posts/linux_rootkits_01/)
