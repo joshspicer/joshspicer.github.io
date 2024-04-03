@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Italian Citizenship through Jure Sanguinis (as it happens!)"
+title: "[UPDATED 2024] Italian Citizenship through Jure Sanguinis (as it happens!)"
 date: 2020-03-05
 permalink: jure-sanguinis
 favorite: "true"
@@ -337,6 +337,10 @@ Warning: no new news yet :')
 
 It's now been 26+ months since my appointment.  I haven't heard anything from the consulate, although in keeping an eye on the Facebook group that seems par for the course. Several folks around my appointment date have recently (within the past ~2 weeks) been recognized, so i'm hoping my time is coming up soon 🤞.
 
-### TBD
+## April 3, 2024
 
-That's all for now! I'll be updating this as more develops!
+Recognition!
+
+Today is the day!  I glanced down at my phone to see an email with the magic words _"We are happy to inform you that your Italian citizenship has been recognized..."_.  It has been 1555 days since I first learned of this opportunity and 944 days since my appointment at the consulate.  
+
+_Grazie mille_ to everyone that got to the end of this post!  For anyone starting or in the middle of this process, I want to give another huge shoutout to the wealth of knowledge that is the [Italian Dual Citzenship Facebook page](https://m.facebook.com/groups/23386646249/permalink/10155484576601250/) - go check them out!
