@@ -12,4 +12,4 @@ Hi - I'm **Josh**.  I graduated from [Northeastern University](https://ccs.neu.e
 
 🎓 I am pursuing my master's degree in Cybersecurity part-time at [Johns Hopkins University](https://pages.jh.edu/jspice10/).
 
-**You can find my PGP key and contact info [here]({{ site.url }}/contact).**
+**You can find my contact info [here]({{ site.url }}/contact).**
