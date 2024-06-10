@@ -6,10 +6,10 @@ redirect_from:
   - /about
 ---
 
-Hi - I'm **Josh**.  I graduated from [Northeastern University](https://ccs.neu.edu/home/joshua) with a degree in computer science.
+👋 Hey there - I'm **Josh**. 
 
 📍 I currently work at Microsoft building [GitHub Codespaces](https://github.com/features/codespaces) & [Dev Containers](https://containers.dev).
 
-🎓 I am pursuing my master's degree in Cybersecurity part-time at [Johns Hopkins University](https://pages.jh.edu/jspice10/).
+🎓 I hold a [Bachelor of Science degree](https://ccs.neu.edu/home/joshua) in Computer Science and a [Master of Science degree](https://pages.jh.edu/jspice10/) in Cybersecurity.
 
 **You can find my contact info [here]({{ site.url }}/contact).**
