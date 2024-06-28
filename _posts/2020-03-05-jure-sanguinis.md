@@ -344,3 +344,11 @@ Recognition!
 Today is the day!  I glanced down at my phone to see an email with the magic words _"We are happy to inform you that your Italian citizenship has been recognized..."_.  It has been 1555 days since I first learned of this opportunity and 944 days since my appointment at the consulate.  
 
 _Grazie mille_ to everyone that got to the end of this post!  For anyone starting or in the middle of this process, I want to give another huge shoutout to the wealth of knowledge that is the [Italian Dual Citzenship Facebook page](https://facebook.com/groups/23386646249/) - go check them out!
+
+## Bonus: Applying for a Passport
+
+Once recognized, one is eligible to apply for a passport through the consulate serving your state.  I've since moved to Seattle, which meant that the easiest way forward was to contact the [Seattle Honorary Consulate](https://www.casaitalianacc.org/italian-honorary-consulate-seattle/).  Honorary consulates have the ability to conduct the in-person portions of a passport appointment and ship off those details to the regional consulate (in this case, in San Francisco).  
+
+Although first, since I had moved into a different consular region post-recognition, I had to ensure that I first manually updated my residential address in [AIRE](https://serviziconsolari.esteri.it/ScoFE/). There's lots of info on AIRE and other terms in these [post-recognition docs, courtesy of the the Facebook group community](https://drive.google.com/file/d/1gKVTRBf1_M9oTgGlMmAeeZ1jGw_x-lMg/view).
+
+After emailing the honorary consulate in April I scored an appointment for mid-May. Exactly one month later I recieved my passport in the mail!   
