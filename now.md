@@ -10,6 +10,6 @@ redirect_from:
 
 📍 I currently work at Microsoft building [GitHub Codespaces](https://github.com/features/codespaces) & [Dev Containers](https://containers.dev).
 
-🎓 I hold a [Bachelor of Science](https://ccs.neu.edu/home/joshua) in Computer Science and a [Master of Science](https://pages.jh.edu/jspice10/) in Cybersecurity.
+🎓 I have a [Bachelor of Science](https://ccs.neu.edu/home/joshua) in Computer Science and a [Master of Science](https://pages.jh.edu/jspice10/) in Cybersecurity.
 
 **You can find my contact info [here]({{ site.url }}/contact).**
