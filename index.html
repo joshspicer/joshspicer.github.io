@@ -52,13 +52,6 @@ layout: default
     {% endfor %}
   </ul>
 
-  <!-- Tags -->
-  </br>
-  <span style="">
-    <h3>Topics</h3>
-    {% include archive.html %}
-  </span>
-
   <!-- Chronological  -->
   <ul class="post-list">
     {% for post in site.posts %} {% assign currentdate = post.date | date: "%Y"
