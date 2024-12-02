@@ -8,8 +8,16 @@ redirect_from:
 
 👋 Hey there - I'm **Josh**. 
 
-📍 I currently work at Microsoft building [GitHub Codespaces](https://github.com/features/codespaces) & [Dev Containers](https://containers.dev).
+📍 I currently work at Microsoft on the VS Code Team
 
-🎓 I have a [Bachelor of Science](https://ccs.neu.edu/home/joshua) in Computer Science and a [Master of Science](https://pages.jh.edu/jspice10/) in Cybersecurity.
+🎓 I have a Master of Science [^1] in Cybersecurity and Bachelor of Science [^2] in Computer Science
+
+🍕 I am learning Italian (ask me how to order a cappuccino)
+
+🤖 I love tinkering with electronics, home automation, 3D printing, security research, programming, _and so on..._  My projects of late have been including sewing and embroidery ❇️
 
 **You can find my contact info [here]({{ site.url }}/contact).**
+
+<br><br><br>
+[^1]: https://pages.jh.edu/jspice10/
+[^2]: https://ccs.neu.edu/home/joshua
