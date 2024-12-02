@@ -12,7 +12,7 @@ redirect_from:
 
 🎓 I have a Master of Science [^1] in Cybersecurity and Bachelor of Science [^2] in Computer Science
 
-🍕 I am learning Italian (ask me how to order a cappuccino)
+☕️ I am learning Italian (ask me how to order a cappuccino)
 
 🤖 I love tinkering with electronics, home automation, 3D printing, security research, programming, _and so on..._  My projects of late have been including sewing and embroidery ❇️
 
