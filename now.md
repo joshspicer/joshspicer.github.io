@@ -18,5 +18,5 @@ redirect_from:
 
 **You can find my contact info [here]({{ site.url }}/contact).**
 
-[^1]: https://pages.jh.edu/jspice10/
-[^2]: https://ccs.neu.edu/home/joshua
+[^1]: [https://pages.jh.edu/jspice10](https://pages.jh.edu/jspice10)
+[^2]: [https://ccs.neu.edu/home/joshua](https://ccs.neu.edu/home/joshua)
