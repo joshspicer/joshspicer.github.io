@@ -6,7 +6,7 @@ permalink: tailscale-lock-mullvad
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-tailscale-lock-mullvad/1.png) -->
 
-> I **love** Tailscale. It's my first install on any new device and an indispensible tool.  This is my first and _only_ example of a non-stellar experience, so I thought i'd write about it :^)
+> I **love** Tailscale. It's my first install on any new device and an indispensible tool.  This is my first and _only_ example of a non-stellar experience.
 
 Have you enabled the Mullvad add-on for Tailscale but not seeing any trace of Mullvad on your enabled clients?  If you have [Tailnet Lock](https://tailscale.com/kb/1226/tailnet-lock) enabled, there's an extra step that, in my opinion, is a bit [under-documented](https://tailscale.com/kb/1258/mullvad-exit-nodes#what-should-i-know-about-using-mullvad-with-tailnet-lock) in the Tailscale docs.
 
