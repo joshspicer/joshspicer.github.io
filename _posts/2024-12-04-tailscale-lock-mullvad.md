@@ -58,7 +58,7 @@ nodekey:014a3dfd197347b536c6badb90730d9f1193ab165aaadd304ec16d8d949818322
 Piping these keys through the CLI command will sign *all* of your pending nodes:
 
 ```
-tailscale lock status --json | jq -j  '.FilteredPeers | map(.NodeKey) | join("\n")' | xargs tailscale lock sign
+tailscale lock status --json | jq -j  '.FilteredPeers | map(.NodeKey) | join("\n")' | xargs -n1 tailscale lock sign
 ```
 
  Whether that's a good idea, i'll let you decide.
