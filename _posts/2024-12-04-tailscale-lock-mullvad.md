@@ -42,6 +42,8 @@ IP                 HOSTNAME                                   COUNTRY     CITY  
 100.14.171.146     appletv.best-tailnet.ts.net                -           -               -  
 100.81.73.163      us-sea-wg-001.mullvad.ts.net               USA         Seattle, WA     -
 ```
+ 
+ >_**EDIT: Tailscale has published a solution of their own, tucked away on their [support GitHub account](https://github.com/tailscale-support/mullvad-script).**_
 
 There is a `--json` flag on the Tailscale lock command:
 
@@ -61,4 +63,5 @@ Piping these keys through the CLI command will sign *all* of your pending nodes:
 tailscale lock status --json | jq -j  '.FilteredPeers | map(.NodeKey) | join("\n")' | xargs -n1 tailscale lock sign
 ```
 
- Whether that's a good idea, i'll let you decide.
+Whether that's a good idea, i'll let you decide.
+
