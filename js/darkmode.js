@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+  }
+
   const toggleButton = document.createElement('button');
   toggleButton.classList.add('toggle-button');
-  toggleButton.innerHTML = '🌙';
+  toggleButton.innerHTML = isDarkMode ? '☀️' : '🌙';
   document.body.appendChild(toggleButton);
 
   toggleButton.addEventListener('click', function () {
@@ -10,9 +15,4 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem('dark-mode', isDarkMode);
     toggleButton.innerHTML = isDarkMode ? '☀️' : '🌙';
   });
-
-  if (localStorage.getItem('dark-mode') === 'true') {
-    document.body.classList.add('dark-mode');
-    toggleButton.innerHTML = '☀️';
-  }
 });
