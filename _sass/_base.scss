@@ -27,8 +27,8 @@ body {
   font-size: $base-font-size;
   line-height: $base-line-height;
   font-weight: 300;
-  color: $text-color;
-  background-color: $background-color !important;
+  color: var(--text-color);
+  background-color: var(--background-color) !important;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -120,11 +120,11 @@ h6 {
 /* Links
  * ============================================== */
 a {
-  color: darken($brand-color, 5%);
+  color: var(--link-color);
   text-decoration: none;
 
   &:hover {
-    color: $brand-color;
+    color: var(--link-hover-color);
     text-decoration: none;
   }
 }
@@ -244,4 +244,62 @@ table {
   width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+/* Dark mode specific styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    --text-color: #e0e0e0;
+    --background-color: #121212;
+    --link-color: lighten($brand-color, 20%);
+    --link-hover-color: lighten($brand-color, 10%);
+  }
+
+  .site-header,
+  .site-nav,
+  .footer {
+    background-color: var(--background-color);
+  }
+
+  .post-link {
+    color: var(--text-color);
+  }
+
+  .post-meta {
+    color: lighten(var(--text-color), 20%);
+  }
+
+  .post-title {
+    color: var(--text-color);
+  }
+
+  .post-content {
+    color: var(--text-color);
+  }
+
+  .page-heading {
+    color: var(--text-color);
+  }
+
+  .spotifySong {
+    color: lighten($spotify-green, 20%);
+  }
+
+  .year {
+    color: var(--text-color);
+  }
+
+  .subtext {
+    color: lighten(var(--text-color), 20%);
+  }
+
+  .footnotes {
+    color: lighten(var(--text-color), 20%);
+  }
+
+  .searchBox {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid lighten(var(--background-color), 10%);
+  }
 }

@@ -192,3 +192,48 @@
 .post-content {
   margin-bottom: $spacing-unit;
 }
+
+/* Dark mode specific styles */
+@media (prefers-color-scheme: dark) {
+  .site-header,
+  .site-nav,
+  .footer {
+    background-color: var(--background-color);
+  }
+
+  .post-link {
+    color: var(--text-color);
+  }
+
+  .post-meta {
+    color: lighten(var(--text-color), 20%);
+  }
+
+  .post-title {
+    color: var(--text-color);
+  }
+
+  .post-content {
+    color: var(--text-color);
+  }
+
+  .page-heading {
+    color: var(--text-color);
+  }
+
+  .spotifySong {
+    color: lighten($spotify-green, 20%);
+  }
+
+  .year {
+    color: var(--text-color);
+  }
+
+  .subtext {
+    color: lighten(var(--text-color), 20%);
+  }
+
+  .footnotes {
+    color: lighten(var(--text-color), 20%);
+  }
+}

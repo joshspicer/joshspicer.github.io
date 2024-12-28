@@ -23,6 +23,11 @@ $grey-color: #828282;
 $grey-color-light: lighten($grey-color, 30%);
 $grey-color-dark: darken($grey-color, 25%);
 
+// Dark mode variables
+$dark-text-color: #e0e0e0;
+$dark-background-color: #121212;
+$dark-link-color: lighten($brand-color, 20%);
+
 // Width of the content area
 $content-width: 700px;
 $on-palm: 700px;
@@ -41,5 +46,76 @@ $on-laptop: 700px;
   }
 }
 
+// Dark mode media query
+@mixin dark-mode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "base", "layout", "syntax-highlighting";
+
+// Dark mode styles
+@include dark-mode {
+  body {
+    color: $dark-text-color;
+    background-color: $dark-background-color !important;
+  }
+
+  a {
+    color: $dark-link-color;
+
+    &:hover {
+      color: lighten($dark-link-color, 10%);
+    }
+  }
+
+  .site-header,
+  .site-nav,
+  .footer {
+    background-color: $dark-background-color;
+  }
+
+  .post-link {
+    color: $dark-text-color;
+  }
+
+  .post-meta {
+    color: lighten($dark-text-color, 20%);
+  }
+
+  .post-title {
+    color: $dark-text-color;
+  }
+
+  .post-content {
+    color: $dark-text-color;
+  }
+
+  .page-heading {
+    color: $dark-text-color;
+  }
+
+  .spotifySong {
+    color: lighten($spotify-green, 20%);
+  }
+
+  .year {
+    color: $dark-text-color;
+  }
+
+  .subtext {
+    color: lighten($dark-text-color, 20%);
+  }
+
+  .footnotes {
+    color: lighten($dark-text-color, 20%);
+  }
+
+  .searchBox {
+    background-color: $dark-background-color;
+    color: $dark-text-color;
+    border: 1px solid lighten($dark-background-color, 10%);
+  }
+}
