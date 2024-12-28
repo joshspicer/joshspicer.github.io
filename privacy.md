@@ -6,4 +6,4 @@ redirect_from:
   - /privacy_policy
 ---
 
-This blog utlizes third party services from Github (Github Pages) and Google (Google Analytics) for hosting and analytics, respectively.
+This blog utilizes third party services from Github (Github Pages) and Google (Google Analytics) for hosting and analytics, respectively.
