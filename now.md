@@ -16,7 +16,7 @@ redirect_from:
 
 🤖 I love tinkering with electronics, home automation, 3D printing, security research, programming, _and so on..._  My projects of late have been including sewing and embroidery ❇️
 
-**You can find my contact info [here]({{ site.url }}/contact).**
+You can find my contact info [**here**]({{ site.url }}/contact).
 
 [^1]: [https://pages.jh.edu/jspice10](https://pages.jh.edu/jspice10)
 [^2]: [https://ccs.neu.edu/home/joshua](https://ccs.neu.edu/home/joshua)

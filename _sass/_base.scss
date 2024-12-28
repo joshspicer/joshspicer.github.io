@@ -1,3 +1,5 @@
+@import 'variables';
+
 /* Reset Basic Elements
  * ============================================== */
 body,
@@ -129,6 +131,14 @@ a {
   }
 }
 
+.post-suffix-cta { 
+  color: gray;
+}
+
+.post-suffix-link {
+  color: #222222;
+}
+
 /* Block Quotes
  * ============================================== */
 blockquote {
@@ -244,4 +254,95 @@ table {
   width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+ .fontawesome-icon {
+  color: black;
+}
+
+/* Dark Mode
+ * ============================================== */
+body.dark-mode {
+  color: $dark-primary-text-color;
+  background-color: $dark-background-color !important;
+}
+
+.post-suffix-cta { 
+  color: $dark-secondary-text-color;
+}
+
+body.dark-mode a {
+  color: darken($brand-color, 5%);
+
+  &:hover {
+    color: $brand-color;
+  }
+}
+
+body.dark-mode .post-link {
+  color: $dark-primary-text-color;
+
+  &:hover {
+    color: $brand-color;
+  }
+}
+
+body.dark-mode .page-heading {
+  color: $dark-primary-text-color;
+}
+
+body.dark-mode blockquote {
+  color: $dark-secondary-text-color;
+  border-left-color: $brand-color;
+}
+
+body.dark-mode pre,
+body.dark-mode code {
+  background-color: $dark-secondary-background-color;
+  color: $dark-primary-text-color;
+  border-color: $dark-divider-color;
+}
+
+body.dark-mode table {
+  background-color: $dark-secondary-background-color;
+  color: $dark-primary-text-color;
+  border-color: $dark-divider-color;
+}
+
+// body.dark-mode .highlight {
+//   background-color: $dark-hover-highlight-color;
+//   color: $dark-primary-text-color;
+// }
+
+body.dark-mode .year {
+  color: $brand-color;
+}
+
+body.dark-mode .fontawesome-icon {
+  color: $dark-primary-text-color;
+}
+
+body.dark-mode .fa-coffee {
+  color: #E5C604;
+}
+
+/* Toggle Button
+ * ============================================== */
+.toggle-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: $text-color;
+  z-index: 1000;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+body.dark-mode .toggle-button {
+  color: $dark-primary-text-color;
 }

@@ -22,7 +22,7 @@ social-links:
   - name: GitHub
     url: http://github.com/joshspicer
     icon: fab fa-github
-    color: "#25292E"
+    color: "#6e5494"
     external: true
   - name: Linkedin
     url: http://linkedin.com/in/joshspicer
