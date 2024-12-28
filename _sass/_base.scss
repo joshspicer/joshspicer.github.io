@@ -131,6 +131,14 @@ a {
   }
 }
 
+.post-suffix-cta { 
+  color: gray;
+}
+
+.post-suffix-link {
+  color: #222222;
+}
+
 /* Block Quotes
  * ============================================== */
 blockquote {
@@ -247,12 +255,19 @@ table {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+ .fontawesome-icon {
+  color: black;
+}
 
 /* Dark Mode
  * ============================================== */
 body.dark-mode {
   color: $dark-primary-text-color;
   background-color: $dark-background-color !important;
+}
+
+.post-suffix-cta { 
+  color: $dark-secondary-text-color;
 }
 
 body.dark-mode a {
@@ -307,6 +322,18 @@ body.dark-mode .highlight {
 
 body.dark-mode .year {
   color: $brand-color;
+}
+
+body.dark-mode .fontawesome-icon {
+  color: $dark-primary-text-color;
+}
+
+body.dark-mode .fa-envelope {
+  color: $brand-color;
+}
+
+body.dark-mode .fa-coffee {
+  color: #E5C604;
 }
 
 /* Toggle Button
