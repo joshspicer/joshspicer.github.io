@@ -1,12 +1,12 @@
 # joshspicer.com
 
-My "Smart" static-site powered by [jekyllrb.com](jekyllrb.com).
+My blog powered by [jekyllrb.com](jekyllrb.com). 
 
-View this page by visiting [https://joshspicer.com/](https://joshspicer.com/)
+View at [https://joshspicer.com/](https://joshspicer.com/).  Press the <kbd>.</kbd> key while on the homepage to edit in `github.dev`.  
 
-Cookies may be set by this website, as outlined in [privacy](https://joshspicer.com/privacy)
+Cookies may be set by this website, as outlined in [privacy](https://joshspicer.com/privacy).
 
-Subscribe to new posts with any RSS feed reader: http://joshspicer.com/feed.xml
+Subscribe to new posts via RSS: **http://joshspicer.com/feed.xml**
 
 ## Licenses
 
