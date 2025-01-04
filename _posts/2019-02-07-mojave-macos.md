@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AppleScript + Swift + Mojave"
+title: "SpotStatus: AppleScript + Swift + Mojave"
 date: 2019-02-07
 redirect_from:
   - /SpotStatus/
