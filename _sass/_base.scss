@@ -1,5 +1,6 @@
 @import 'variables';
 
+
 /* Reset Basic Elements
  * ============================================== */
 body,
@@ -264,6 +265,10 @@ table {
 body.dark-mode {
   color: $dark-primary-text-color;
   background-color: $dark-background-color !important;
+
+  .gist {
+    filter: invert(1) hue-rotate(180deg) brightness(1);
+    }
 }
 
 .post-suffix-cta { 
