@@ -1,9 +1,10 @@
 ---
 layout: page
-title: now
-permalink: /now/
+title: whoami
+permalink: /whoami/
 redirect_from:
   - /about
+  - /now
 ---
 
 👋 Hey there - I'm **Josh**. 
@@ -13,8 +14,6 @@ redirect_from:
 🎓 I have a Master of Science [^1] in Cybersecurity and Bachelor of Science [^2] in Computer Science
 
 ☕️ I am learning Italian (ask me how to order a cappuccino)
-
-🤖 I love tinkering with electronics, home automation, 3D printing, security research, programming, _and so on..._  My projects of late have been including sewing and embroidery ❇️
 
 You can find my contact info [**here**]({{ site.url }}/contact).
 
