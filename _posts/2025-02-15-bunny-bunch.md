@@ -14,11 +14,11 @@ permalink: bunny-bunch
 
 ## Bunny Bunch
 
-**Bunny Bunch** is a turn-based strategy iOS/iPadOS/tvOS/macOS card game.  The game is turn-based ("pass 'n play") and can be played with up to five players _on a single iPad_.
+**Bunny Bunch** is a turn-based strategy iOS/iPadOS/tvOS/macOS card game. The game is turn-based ("pass 'n play") and can be played with up to five players _on a single iPad_.
 
-> The game also supports local multi-device play (in beta).  More on that later!
+> The game also supports local multi-device play (in beta). More on that later!
 
-I built Bunny Bunch as a Christmas present with the goal of creating an engaging "pass 'n play" game to whip out and kill a few minutes while traveling for the holidays.  Bunny Bunch has been successfully played on trains, airports, and even in a car!
+I built Bunny Bunch as a Christmas present with the goal of creating an engaging "pass 'n play" game to whip out and kill a few minutes while traveling for the holidays. Bunny Bunch has been successfully played on trains, in airports, and even in a car!
 
 ## Rules
 
@@ -50,7 +50,7 @@ In Bunny Bunch, players compete to collect groups of bunnies. Your goal is to ei
    - Large bunch: Keep 2 bunnies for your collection
    - Remaining bunnies are discarded
 
-If your turn ends with you having no cards in your hand, all players must discard their hands and draw 8 new cards (A great way to annoy your friends!)
+If your turn ends with you having no cards in your hand, all players must discard their hands and draw 8 new cards (a great way to annoy your friends!)
 
 ### Winning
 Win by collecting either:
@@ -80,7 +80,7 @@ Win by collecting either:
 
 ### Multi-Device Play
 
-While pass 'n play is great, sometimes you don't trust your friends to not glance at your cards.  Using Apple's [Multipeer Connectivity](https://developer.apple.com/documentation/multipeerconnectivity) framework, Bunny Bunch supports local multi-device play.  This allows nearby devices to connect to each other and share game state. 
+While pass 'n play is great, sometimes you don't trust your friends to not glance at your cards.  Using Apple's [Multipeer Connectivity](https://developer.apple.com/documentation/multipeerconnectivity) framework, Bunny Bunch supports local multi-device play.  This allows nearby devices to connect to each other and share game state.
 
 In this mode, you select one device as the "host".  Each player then joins that game from their own device.  The player's hand is hidden on the host device and streamed to your personal device.
 
