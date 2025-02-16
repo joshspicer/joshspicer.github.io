@@ -3,6 +3,8 @@ layout: post
 title: " 🐰 Download my iPhone Game"
 date: 2025-02-15
 permalink: bunny-bunch
+redirect_from:
+    - bunnybunch
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-bunny-bunch/1.png) -->
 
