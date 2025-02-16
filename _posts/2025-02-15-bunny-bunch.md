@@ -8,15 +8,13 @@ redirect_from:
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-bunny-bunch/1.png) -->
 
-> 🔔 This app is pending app store approval - check back soon for the download link!
-
 > Bunny Bunch is a free adaptation of [Cubirds](https://pandasaurusgames.com/products/cubirds) by Pandasaurus Games.  If you enjoy Bunny Bunch, please consider purchasing the original game!
 >
 > [This YouTube video](https://www.youtube.com/watch?v=HUP9Rz_gHqM) explains the [rules](https://www.ultraboardgames.com/cubirds/game-rules.php) of Cubirds in detail.  If you learn the rules of Cubirds, you will know how to play Bunny Bunch!
 
 ## Bunny Bunch
 
-**Bunny Bunch** is a turn-based strategy iOS/iPadOS/tvOS/macOS card game. The game is turn-based ("pass 'n play") and can be played with up to five players _on a single iPad_.
+[**Bunny Bunch**](https://apps.apple.com/us/app/bunny-bunch/id6739154162) is a turn-based strategy iOS/iPadOS/tvOS/macOS card game. The game is turn-based ("pass 'n play") and can be played with up to five players _on a single iPad_.
 
 > The game also supports local multi-device play (in beta). More on that later!
 
@@ -24,7 +22,7 @@ I built Bunny Bunch as a Christmas present with the goal of creating an engaging
 
 ## Rules
 
-If you _haven't_ played Cubirds, here's an overview of the game (but really, watch the video or read [these instructions](https://www.ultraboardgames.com/cubirds/game-rules.php)):
+If you _haven't_ played Cubirds, here's an overview of the game (but really, watch [this video](https://www.youtube.com/watch?v=HUP9Rz_gHqM) or read [these instructions](https://www.ultraboardgames.com/cubirds/game-rules.php) first):
 
 ### Game Overview
 
@@ -93,7 +91,7 @@ In this mode, you select one device as the "host".  Each player then joins that 
 ![7.png]({{site.url}}/assets/resources-bunny-bunch/7.png)
 
 
-<!-- **Interested in playing?  Grab a friend and [download today from the App Store](#)** -->
+**Interested in playing?  Grab a friend and [download today from the App Store](https://apps.apple.com/us/app/bunny-bunch/id6739154162)**
 
 ## Acknowledgements
 
