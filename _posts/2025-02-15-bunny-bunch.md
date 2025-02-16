@@ -97,5 +97,6 @@ In this mode, you select one device as the "host".  Each player then joins that 
 
 For any issues, feel free to let me know [on GitHub](https://github.com/joshspicer/bunnybunch-release).
 
-- Thanks to [Pandasaurus Games](https://pandasaurusgames.com) for designing an awesome game.
-- Huge appreciation to Emily for the bunny artwork, play testing, and ideas 🙂
+Thanks to [Pandasaurus Games](https://pandasaurusgames.com) for designing an awesome game.
+
+Finally, this game is dedicated to Emily - without her it would not exist.  Also, a huge thanks to her for the bunny artwork.
