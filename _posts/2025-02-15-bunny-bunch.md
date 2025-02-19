@@ -75,7 +75,7 @@ Win by collecting either:
 </div>
 
 
-![6.png]({{site.url}}/assets/resources-bunny-bunch/6.png)
+![6.jpg]({{site.url}}/assets/resources-bunny-bunch/6.jpg)
 <div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Play on your TV!</small>
 </div>
 
