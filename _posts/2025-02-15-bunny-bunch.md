@@ -74,11 +74,11 @@ Win by collecting either:
 <div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Shake your phone (or press 'M' on a mac) to access the main menu</small>
 </div>
 
-<!--
+
 ![6.png]({{site.url}}/assets/resources-bunny-bunch/6.png)
 <div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Play on your TV!</small>
 </div>
--->
+
 
 ### Multi-Device Play
 
