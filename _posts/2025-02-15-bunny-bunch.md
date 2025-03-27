@@ -5,6 +5,8 @@ date: 2025-02-15
 permalink: bunny-bunch
 redirect_from:
     - bunnybunch
+    - cubird
+    - cubirds
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-bunny-bunch/1.png) -->
 
