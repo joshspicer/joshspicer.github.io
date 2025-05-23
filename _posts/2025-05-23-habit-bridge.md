@@ -1,11 +1,11 @@
 ---
 layout: post
-title: " HabitBridge: A Habit Tracking App For Hackers"
+title: "HabitBridge: A Habit Tracking App For Hackers"
 date: 2025-05-23
-permalink: habit-bridge
+permalink: HabitBridge
 redirect_from:
     - habitbridge
-    - HabitBridge
+    - habit-bridge
 redirect_to: 
   - https://github.com/joshspicer/habitbridge-release
 ---
