@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " HabitBridge: A Habit Tracking App For Hacker"
+title: " HabitBridge: A Habit Tracking App For Hackers"
 date: 2025-05-23
 permalink: habit-bridge
 redirect_from:
