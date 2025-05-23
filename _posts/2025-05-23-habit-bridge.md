@@ -10,6 +10,8 @@ redirect_to:
   - https://github.com/joshspicer/habitbridge-release
 ---
 
+<!-- ![1.png]({{site.url}}/assets/resources-habit-bridge/1.png) -->
+
 > This post is a stub and will be completed shortly!
 
 Key Features:
