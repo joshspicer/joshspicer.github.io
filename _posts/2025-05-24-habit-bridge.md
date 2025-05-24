@@ -224,7 +224,7 @@ Once you've created your plugin:
 
 4. Submit a pull request to have your plugin added to the marketplace
 
-> Want to instead use your own marketplace instance?  Configure this under 'Advanced Settings' in HabitBridge. There you will change the [index URL](https://joshspicer.com/HabitBridgeMarketplace/) to a URL of your choosing.
+> Want to instead use your own marketplace instance?  Configure this under 'Advanced Settings' in HabitBridge. There you will change the [index URL](https://joshspicer.com/HabitBridgeMarketplace/index.json) to a URL of your choosing.
 
 
 ## Issue Reporting
