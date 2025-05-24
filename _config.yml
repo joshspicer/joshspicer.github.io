@@ -47,6 +47,9 @@ social-links:
 
 include: [".well-known"]
 
+# Files to exclude from processing
+exclude: ["LICENSE", "README.md", "Gemfile", "Gemfile.lock"]
+
 # Build settings
 #markdown: redcarpet
 highlighter: rouge
