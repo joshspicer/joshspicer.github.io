@@ -89,7 +89,7 @@ This can be sent to any web service that accepts webhooks, allowing for endless 
 
 #### Home Assistant
 
-I've release a [Home Assistant](https://www.home-assistant.io/) addon to trigger smart home automations based on habit completion. 
+I've created a [Home Assistant](https://www.home-assistant.io/) addon to trigger smart home automations based on habit completion. 
 
 
 1. Add [the repository](https://github.com/joshspicer/habitbridge-addons) to your Home Assistant addon store:
