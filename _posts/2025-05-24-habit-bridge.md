@@ -8,7 +8,7 @@ redirect_from:
     - habit-bridge
 ---
 
-Meet **HabitBridge** - a habit tracking app designed for developers, hackers, and anyone else who wants _real_ control over their digital habit tracking. 
+Meet [**HabitBridge**](https://apps.apple.com/us/app/habitbridge/id6742713867) - a habit tracking app designed for developers, hackers, and anyone else who wants _real_ control over their digital habit tracking. 
 
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
   <div style="flex: 1; min-width: 250px; padding-right: 10px;">
@@ -26,9 +26,7 @@ HabitBridge aims to be infinitely extensible to make habit tracking more effecti
 
 HabitBridge is available **for free** on the App Store:
 
-> NOTE: HabitBridge is _**not**_ currently available on the App Store.  I am awaiting approval from Apple. Stay tuned!
-
-<!-- [**Download HabitBridge**](https://apps.apple.com/us/app/habitbridge/id6742713867) -->
+[**Download HabitBridge**](https://apps.apple.com/us/app/habitbridge/id6742713867)
 
 ## What Makes HabitBridge Different?
 
