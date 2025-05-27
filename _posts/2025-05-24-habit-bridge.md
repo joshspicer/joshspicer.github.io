@@ -89,11 +89,28 @@ This can be sent to any web service that accepts webhooks, allowing for endless 
 
 #### Home Assistant
 
-I plan to release a [Home Assistant](https://www.home-assistant.io/) integration to trigger smart home automations based on habit completion. Imagine your smart lights changing color when you complete your morning routine, or your coffee maker starting when you finish your workout.
+I've release a [Home Assistant](https://www.home-assistant.io/) addon to trigger smart home automations based on habit completion. 
 
-_Subscribe to this blog's [RSS Feed](https://joshspicer.com/feed.xml) for updates._
 
-<!-- *Video demo of Home Assistant integration coming soon!* -->
+1. Add [the repository](https://github.com/joshspicer/habitbridge-addons) to your Home Assistant addon store:
+   - In Home Assistant, go to Settings -> Add-ons -> Add-on Store
+   - Click the menu (⋮) in the top right corner and select "Repositories"
+   - Add the URL: `https://github.com/joshspicer/habitbridge-addons`
+   - Click "Add"
+
+2. Find and install the "HabitBridge" addon from the add-on store
+3. Start the addon
+4. Add `http://<your-home-assistant-ip>:8000/webhook` as the webhook URL in HabitBridge app settings.
+
+After the first webhook is received, several new `habitbridge` prefixed sensors will be created in Home Assistant. 
+
+Use these sensors to trigger automations based on habit completions.
+
+<img src="{{site.url}}/assets/resources-habit-bridge/ha.gif" alt="" width="500">
+<div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Enables an LED strip when all habits are completed for the day</small>
+</div>
+
+Imagine your smart lights changing color when you complete your morning routine, or your coffee maker starting when you finish your workout.
 
 
 ### Widgets
