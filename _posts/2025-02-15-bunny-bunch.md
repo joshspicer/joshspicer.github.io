@@ -7,6 +7,7 @@ redirect_from:
     - bunnybunch
     - cubird
     - cubirds
+    - BunnyBunch
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-bunny-bunch/1.png) -->
 
