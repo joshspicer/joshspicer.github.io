@@ -6,8 +6,6 @@ permalink: HabitBridge
 redirect_from:
     - habitbridge
     - habit-bridge
-redirect_to: 
-  - https://github.com/joshspicer/habitbridge-release
 ---
 
 <!-- ![1.png]({{site.url}}/assets/resources-habit-bridge/1.png) -->
