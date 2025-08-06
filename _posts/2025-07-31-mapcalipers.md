@@ -10,9 +10,9 @@ redirect_from:
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-mapcalipers/1.png) -->
 
-[**MapCalipers**](#) is a flexible mapping toolkit built to aid players of [Jet Lag: The Game Hide and Seek Transit Game](https://store.nebula.tv/products/hideandseek) to find their friends!
+[**MapCalipers**](#) is a flexible mapping toolkit built to help you defeat your friends in [Jet Lag: The Game Hide and Seek Transit Game](https://store.nebula.tv/products/hideandseek)!
 
-The iOS app helps you pinpoint your target’s location within defined boundaries, steadily shrinking the search area using interactive tools like "Radar" and "Thermometer". Leveraging standard [GTFS](https://gtfs.org/) data—freely provided by many transit authorities, the app overlays precise transit lines and stops onto your play area. Use the built-in analysis features to determine which routes and stops your target might be hiding at, then use the dynamic mapping tools to track them down!
+The iOS app helps you pinpoint your target’s location within defined boundaries, steadily shrinking the search area using interactive tools like "Radar" and "Thermometer". Leveraging standard [GTFS](https://gtfs.org/) data, freely provided by many transit authorities, the app overlays precise transit lines and stops onto your play area. Use the built-in analysis features to determine which routes and stops your target might be hiding at, then use the dynamic mapping tools to track them down!
 
 The app is available [for free on the App Store](#)! _(pending review)_
 
@@ -33,20 +33,15 @@ The app provides a suite of tools to help you analyze the map and your target's 
 
 Use the **Radar Tool** to quickly drop a circle and ask if the target is inside or outside. The app creates an exclusion zone based on your answer.
 
-<!-- TODO: Screenshot of radar tool -->
 <img src="{{site.url}}/assets/resources-mapcalipers/radar.png" width="250" alt="Radar tool screenshot">
 
 Use the **Thermometer Tool** to pick two points and see which side of the line the target is on. Great for slicing the map in half.
-
-<!-- TODO: Screenshot of thermometer tool -->
-
 
 <img src="{{site.url}}/assets/resources-mapcalipers/thermometer.png" width="250" alt="Thermometer tool screenshot">
 
 
 Feel creative? Use the **Custom Polygon** tool to rule out complex shapes. Perfect for excluding irregular areas.
 
-<!-- TODO: Screenshot of custom polygon tool -->
 <img src="{{site.url}}/assets/resources-mapcalipers/custom.png" width="250" alt="Custom polygon screenshot">
 
 
@@ -54,18 +49,15 @@ Feel creative? Use the **Custom Polygon** tool to rule out complex shapes. Perfe
 
 Analyze nearby bus and train routes or stops that are still within the viable search area. 
 
-<!-- TODO: Screenshot of inspect tool -->
 <img src="{{site.url}}/assets/resources-mapcalipers/inspect.png" width="250" alt="Inspect tool screenshot">
 
 ### Sync
 
 Share your game state with friends or collaborate on a shared map. The app allows you to push and pull game state to/from a collaboration server using a secret passphase.
 
-<!-- TODO: Screenshot of inspect tool -->
 <img src="{{site.url}}/assets/resources-mapcalipers/sync.png" width="250" alt="Syncing">
 
 ### Timeline History
-
 
 Every tool use is recorded in the timeline. Jump back to previous steps to fix any mistakes.
 
@@ -74,7 +66,7 @@ Every tool use is recorded in the timeline. Jump back to previous steps to fix a
 
 ## Self-hosting
 
-I host a small instance of the control server. The server is not needed to use the app, but provides (1) a way to share game state with others and (2) pre-processes GTFS transit data for the app to overlay on the map.
+I host a small instance of the _control server_. The server is not needed to use the app's standard features, but provides (1) a way to share game state with others and (2) pre-processes GTFS transit data for the app to overlay on the map.
 
 You are welcome to use the pre-configured instance _without any guarantee of uptime or data integrity_. If you want to run your own instance, you can do so with the following `docker-compose.yml` file:
 
@@ -105,7 +97,7 @@ services:
 
 Then in `./config/gtfs_config.json` provide information for each city's standardized [GTFS](https://gtfs.org/) zip URL.
 
-If you encounter errors getting your city set up, please feel free to [send me an email]({{site.url}}/contact).
+If you encounter errors getting your city set up, please feel free to [send me an email]({{site.url}}/contact)!
 
 ```json
 [
@@ -130,13 +122,15 @@ This app is not affiliated with or endorsed by the creators of [Jet Lag: The Gam
 
 Use at your own risk. The app is provided "as is" without any warranties or guarantees of functionality. The developer is not responsible for any issues that arise from using the app, including but not limited to data loss, incorrect game state, or misinterpretation of transit data.
 
+Check with your friends before using the app! Some groups may prefer the good old pen-and-paper method of tracking each other down.
+
 ### Privacy
 
 MapCalipers collects no personal data whatsoever. There is no use of telemetry or trackers employed by the app developer.
 
-All application data resides on-device, unless you explicitly push game state to the collaboration server.  You may choose to not use the collaboration features by disabling transit data and not pushing or pulling game state to/from the collaboration server.
+All application data resides on-device, unless you explicitly push game state to the collaboration server.  You can choose to not use the collaboration features by disabling transit data and not pushing or pulling game state to/from the collaboration server.
 
-The collaboration server does not collect any personal data, but it does store the game state in a session file on the server.  This file is only accessible to the users who created it and is deleted when the session ends.  The server does not log any user activity or IP addresses.
+The collaboration server does not collect any personal data, but it does store the game state in a session file on the server.  This file is only accessible to the users who created it and is deleted when the session ends.  The server does not log any user activity beyond what is necessary for its operation.
 
 This page will be updated with any amendments to the privacy policy. We reserve the right to update this privacy policy with subsequent app updates.
 
