@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Jetlag the App (MapCalipers 🔧)"
+title: "Jetlag the App ✈️"
 date: 2025-07-31
 permalink: mapcalipers
 redirect_from:
