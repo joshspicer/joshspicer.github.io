@@ -11,14 +11,13 @@ redirect_from:
 <!-- ![1.png]({{site.url}}/assets/resources-mapcalipers/1.png) -->
 
 
-<!-- [**MapCalipers**](#) -->
- **MapCalipers** is a flexible mapping toolkit built to help you defeat your friends in [Jet Lag: The Game Hide and Seek Transit Game](https://store.nebula.tv/products/hideandseek)!
+ [**MapCalipers**](https://apps.apple.com/us/app/map-calipers/id6746725018) is a flexible mapping toolkit built to help you defeat your friends in [Jet Lag: The Game Hide and Seek Transit Game](https://store.nebula.tv/products/hideandseek)!
 
 The iOS app helps you pinpoint your target’s location within defined boundaries, steadily shrinking the search area using interactive tools like "Radar" and "Thermometer". Leveraging standard [GTFS](https://gtfs.org/) data, freely provided by many transit authorities, the app overlays precise transit lines and stops onto your play area. Use the built-in analysis features to determine which routes and stops your target might be hiding at, then use the dynamic mapping tools to track them down!
 
 <!-- The app is available [for free on the App Store](#)! -->
 
-This app will be free on the App Store (pending review).
+This app is [free on the App Store](https://apps.apple.com/us/app/map-calipers/id6746725018)!
 
 <img src="{{site.url}}/assets/resources-mapcalipers/cta.png" width="250" alt="Header photo of a full map">
 
