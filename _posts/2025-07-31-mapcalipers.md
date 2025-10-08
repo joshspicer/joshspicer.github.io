@@ -111,6 +111,14 @@ If you encounter errors getting your city set up, please feel free to [send me a
   {
     "city": "boston",
     "zipUrl": "https://cdn.mbta.com/MBTA_GTFS.zip"
+  },
+  {
+    "city": "nyc",
+    "zipUrl": "https://rrgtfsfeeds.s3.amazonaws.com/gtfs_subway.zip"
+  },
+  {
+    "city": "sf",
+    "zipUrl": "https://muni-gtfs.apps.sfmta.com/data/muni_gtfs-current.zip"
   }
 ]
 ```
