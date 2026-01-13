@@ -33,6 +33,7 @@ body {
   color: $text-color;
   background-color: $background-color !important;
   -webkit-text-size-adjust: 100%;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23228B22" d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') 8 8, auto;
   // transition: background-color 0.5s, color 0.5s;
 }
 
