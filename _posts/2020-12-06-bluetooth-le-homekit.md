@@ -3,7 +3,7 @@ layout: post
 title: "Bluetooth Low Energy devices on HomeKit"
 date: 2020-12-06
 permalink: bluetooth-le-homekit
-tags: linux hacking homelab
+tags: linux hacking homelab iot
 ---
 
 I recently bought a bluetooth thermometer/hydrometer [(Govee H5072)](https://www.amazon.com/dp/B07DWMJKP5/ref=cm_sw_em_r_mt_dp_MXoZFb6S7CWZD) for $15 on Amazon to use in my apartment.  After purchasing, I thought of several smart home automations that would be nice to have triggered based on the sensor's readings.  This device communicates via my phone with Bluetooth LE, and didn't offer any smarthome hooks in the app.  Govee also offers a **$60** WiFi version of this sensor that does work with the typical smart home providers.  

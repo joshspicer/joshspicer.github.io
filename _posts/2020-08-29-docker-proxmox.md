@@ -3,7 +3,7 @@ layout: post
 title: "Docker VM on Proxmox (rancherOS/Portainer)"
 date: 2020-08-29
 permalink: docker-proxmox
-tags: homelab
+tags: homelab linux
 ---
 
 > ⚠ RancherOS appears to be unmaintained at the moment, so I no longer recommend this as the best approach!

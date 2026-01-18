@@ -4,7 +4,7 @@ title: Android Hacking with FRIDA
 date: 2018-07-08
 permalink: android-frida-1
 favorite: "true"
-tags: hacking
+tags: hacking mobile-dev
 ---
 
 Ever since I was introduced to Frida at an OWASP meetup a few months back,

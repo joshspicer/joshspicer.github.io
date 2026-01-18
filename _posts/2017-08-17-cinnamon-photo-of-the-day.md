@@ -3,6 +3,7 @@ layout: post
 title: Cinnamon Photo of the Day
 date: 2017-08-17
 permalink: cinnamon
+tags: show-and-tell
 ---
 > I have a cat named Cinnamon. She's the best. Here's a daily photo of her.
 > (I'd recommend bookmarking this page...)

@@ -7,6 +7,7 @@ redirect_from:
     - MapCalipers
     - map-calipers
     - jetlag
+tags: mobile-dev show-and-tell
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-mapcalipers/1.png) -->
 

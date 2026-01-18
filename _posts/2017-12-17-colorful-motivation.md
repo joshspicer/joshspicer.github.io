@@ -3,6 +3,7 @@ layout: post
 title: Colorful Motivation - Chrome's Newest New Tab Page
 date: 2017-12-17
 permalink: colorful-motivation
+tags: show-and-tell
 ---
 
 > As of June 2018, Colorful Motivation has 300+ users on the [Chrome web store](https://chrome.google.com/webstore/detail/colorful-motivation-new-t/mebfadffaiadgfhoieipinanpcmklhil)!

@@ -3,6 +3,7 @@ layout: post
 title: "Docker Config(s)"
 date: 2022-06-12
 permalink: docker-configs
+tags: homelab linux
 ---
 
 <!-- ![1.png]({{site.url}}/assets/resources-docker-config/1.png) -->

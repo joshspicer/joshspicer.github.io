@@ -3,6 +3,7 @@ layout: post
 title: "My OS Config(s)"
 date: 2023-08-29
 permalink: os-configs
+tags: linux tips-tricks
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-os-configs/1.png) -->
 

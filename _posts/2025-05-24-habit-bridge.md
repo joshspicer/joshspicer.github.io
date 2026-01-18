@@ -6,6 +6,7 @@ permalink: HabitBridge
 redirect_from:
     - habitbridge
     - habit-bridge
+tags: mobile-dev show-and-tell
 ---
 
 Meet [**HabitBridge**](https://apps.apple.com/us/app/habitbridge/id6742713867) - a habit tracking app designed for developers, hackers, and anyone else who wants _real_ control over their digital habit tracking. 

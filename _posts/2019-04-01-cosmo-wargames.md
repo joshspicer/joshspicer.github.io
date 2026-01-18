@@ -3,7 +3,7 @@ layout: post
 title: "Linux/Over The Wire Workshop - CoSMO"
 date: 2019-04-01
 permalink: wargames
-tags: hacking linux
+tags: hacking linux show-and-tell
 ---
 
 > I helped start [CoSMO](https://nuCoSMO.club/), a computer science mentorship club at Northeastern. Below is the workshop I conducted teaching

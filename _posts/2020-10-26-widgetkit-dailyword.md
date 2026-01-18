@@ -3,7 +3,7 @@ layout: post
 title: "Daily Word (WidgetKit/SwiftUI)"
 date: 2020-10-26
 permalink: widgetkit-dailyword
-tags: mobile-dev
+tags: mobile-dev show-and-tell
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-widgetkit-dailyword/1.png) -->
 

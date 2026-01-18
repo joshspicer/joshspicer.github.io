@@ -3,6 +3,7 @@ layout: post
 title: "Tailscale Lock & Mullvad Exit Nodes"
 date: 2024-12-04
 permalink: tailscale-lock-mullvad
+tags: networking tips-tricks
 ---
 <!-- ![1.png]({{site.url}}/assets/resources-tailscale-lock-mullvad/1.png) -->
 

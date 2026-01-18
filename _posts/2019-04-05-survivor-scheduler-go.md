@@ -4,7 +4,7 @@ title: "Survivor: Northeastern Scheduler in Go"
 date: 2019-04-05
 permalink: survivor-scheduler
 favorite: "true"
-tags:
+tags: show-and-tell
 ---
 
 > [Survivor: Northeastern](http://survivornortheastern.com/) is a club at Northeastern

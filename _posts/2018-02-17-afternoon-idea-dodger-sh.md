@@ -3,6 +3,7 @@ layout: post
 title: dodger.sh - Play in your shell!
 date: 2018-02-17
 permalink: dodger-sh
+tags: linux show-and-tell
 ---
 
 > I created a small game called dodger.sh one evening to learn bash syntax.

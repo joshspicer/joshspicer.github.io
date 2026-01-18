@@ -3,7 +3,7 @@ layout: post
 title: "Monthly Playlists (2019) - Turkish Edition!"
 date: 2020-1-4
 permalink: monthly-playlist-2019
-tags: music
+tags: music spotify
 ---
 
 > Every month I pour all my favorite tunes into a playlist with that name (this year, in Turkish because why not). Here's my reflections back on 2019 through Spotify.

@@ -3,6 +3,7 @@ layout: post
 title: "Local LTE Failover with Pfsense"
 date: 2023-02-11
 permalink: lte-failover-pfsense
+tags: homelab networking
 ---
 
 > My Xfinity cable internet connection has been shockingly unreliable since I last moved.  That got me thinking about alternative options to keep my home connected.

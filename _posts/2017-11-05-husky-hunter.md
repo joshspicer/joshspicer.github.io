@@ -3,6 +3,7 @@ layout: post
 title: HuskyHunter
 date: 2017-11-05
 permalink: husky-hunter
+tags: show-and-tell
 ---
 
 

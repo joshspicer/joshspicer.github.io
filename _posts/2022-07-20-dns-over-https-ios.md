@@ -3,6 +3,7 @@ layout: post
 title: "DNS over HTTPS in iOS"
 date: 2022-07-20
 permalink: dns-over-https-ios
+tags: mobile-dev networking
 ---
 
 I recently discovered [Paul Miller's](https://paulmillr.com/posts/encrypted-dns/) blog post and [repo](https://github.com/paulmillr/encrypted-dns) sharing how to craft iOS configuration profiles that instruct iOS (or macOS/tvOS/watchOS/etc) to use a provided DNS over HTTPS (DoH) or DNS over TLS (DoT) server for encrypted DNS requests.  This method doesn't require any app or background VPN to forward requests.

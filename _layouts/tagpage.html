@@ -2,40 +2,135 @@
 layout: default
 ---
 
+<style>
+.tag-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.tag-icon {
+    font-size: 1.5em;
+}
+.tag-count {
+    font-size: 0.85em;
+    color: #888;
+    font-weight: normal;
+    margin-left: 8px;
+}
+.tag-description {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+.tag-post-list {
+    margin-left: 0;
+    list-style: none;
+    padding: 0;
+}
+.tag-post-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+.tag-post-item:last-child {
+    border-bottom: none;
+}
+.tag-post-title {
+    font-family: "Inconsolata", "Helvetica", "Arial", sans-serif;
+    font-size: 1.05em;
+    color: #454545;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.tag-post-title:hover {
+    color: #1DB954;
+}
+.tag-post-meta {
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 4px;
+}
+body.dark-mode .tag-post-item {
+    border-bottom-color: #333;
+}
+body.dark-mode .tag-post-title {
+    color: #e0e0e0;
+}
+body.dark-mode .tag-description {
+    color: #888;
+}
+body.dark-mode .tag-count {
+    color: #777;
+}
+</style>
+
 <!-- Nav -->
 <a href="{{site.url}}">
     <i class="fontawesome-icon fas fa-home"></i></a>
 <br /><br />
 
-<div>
-    <div class="post">
-        <h1>{{ page.tag | capitalize}}</h1>
-        </br>
-        <ul class="post-list" style="margin-bottom: 0;padding-bottom: 0;">
-            {% for post in site.tags[page.tag] %}
-            <li style="padding-bottom: 0;height: 3em;">
-                <a href="{{ post.url }}">
-
-                    <span class="post-link">
-                        <strong>››</strong>
-
-                        {% if post.favorite == "true" %}
-                        <span style="font-weight: 400; text-decoration: none;">
-                            {{ post.title }}
-                            <i style="color: orange; font-size: 12px; margin-bottom: 2px;" class="fas fa-star"></i>
-                        </span>
-                        {% else %}
-                        {{ post.title }} {% endif %}
-                    </span>
-                </a>
-                <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if page.meta %} • {{ page.meta }}{% endif %}
-                </p>
-
-                {{ post.description }}
-            </li>
-            {% endfor %}
-        </ul>
+<div class="post">
+    <div class="tag-header">
+        <span class="tag-icon">
+            {% case page.tag %}
+                {% when 'hacking' %}🔓
+                {% when 'mobile-dev' %}📱
+                {% when 'music' %}🎵
+                {% when 'spotify' %}🎧
+                {% when 'travel' %}✈️
+                {% when 'homelab' %}🏠
+                {% when 'linux' %}🐧
+                {% when 'networking' %}🌐
+                {% when 'azure' %}☁️
+                {% when 'aws' %}☁️
+                {% when 'iot' %}💡
+                {% when 'macOS' %}🍎
+                {% when 'tips-tricks' %}💡
+                {% when 'react-native' %}⚛️
+                {% when 'show-and-tell' %}🎪
+                {% when 'xamarin' %}📲
+                {% else %}📝
+            {% endcase %}
+        </span>
+        <h1 style="margin: 0;">{{ page.tag | capitalize }}<span class="tag-count">({{ site.tags[page.tag] | size }} posts)</span></h1>
     </div>
+    
+    <p class="tag-description">
+        {% case page.tag %}
+            {% when 'hacking' %}Security research, reverse engineering, and CTF writeups.
+            {% when 'mobile-dev' %}iOS, Android, React Native, and cross-platform mobile development.
+            {% when 'music' %}Monthly playlists, top songs, and music collections.
+            {% when 'spotify' %}Spotify API projects and playlist automation.
+            {% when 'travel' %}Adventures, second-every-day videos, and travel stories.
+            {% when 'homelab' %}Self-hosted infrastructure, servers, and home networking.
+            {% when 'linux' %}Linux tips, configs, and command-line tools.
+            {% when 'networking' %}Network configuration, VPNs, and connectivity.
+            {% when 'azure' %}Microsoft Azure cloud projects and tutorials.
+            {% when 'aws' %}Amazon Web Services projects and serverless.
+            {% when 'iot' %}Smart home, HomeKit, and embedded devices.
+            {% when 'macOS' %}macOS apps, tweaks, and AppleScript.
+            {% when 'tips-tricks' %}Useful tips and quick solutions.
+            {% when 'react-native' %}Cross-platform mobile apps with React Native.
+            {% when 'show-and-tell' %}Personal projects and things I've built.
+            {% when 'xamarin' %}Cross-platform mobile development with Xamarin.
+            {% else %}Posts tagged with {{ page.tag }}.
+        {% endcase %}
+    </p>
+
+    <ul class="tag-post-list">
+        {% for post in site.tags[page.tag] %}
+        <li class="tag-post-item">
+            <a href="{{ post.url }}" class="tag-post-title">
+                {% if post.favorite == "true" %}<i style="color: orange; font-size: 12px;" class="fas fa-star"></i>{% endif %}
+                {{ post.title }}
+            </a>
+            <span class="tag-post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
-</br></br></br>
-</a>
+<br /><br />

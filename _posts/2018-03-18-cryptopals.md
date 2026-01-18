@@ -3,7 +3,7 @@ layout: post
 title: Cryptopals Crypto Challenge
 date: 2018-03-18 15:27:31
 permalink: cryptopals
-tags: hacking
+tags: hacking show-and-tell
 ---
 
 > I recently discovered the [cryptopals](http://cryptopals.com) crypto challenges by nccgroup. I'll be recording my solutions here.

@@ -3,7 +3,7 @@ layout: post
 title: "Hosting a GraphQL API on AWS Lambda"
 date: 2019-01-03
 permalink: lambda-graphql
-tags: aws mobile-dev
+tags: aws mobile-dev react-native
 ---
 
 > Its been a while since i've written about Parade. I've been meaning to share my

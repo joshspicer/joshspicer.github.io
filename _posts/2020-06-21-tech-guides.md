@@ -3,6 +3,7 @@ layout: post
 title: "Suggested Tech Guides (a growing list)"
 date: 2020-06-21
 permalink: tech-guides
+tags: tips-tricks
 ---
 > I follow a lot of guide & writeups online covering a range of topics.  Here I will leave an (ever growing) list of guides I found useful!
 

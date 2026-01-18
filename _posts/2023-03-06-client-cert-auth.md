@@ -3,6 +3,7 @@ layout: post
 title: "Transparent Apple Watch Auth (with CloudFlare Client Certificates)"
 date: 2023-03-06
 permalink: client-cert-auth
+tags: networking hacking
 ---
 
 ## Introduction
