@@ -360,24 +360,13 @@ body.dark-mode .toggle-button {
 .heading-anchor {
   position: relative;
   margin-right: 0.5em;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+  opacity: 1;
   text-decoration: none;
   font-weight: normal;
   color: $brand-color;
 }
 
-h1:hover .heading-anchor,
-h2:hover .heading-anchor,
-h3:hover .heading-anchor,
-h4:hover .heading-anchor,
-h5:hover .heading-anchor,
-h6:hover .heading-anchor {
-  opacity: 1;
-}
-
 .heading-anchor:hover {
-  opacity: 1;
   text-decoration: none;
   color: darken($brand-color, 10%);
 }
