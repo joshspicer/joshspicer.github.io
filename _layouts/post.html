@@ -38,10 +38,21 @@ layout: default
     <a class="post-suffix-link" style="font-style: normal;font-weight: 900;"
       href="https://github.com/joshspicer/joshspicer.github.io/edit/master/{{ page.path }}">Suggest edit</a>
     <br>
+    {% comment %}Extract the slug from the filename by removing date and extension{% endcomment %}
+    {% assign filename = page.path | split: "/" | last %}
+    {% assign parts = filename | split: "-" %}
+    {% assign post_slug = parts | slice: 3, parts.size | join: "-" | replace: ".md", "" %}
+    {% if site.data.discussions[post_slug].url %}
+    <span class="post-suffix-cta">Have a comment?</span>
+    <a class="post-suffix-link"  style="font-style:normal; font-weight: 900;" href="{{ site.data.discussions[post_slug].url }}">Join the discussion
+      &nbsp;<i style="color:#6e5494" class="fab fa-github"></i> </a>
+    <br>
+    {% else %}
     <span class="post-suffix-cta">Have a comment?</span>
     <a class="post-suffix-link"  style="font-style:normal; font-weight: 900;" href="/contact">Let me know
       &nbsp;<i style="color:#4a9e4f" class="fa fa-envelope"></i> </a>
     <br>
+    {% endif %}
     <span class="post-suffix-cta">This post helpful?</span>
     <a class="post-suffix-link"  style="font-style:normal; font-weight: 900;" href="https://www.buymeacoffee.com/joshspicer">Buy me a coffee!
       &nbsp;<i style="color:#E5C604" class="fa fa-coffee"></i></a>
