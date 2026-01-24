@@ -6,6 +6,10 @@ KK7VUA:
   number: 247
   title: 'Discussion: KK7VUA here. Getting my Amateur Radio license'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/247
+_2020-10-27-git-fast-export:
+  number: 260
+  title: 'Discussion: git fast-export (An Exploration into Git)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/260
 adventofcode-2020:
   number: 226
   title: 'Discussion: Advent of Code (2020)'
@@ -30,10 +34,18 @@ bluetooth-le-homekit:
   number: 227
   title: 'Discussion: Bluetooth Low Energy devices on HomeKit'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/227
+btle-ha:
+  number: 256
+  title: 'Discussion: Reversing a Bluetooth LE Light for Home Assistant Integration'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/256
 btrfs-azure:
   number: 231
   title: 'Discussion: Create a btrfs data disk with Azure + Packer'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/231
+bunny-bunch:
+  number: 257
+  title: "Discussion:  \U0001F430 Download my iPhone Game"
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/257
 cinnamon-photo-of-the-day:
   number: 38
   title: 'Discussion: Cinnamon Photo of the Day'
@@ -102,6 +114,10 @@ get-around-airplane-wifi:
   number: 60
   title: 'Discussion: Quick MAC Spoofing Script'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/60
+habit-bridge:
+  number: 258
+  title: 'Discussion: HabitBridge: A Habit Tracking App For Hackers'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/258
 hack-air-purifier:
   number: 238
   title: "Discussion: Hacking my Air Purifier \U0001F32A\uFE0F"
@@ -186,6 +202,10 @@ macos-tweaks:
   number: 215
   title: 'Discussion: My MacOS Tips & Tweaks'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/215
+mapcalipers:
+  number: 259
+  title: "Discussion: Jetlag the App \u2708\uFE0F"
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/259
 microsoft-second-every-day:
   number: 73
   title: 'Discussion: My Microsoft internship in 206 seconds'
@@ -266,6 +286,10 @@ root-pixel-1-verizon:
   number: 46
   title: 'Discussion: Rooting your Bootlocked Pixel Phone (Verizon Edition)'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/46
+sewing:
+  number: 255
+  title: "Discussion: Show and Tell: \U0001FAA1"
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/255
 spotify-lambda-api:
   number: 51
   title: 'Discussion: Spotify "Now Playing" with AWS Lambda'
