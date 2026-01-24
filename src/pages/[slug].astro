@@ -35,6 +35,7 @@ const formatDate = (date: Date) =>
 <BaseLayout
   title={`${post.data.title} — ${siteConfig.name}`}
   description={post.data.description}
+  sourcePath={`src/content/blog/${post.id}`}
 >
   <article class="page">
     <a class="back-link" href={withBase('/posts/')}>← All writing</a>

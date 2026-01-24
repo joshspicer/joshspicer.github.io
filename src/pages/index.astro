@@ -17,7 +17,11 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<BaseLayout title={siteConfig.name} description={siteConfig.description}>
+<BaseLayout
+  title={siteConfig.name}
+  description={siteConfig.description}
+  sourcePath="src/pages/index.astro"
+>
   <div class="home">
     <section class="identity" aria-labelledby="identity-title">
       <h1 class="marker-heading" id="identity-title">

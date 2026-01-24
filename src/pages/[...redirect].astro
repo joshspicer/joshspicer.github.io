@@ -102,6 +102,7 @@ const { Content } = await render(props.page);
 <BaseLayout
   title={`${props.page.data.title} — ${siteConfig.name}`}
   description={props.page.data.description}
+  sourcePath={`src/content/pages/${props.page.id}`}
 >
   <article class="page">
     <a class="back-link" href={withBase('/')}>← Home</a>
