@@ -1,0 +1,46 @@
+name: Create Post Discussions
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '_posts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  discussions: write
+
+jobs:
+  create-discussions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install PyYAML
+
+      - name: Create discussions for posts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          python .github/scripts/create_discussions.py
+
+      - name: Commit discussion data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/discussions.yml
+          git diff --staged --quiet || git commit -m "Update post discussions data"
+          git push
