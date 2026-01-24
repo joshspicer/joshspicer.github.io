@@ -2,6 +2,14 @@
   number: 75
   title: 'Discussion: Monthly Playlists (2019) - Turkish Edition!'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/75
+KK7VUA:
+  number: 247
+  title: 'Discussion: KK7VUA here. Getting my Amateur Radio license'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/247
+adventofcode-2020:
+  number: 226
+  title: 'Discussion: Advent of Code (2020)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/226
 afternoon-idea-dodger-sh:
   number: 43
   title: 'Discussion: dodger.sh - Play in your shell!'
@@ -18,10 +26,22 @@ aws-ec2-deploy-script:
   number: 56
   title: 'Discussion: AWS ec2 Auto Deploy Scripts'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/56
+bluetooth-le-homekit:
+  number: 227
+  title: 'Discussion: Bluetooth Low Energy devices on HomeKit'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/227
+btrfs-azure:
+  number: 231
+  title: 'Discussion: Create a btrfs data disk with Azure + Packer'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/231
 cinnamon-photo-of-the-day:
   number: 38
   title: 'Discussion: Cinnamon Photo of the Day'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/38
+client-cert-auth:
+  number: 243
+  title: 'Discussion: Transparent Apple Watch Auth (with CloudFlare Client Certificates)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/243
 colorful-motivation:
   number: 41
   title: 'Discussion: Colorful Motivation - Chrome''s Newest New Tab Page'
@@ -30,6 +50,10 @@ comments-count-bug:
   number: 52
   title: 'Discussion: JSX Comment Bug'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/52
+concerts:
+  number: 228
+  title: 'Discussion: CONCERTS'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/228
 cosmo-wargames:
   number: 71
   title: 'Discussion: Linux/Over The Wire Workshop - CoSMO'
@@ -38,6 +62,18 @@ cryptopals:
   number: 44
   title: 'Discussion: Cryptopals Crypto Challenge'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/44
+dns-over-https-ios:
+  number: 241
+  title: 'Discussion: DNS over HTTPS in iOS'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/241
+docker-configs:
+  number: 240
+  title: 'Discussion: Docker Config(s)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/240
+docker-proxmox:
+  number: 223
+  title: 'Discussion: Docker VM on Proxmox (rancherOS/Portainer)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/223
 dual-sim-iphone-hack:
   number: 58
   title: 'Discussion: Keep your Home Number While Abroad (iCloud Hack)'
@@ -46,6 +82,14 @@ edinburgh-second-every-day:
   number: 65
   title: 'Discussion: My Edinburgh study abroad in 350 seconds'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/65
+eink:
+  number: 246
+  title: 'Discussion: An E-Ink Recipe Frame with Inkplate 10'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/246
+fa-xamarin:
+  number: 220
+  title: 'Discussion: Add Font Awesome Icons to a Xamarin Forms App'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/220
 follow-me-through-uk-europe:
   number: 57
   title: 'Discussion: Follow Me Through Edinburgh and the UK'
@@ -58,14 +102,34 @@ get-around-airplane-wifi:
   number: 60
   title: 'Discussion: Quick MAC Spoofing Script'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/60
+hack-air-purifier:
+  number: 238
+  title: "Discussion: Hacking my Air Purifier \U0001F32A\uFE0F"
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/238
 hackupc:
   number: 62
   title: 'Discussion: HackUPC in Barcelona'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/62
+heartbox:
+  number: 245
+  title: 'Discussion: Heartbox: An IoT Present for your Significant Other'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/245
 hitch-to-paris:
   number: 63
   title: 'Discussion: Hitchhiking from Scotland to Paris in 32 Hours'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/63
+homekit-esp8266:
+  number: 232
+  title: 'Discussion: Homemade HomeKit (with an ESP8266 microcontroller)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/232
+homelab-esxi:
+  number: 210
+  title: 'Discussion: My Home Lab - ESXI/PiHole/PfSense/Docker'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/210
+homelab-update-proxmox:
+  number: 214
+  title: 'Discussion: Homelab Update - Proxmox'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/214
 husky-hunt-visualization:
   number: 76
   title: 'Discussion: Husky Hunt - Visualizing 1st Place!'
@@ -86,10 +150,30 @@ iceland-seconds:
   number: 61
   title: 'Discussion: A Trip to Iceland'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/61
+iphone-pfsense:
+  number: 217
+  title: 'Discussion: Bridge iPhone Hotspot to LAN with Pfsense'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/217
+japan-second-every-day:
+  number: 221
+  title: 'Discussion: A trip to Japan and Thailand in 250 seconds'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/221
+jarvis:
+  number: 239
+  title: 'Discussion: Jarvis: A home automation ChatOps bot (+ Azure & Kubernetes)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/239
 join-the-parade:
   number: 54
   title: 'Discussion: Parade: NU''s Event Discovery App - Now on the App Store!'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/54
+josh-top-songs-2019:
+  number: 209
+  title: 'Discussion: My Top Songs (2019)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/209
+jure-sanguinis:
+  number: 211
+  title: 'Discussion: Italian Citizenship through Jure Sanguinis (Updated 2024)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/211
 lambda-graphQL:
   number: 66
   title: 'Discussion: Hosting a GraphQL API on AWS Lambda'
@@ -98,6 +182,10 @@ llvm:
   number: 68
   title: 'Discussion: LLVM Compiler Opt Pass (tips & tricks)'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/68
+macos-tweaks:
+  number: 215
+  title: 'Discussion: My MacOS Tips & Tweaks'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/215
 microsoft-second-every-day:
   number: 73
   title: 'Discussion: My Microsoft internship in 206 seconds'
@@ -110,6 +198,18 @@ monthly-playlist:
   number: 64
   title: 'Discussion: My Monthly Playlists! (2018)'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/64
+monthly-playlist-2020:
+  number: 229
+  title: 'Discussion: Monthly Playlists - 2020!'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/229
+monthly-playlist-2021:
+  number: 236
+  title: "Discussion: Monthly Playlists 2021 \U0001F680"
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/236
+nas:
+  number: 237
+  title: 'Discussion: Building my own NAS'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/237
 ncc-ios5:
   number: 67
   title: 'Discussion: NCC Ninja - iOS5'
@@ -122,14 +222,46 @@ nush-shell:
   number: 40
   title: 'Discussion: nush: "Northeastern Shell"'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/40
+openwrt-alert:
+  number: 222
+  title: 'Discussion: Detect New Devices on your Network (OpenWRT + Telegram API)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/222
+os-configs:
+  number: 244
+  title: 'Discussion: My OS Config(s)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/244
 parade-ios-universal-linking-test:
   number: 53
   title: 'Discussion: iOS Universal Linking with React Native'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/53
+pfsense-local-lte-failover:
+  number: 242
+  title: 'Discussion: Local LTE Failover with Pfsense'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/242
+pi-contrHOLE:
+  number: 213
+  title: 'Discussion: Pi ContrHOLE - Xamarin Forms & Pi-Hole'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/213
+playlist-azure-function:
+  number: 212
+  title: 'Discussion: Azure Function & Siri Shortcuts - Playlist Quicksave'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/212
+practical-reverse-shell-azure:
+  number: 230
+  title: 'Discussion: Reverse shell to your Azure VM without inbound access'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/230
 python37-openssl:
   number: 70
   title: 'Discussion: SSL issues with Python 3.7 Install From Source'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/70
+quarantine-cam:
+  number: 216
+  title: 'Discussion: Repurpose an old iPhone as a (Teams/Slack/Zoom) Mac Webcam'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/216
+reverse-engineer-ac:
+  number: 233
+  title: 'Discussion: Reverse Engineering my A/C into a HomeKit Accessory'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/233
 root-pixel-1-verizon:
   number: 46
   title: 'Discussion: Rooting your Bootlocked Pixel Phone (Verizon Edition)'
@@ -138,10 +270,18 @@ spotify-lambda-api:
   number: 51
   title: 'Discussion: Spotify "Now Playing" with AWS Lambda'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/51
+spotify-now-playing-azure:
+  number: 235
+  title: 'Discussion: Spotify "Now Playing" v2 (Exploring Azure Functions)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/235
 spotify-party-queue:
   number: 47
   title: 'Discussion: Spotify Public Queue - for Parties, Car Rides, and Strangers'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/47
+ssl-pinning-android:
+  number: 234
+  title: 'Discussion: Bypassing SSL pinning on Android in 2021'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/234
 survivor-northeastern:
   number: 50
   title: 'Discussion: [Parade Blog] Why You Should Play Survivor Northeastern'
@@ -154,7 +294,27 @@ tabnabbing-rocket-test:
   number: 37
   title: 'Discussion: Tabnabbing Example'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/37
+tailscale-lock-mullvad:
+  number: 248
+  title: 'Discussion: Tailscale Lock & Mullvad Exit Nodes'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/248
+tech-guides:
+  number: 219
+  title: 'Discussion: Suggested Tech Guides (a growing list)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/219
 top-songs:
   number: 59
   title: 'Discussion: YOUR Top Spotify Songs!'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/59
+touchbar-vscode:
+  number: 225
+  title: 'Discussion: Touchbar Quick Commands in VSCode'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/225
+widgetkit-dailyword:
+  number: 224
+  title: 'Discussion: Daily Word (WidgetKit/SwiftUI)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/224
+wireguard-azure:
+  number: 218
+  title: 'Discussion: Pi-Hole & Wireguard on Azure (in 10 minutes or less!)'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/218
