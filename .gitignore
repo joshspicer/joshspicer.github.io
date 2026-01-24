@@ -2,5 +2,3 @@
 .jekyll-cache/
 /FUTURE_POSTS
 _posts/_site
-__pycache__/
-*.pyc
