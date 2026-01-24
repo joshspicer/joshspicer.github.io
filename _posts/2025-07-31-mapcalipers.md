@@ -77,7 +77,8 @@ You are welcome to use the pre-configured instance _without any guarantee of upt
 ```
 services:
   mapcalipers:
-    image: ghcr.io/joshspicer/mapcalipers:latest
+    image: ghcr.io/joshspicer/mapcalipers:latest  # Latest App Store version
+    # image: ghcr.io/joshspicer/mapcalipers:1.4   # Pin to an earlier App Store version
       ports:
         - "6001:6001"
     restart: unless-stopped
@@ -101,13 +102,9 @@ services:
 
 ### Docker Image Versions
 
-The MapCalipers Docker images are tagged to match App Store versions. Each release is tagged with its corresponding version number (e.g., `ghcr.io/joshspicer/mapcalipers:1.4`), and the most recent App Store version is also tagged as `:latest`.
+The MapCalipers Docker images are tagged to match App Store versions. Each release is tagged with its corresponding version number (e.g., `ghcr.io/joshspicer/mapcalipers:1.4`). The most recent App Store version is also tagged as `:latest`.
 
-**Important:** There is no guarantee of compatibility across minor versions. To ensure proper synchronization when collaborating, make sure all users are on the same app version and using the appropriately tagged server container. For example, if you're using MapCalipers version 1.4 from the App Store, use the `1.4` Docker image tag rather than `latest` to avoid potential compatibility issues when a new version is released.
-
-Available tags:
-- `latest` - The most recent App Store release
-- `1.4` - Specific version matching App Store version 1.4
+**Important:** There is no guarantee of compatibility across minor versions. To ensure proper synchronization when collaborating, make sure all users are on the same app version and using the appropriately tagged server container.  My instance will be updated shortly after App Store releases.
 
 Then in `./config/gtfs_config.json` provide information for each city's standardized [GTFS](https://gtfs.org/) zip URL.
 
