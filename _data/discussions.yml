@@ -322,6 +322,10 @@ tailscale-lock-mullvad:
   number: 248
   title: 'Discussion: Tailscale Lock & Mullvad Exit Nodes'
   url: https://github.com/joshspicer/joshspicer.github.io/discussions/248
+tankgame:
+  number: 261
+  title: 'Discussion: Bluetooth Tank Game'
+  url: https://github.com/joshspicer/joshspicer.github.io/discussions/261
 tech-guides:
   number: 219
   title: 'Discussion: Suggested Tech Guides (a growing list)'
