@@ -149,7 +149,7 @@ MapCalipers collects no personal data whatsoever. There is no use of telemetry o
 
 All application data resides on-device, unless you explicitly push game state to the collaboration server.  You can choose to not use the collaboration features by disabling transit data and not pushing or pulling game state to/from the collaboration server.
 
-The collaboration server does not collect any personal data, but it does store the game state in a session file on the server.  This file is only accessible to the users who created it and is deleted when the session ends.  The server does not log any user activity beyond what is necessary for its operation.
+The collaboration server does not collect any personal data, but it does store the game state in a session file on the server.  This file is only accessible to the users who created it via the anonymized session ID and server administrators.  The server does not intentionally log any user activity beyond the anonymized game state data.
 
 This page will be updated with any amendments to the privacy policy. We reserve the right to update this privacy policy with subsequent app updates.
 
