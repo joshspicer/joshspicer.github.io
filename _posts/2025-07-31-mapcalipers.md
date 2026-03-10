@@ -108,7 +108,7 @@ The MapCalipers Docker images are tagged to match App Store versions. Each relea
 
 Then in `./config/gtfs_config.json` provide information for each city's standardized [GTFS](https://gtfs.org/) zip URL.
 
-If you encounter errors getting your city set up, please feel free to [send me an email]({{site.url}}/contact)!
+If you create GTFS for your city, please [contact me]({{site.url}}/contact) and email it over so I can add it to my instance and share it with others! If you encounter errors getting your city set up, please feel free to reach out too.
 
 ```json
 [
@@ -152,4 +152,3 @@ All application data resides on-device, unless you explicitly push game state to
 The collaboration server does not collect any personal data, but it does store the game state in a session file on the server.  This file is only accessible to the users who created it via the anonymized session ID and server administrators.  The server does not intentionally log any user activity beyond the anonymized game state data.
 
 This page will be updated with any amendments to the privacy policy. We reserve the right to update this privacy policy with subsequent app updates.
-
