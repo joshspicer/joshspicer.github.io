@@ -104,9 +104,9 @@ services:
 
 The MapCalipers Docker images are tagged to match App Store versions. Each release is tagged with its corresponding version number (e.g., `ghcr.io/joshspicer/mapcalipers:1.4`). The most recent App Store version is also tagged as `:latest`.
 
-**Important:** There is no guarantee of compatibility across minor versions. To ensure proper synchronization when collaborating, make sure all users are on the same app version and using the appropriately tagged server container.  My instance will be updated shortly after App Store releases. You can check by querying the `/health` endpoint.
+> There is no guarantee of compatibility across minor versions. To ensure proper synchronization when collaborating, make sure all users are on the same app version and using the appropriately tagged server container.  My instance will be updated shortly after App Store releases. You can check by querying the `/health` endpoint.
 
-Then in `./config/gtfs_config.json` provide information for each city's standardized [GTFS](https://gtfs.org/) zip URL.
+Then in `./config/gtfs_config.json` provide information for each city's standardized [GTFS](https://gtfs.org/) zip URL. The server will cache this information if fetched remotely.  Local paths are are also supported (place your `.zip` next to `gtfs_config.json`.
 
 If you encounter errors getting your city set up, please feel free to [send me an email]({{site.url}}/contact)!
 
@@ -130,7 +130,7 @@ If you encounter errors getting your city set up, please feel free to [send me a
   },
   {
     "city": "vienna",
-    "zipUrl": "./vienna-gtfs.zip"  // Local paths (relative to the config file) are supported!
+    "zipUrl": "./vienna-gtfs.zip"  // Local paths (placed next to this file) are supported!
   }
 ]
 ```
