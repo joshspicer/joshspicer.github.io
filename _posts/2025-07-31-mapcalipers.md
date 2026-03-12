@@ -110,7 +110,7 @@ Then in `./config/gtfs_config.json` provide information for each city's standard
 
 If you encounter errors getting your city set up, please feel free to [send me an email]({{site.url}}/contact)!
 
-```json
+```jsonc
 [
   {
     "city": "seattle",
@@ -127,6 +127,10 @@ If you encounter errors getting your city set up, please feel free to [send me a
   {
     "city": "sf",
     "zipUrl": "https://muni-gtfs.apps.sfmta.com/data/muni_gtfs-current.zip"
+  },
+  {
+    "city": "vienna",
+    "zipUrl": "./vienna-gtfs.zip"  // Local paths (relative to the config file) are supported!
   }
 ]
 ```
