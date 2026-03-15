@@ -13,7 +13,7 @@ redirect_from:
 
 🎓 I have a Master of Science [^1] in Cybersecurity and Bachelor of Science [^2] in Computer Science
 
-☕️ I'm learning Italian (ask me how to order a cappuccino)
+☕️ In my free time I enjoy traveling, tinkering on my homelab, practicing piano, studying Italian, and flying airplanes ✈️
 
 You can find my contact info [**here**]({{ site.url }}/contact).
 
