@@ -129,6 +129,10 @@ If you encounter errors getting your city set up, please feel free to [send me a
     "zipUrl": "https://muni-gtfs.apps.sfmta.com/data/muni_gtfs-current.zip"
   },
   {
+    "city": "budapest",
+    "zipUrl": "https://go.bkk.hu/api/static/v1/public-gtfs/budapest_gtfs.zip"
+  },
+  {
     "city": "vienna",
     "zipUrl": "./vienna-gtfs.zip"  // Local paths (placed next to this file) are supported!
   }
