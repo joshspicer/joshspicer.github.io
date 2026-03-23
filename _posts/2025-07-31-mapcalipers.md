@@ -14,7 +14,7 @@ tags: mobile-dev show-and-tell
 
  [**MapCalipers**](https://apps.apple.com/us/app/map-calipers/id6746725018) is a flexible mapping toolkit built to help you defeat your friends in [Jet Lag: The Game Hide and Seek Transit Game](https://store.nebula.tv/collections/jetlag/products/jet-lag-the-game-hide-and-seek-transit-game)!
 
-The iOS app helps you pinpoint your target’s location within defined boundaries, steadily shrinking the search area using interactive tools like "Radar" and "Thermometer". Leveraging standard [GTFS](https://gtfs.org/) data, freely provided by many transit authorities, the app overlays precise transit lines and stops onto your play area. Use the built-in analysis features to determine which routes and stops your target might be hiding at, then use the dynamic mapping tools to track them down!
+The iOS app helps you pinpoint your target's location within defined boundaries, steadily shrinking the search area using interactive tools like "Radar" and "Thermometer". Leveraging standard [GTFS](https://gtfs.org/) data, freely provided by many transit authorities, the app overlays precise transit lines and stops onto your play area. Use the built-in analysis features to determine which routes and stops your target might be hiding at, then use the dynamic mapping tools to track them down!
 
 <!-- The app is available [for free on the App Store](#)! -->
 
@@ -48,6 +48,9 @@ Feel creative? Use the **Custom Polygon** tool to rule out complex shapes. Perfe
 
 <img src="{{site.url}}/assets/resources-mapcalipers/custom.png" width="250" alt="Custom polygon screenshot">
 
+Use the **Distance Tool** to measure the straight-line distance between two points on the map.
+
+Use the **Measure Tool** to measure distances along a path with multiple waypoints.
 
 ### Inspect Transit
 
@@ -79,11 +82,11 @@ services:
   mapcalipers:
     image: ghcr.io/joshspicer/mapcalipers:latest  # Latest App Store version
     # image: ghcr.io/joshspicer/mapcalipers:1.4   # Pin to a specific App Store version
-      ports:
-        - "6001:6001"
+    ports:
+      - "6001:6001"
     restart: unless-stopped
     volumes:
-      - ./collab_server/sessions:/app/sessions
+      - ./sessions:/app/sessions
       - ./config:/app/config
     environment:
       - DATA_DIR=/app/sessions
@@ -129,12 +132,8 @@ If you encounter errors getting your city set up, please feel free to [send me a
     "zipUrl": "https://muni-gtfs.apps.sfmta.com/data/muni_gtfs-current.zip"
   },
   {
-    "city": "budapest",
-    "zipUrl": "https://go.bkk.hu/api/static/v1/public-gtfs/budapest_gtfs.zip"
-  },
-  {
-    "city": "vienna",
-    "zipUrl": "./vienna-gtfs.zip"  // Local paths (placed next to this file) are supported!
+    "city": "oslo",
+    "zipUrl": "./oslo_gtfs.zip"  // Local paths (placed next to this file) are supported!
   }
 ]
 ```
@@ -160,4 +159,3 @@ All application data resides on-device, unless you explicitly push game state to
 The collaboration server does not collect any personal data, but it does store the game state in a session file on the server.  This file is only accessible to the users who created it via the anonymized session ID and server administrators.  The server does not intentionally log any user activity beyond the anonymized game state data.
 
 This page will be updated with any amendments to the privacy policy. We reserve the right to update this privacy policy with subsequent app updates.
-
