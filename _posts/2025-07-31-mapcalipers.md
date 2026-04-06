@@ -142,7 +142,7 @@ You can then change the URL in the app to point to your instance, e.g. `http://l
 
 ### Creating your own map with GTFS Editor
 
-Want to create a completely custom transit map for your game? Check out [**GTFS Editor**](https://github.com/joshspicer/gtfs-editor), a browser-based tool for creating custom GTFS-compatible transit maps from scratch.
+Want to create a completely custom transit map for your game? Check out [**GTFS Editor**](https://joshspicer.com/gtfs-editor), a browser-based tool for creating custom GTFS-compatible transit maps from scratch.
 
 With GTFS Editor, you can click the map to add stops, draw routes between waypoints, and export a valid GTFS ZIP file. The exported file can be imported directly into MapCalipers via the share sheet or file picker, or hosted on your own MapCalipers server using a local path in `gtfs_config.json`. All data remains client-side in your browser—no server required!
 
