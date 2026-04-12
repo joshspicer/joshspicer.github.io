@@ -77,7 +77,7 @@ I host a small instance of the _control server_. The server is not needed to use
 
 You are welcome to use the pre-configured instance _without any guarantee of uptime or data integrity_. If you want to run your own instance, you can do so with the following `docker-compose.yml` file:
 
-```
+```yaml
 services:
   mapcalipers:
     image: ghcr.io/joshspicer/mapcalipers:latest  # Latest App Store version

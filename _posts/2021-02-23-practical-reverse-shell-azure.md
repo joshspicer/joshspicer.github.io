@@ -45,7 +45,7 @@ az vm run-command invoke -g $RESOURCE_GROUP -n $VMID --command-id RunShellScript
 | Prereq.   | MacOS Install          | WSL2 Install                                                           |
 |-----------|------------------------|------------------------------------------------------------------------|
 | socat     | `brew install socat`     | `sudo apt install socat`                                                 |
-| ngrok     | `brew install ngrok`     | `wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O ngrok.zip && unzip ngrok  && sudo cp ngrok /usr/local/bin && chown $(whoami) /usr/local/bin/ngrok && chmod +x /usr/local/bin/ngrok` |
+| ngrok     | `brew install ngrok`     | Download from [ngrok.com](https://ngrok.com/download) or see [instructions](https://ngrok.com/download) |
 | Azure CLI | `brew install azure-cli` | `curl -sL https://aka.ms/InstallAzureCLIDeb \| sudo bash`                |
 | jq        | `brew install jq`        | `sudo apt install jq`                                                    |
 
