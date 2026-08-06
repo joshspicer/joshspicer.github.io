@@ -5,6 +5,7 @@
   --ink: #20201e;
   --muted: #706e67;
   --accent: #17324f;
+  --highlight: #e8d47b;
   --line: #cbc5b8;
   --font-sans:
     Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -129,24 +130,37 @@ input {
 }
 
 .marker-heading span,
-.marker-highlight,
-.prose strong {
-  padding: 0.04em 0.18em 0.08em;
+.marker-highlight {
+  padding: 0 0.12em 0.03em;
   background:
     linear-gradient(
       to bottom,
-      transparent 0 12%,
-      var(--accent) 12% 90%,
-      transparent 90%
+      transparent 0 16%,
+      var(--highlight) 16% 88%,
+      transparent 88%
     );
-  color: var(--paper);
+  color: var(--ink);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
-.marker-highlight,
-.prose strong {
+.marker-highlight {
   font-weight: 750;
+}
+
+.prose strong {
+  padding-inline: 0.03em;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0 52%,
+      var(--highlight) 52% 92%,
+      transparent 92%
+    );
+  color: inherit;
+  font-weight: 750;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .introduction {
