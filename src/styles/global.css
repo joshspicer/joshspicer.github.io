@@ -131,7 +131,6 @@ input {
 
 .marker-heading span,
 .marker-highlight {
-  padding: 0 0.12em 0.03em;
   background:
     linear-gradient(
       to bottom,
@@ -146,6 +145,14 @@ input {
 
 .marker-highlight {
   font-weight: 750;
+  text-decoration: none;
+}
+
+.marker-highlight:hover,
+.marker-highlight:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
 }
 
 .prose strong {
