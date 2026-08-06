@@ -1,0 +1,23 @@
+---
+import { siteConfig } from '../site.config';
+import EmailLink from './EmailLink.astro';
+import SocialIcon from './SocialIcon.astro';
+---
+
+<footer class="site-footer">
+  <span>&copy; {new Date().getFullYear()} {siteConfig.name}</span>
+  <nav class="footer-links" aria-label="Social links">
+    {siteConfig.links.map((link) => (
+      <a
+        class="icon-link"
+        href={link.href}
+        rel="me"
+        aria-label={link.label}
+        title={link.label}
+      >
+        <SocialIcon name={link.icon} />
+      </a>
+    ))}
+    <EmailLink iconOnly />
+  </nav>
+</footer>

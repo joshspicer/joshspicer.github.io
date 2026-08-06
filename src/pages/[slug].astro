@@ -1,0 +1,55 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../site.config';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+if (post.data.redirectTo) {
+  return Astro.redirect(post.data.redirectTo);
+}
+
+const { Content } = await render(post);
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+---
+
+<BaseLayout
+  title={`${post.data.title} — ${siteConfig.name}`}
+  description={post.data.description}
+>
+  <article class="page">
+    <a class="back-link" href={withBase('/posts/')}>← All writing</a>
+    <header class="post-header">
+      <h1 class="post-title-large">{post.data.title}</h1>
+      <div class="post-meta">
+        <time datetime={post.data.published.toISOString()}>
+          {formatDate(post.data.published)}
+        </time>
+        {post.data.updated && (
+          <span>Updated {formatDate(post.data.updated)}</span>
+        )}
+      </div>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

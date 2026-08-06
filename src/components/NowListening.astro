@@ -1,0 +1,114 @@
+---
+import { siteConfig } from '../site.config';
+
+const endpoint = import.meta.env.DEV
+  ? '/api/spotify'
+  : siteConfig.spotify.endpoint;
+---
+
+<a
+  class="now-listening"
+  data-now-listening
+  data-endpoint={endpoint}
+  data-poll-interval={siteConfig.spotify.pollIntervalMs}
+  data-state="loading"
+  href={siteConfig.spotify.articleUrl}
+  aria-label="Music listening status"
+>
+  <span data-listening-status aria-live="polite">
+    Listening status requires JavaScript.
+  </span>
+</a>
+
+<script>
+  interface SpotifyStatus {
+    artistName: string;
+    isPlaying: boolean;
+    songName: string;
+  }
+
+  function isRecord(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null;
+  }
+
+  function isSpotifyStatus(value: unknown): value is SpotifyStatus {
+    return (
+      isRecord(value) &&
+      typeof value.artistName === 'string' &&
+      value.artistName.trim().length > 0 &&
+      typeof value.isPlaying === 'boolean' &&
+      typeof value.songName === 'string' &&
+      value.songName.trim().length > 0
+    );
+  }
+
+  for (const widget of document.querySelectorAll<HTMLElement>(
+    '[data-now-listening]',
+  )) {
+    const status = widget.querySelector<HTMLElement>('[data-listening-status]');
+    const endpoint = widget.dataset.endpoint;
+    const pollInterval = Number(widget.dataset.pollInterval);
+
+    if (
+      !status ||
+      !endpoint ||
+      !Number.isFinite(pollInterval) ||
+      pollInterval < 10_000
+    ) {
+      console.error('Spotify widget configuration is invalid.');
+      continue;
+    }
+
+    const statusElement = status;
+    const statusEndpoint = endpoint;
+    let requestInFlight = false;
+    let hasLoaded = false;
+
+    async function refreshStatus() {
+      if (requestInFlight) return;
+
+      requestInFlight = true;
+      if (!hasLoaded) {
+        statusElement.textContent = 'Checking listening status...';
+        widget.dataset.state = 'loading';
+      }
+
+      try {
+        const response = await fetch(statusEndpoint, {
+          headers: { Accept: 'application/json' },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Spotify status request failed: ${response.status}`);
+        }
+
+        const payload: unknown = await response.json();
+        if (!isSpotifyStatus(payload)) {
+          throw new TypeError('Spotify status response has an invalid shape.');
+        }
+
+        statusElement.textContent = payload.isPlaying
+          ? `Now playing ${payload.songName} by ${payload.artistName}.`
+          : `Last played ${payload.songName} by ${payload.artistName}.`;
+        widget.dataset.state = payload.isPlaying ? 'playing' : 'idle';
+      } catch (error: unknown) {
+        statusElement.textContent = 'Listening status is temporarily unavailable.';
+        widget.dataset.state = 'error';
+        console.error('Unable to update Spotify listening status.', error);
+      } finally {
+        hasLoaded = true;
+        requestInFlight = false;
+      }
+    }
+
+    void refreshStatus();
+
+    window.setInterval(() => {
+      if (!document.hidden) void refreshStatus();
+    }, pollInterval);
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) void refreshStatus();
+    });
+  }
+</script>

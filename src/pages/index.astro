@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import NowListening from '../components/NowListening.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../site.config';
+import { withBase } from '../utils/paths';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
+  .slice(0, 6);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+  }).format(date);
+---
+
+<BaseLayout title={siteConfig.name} description={siteConfig.description}>
+  <div class="home">
+    <section class="identity" aria-labelledby="identity-title">
+      <figure class="portrait">
+        <img
+          src={withBase('/assets/portrait.jpg')}
+          alt={`Portrait of ${siteConfig.name}`}
+          width="792"
+          height="792"
+          fetchpriority="high"
+        />
+      </figure>
+      <h1 class="marker-heading" id="identity-title">
+        <span>{siteConfig.name}</span>
+      </h1>
+      <NowListening />
+      <p class="introduction">
+        I'm a software engineer on the
+        <a class="marker-highlight" href="https://code.visualstudio.com/">VS Code</a>
+        team at Microsoft. This is where I keep notes on security, software,
+        homelabs, travel, and things I make.
+      </p>
+    </section>
+
+    <section class="writing" aria-labelledby="writing-title">
+      <h2 class="section-heading" id="writing-title">Writing</h2>
+      {posts.length > 0 ? (
+        <>
+          <ol class="post-list">
+            {posts.map((post) => (
+              <li>
+                <a class="post-link" href={withBase(`/${post.data.slug}/`)}>
+                  <time class="post-date" datetime={post.data.published.toISOString()}>
+                    {formatDate(post.data.published)}
+                  </time>
+                  <span class="post-title">{post.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+          <a class="all-posts" href={withBase('/posts/')}>All writing</a>
+        </>
+      ) : (
+        <p class="empty-state">New notes will appear here.</p>
+      )}
+    </section>
+  </div>
+</BaseLayout>

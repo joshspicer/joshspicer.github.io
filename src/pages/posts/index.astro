@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../site.config';
+import { withBase } from '../../utils/paths';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+  }).format(date);
+---
+
+<BaseLayout
+  title={`Writing — ${siteConfig.name}`}
+  description={`Writing by ${siteConfig.name}.`}
+>
+  <div class="page">
+    <header class="page-header">
+      <h1 class="page-title">Writing</h1>
+    </header>
+
+    {posts.length > 0 ? (
+      <ol class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a class="post-link" href={withBase(`/${post.data.slug}/`)}>
+              <time class="post-date" datetime={post.data.published.toISOString()}>
+                {formatDate(post.data.published)}
+              </time>
+              <span class="post-title">{post.data.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <p class="empty-state">No published posts yet.</p>
+    )}
+  </div>
+</BaseLayout>
