@@ -1,6 +1,5 @@
 export const siteConfig = {
   name: 'Josh Spicer',
-  initials: 'JS',
   description: 'Notes on software, security, homelabs, travel, and projects.',
   spotify: {
     endpoint: 'https://api.joshspicer.com/api/spotify',
