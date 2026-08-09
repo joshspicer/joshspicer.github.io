@@ -20,22 +20,13 @@ const formatDate = (date: Date) =>
 <BaseLayout title={siteConfig.name} description={siteConfig.description}>
   <div class="home">
     <section class="identity" aria-labelledby="identity-title">
-      <figure class="portrait">
-        <img
-          src={withBase('/assets/portrait.jpg')}
-          alt={`Portrait of ${siteConfig.name}`}
-          width="792"
-          height="792"
-          fetchpriority="high"
-        />
-      </figure>
       <h1 class="marker-heading" id="identity-title">
         <span>{siteConfig.name}</span>
       </h1>
       <NowListening />
       <p class="introduction">
         I'm a software engineer on the{' '}
-        <a class="marker-highlight" href="https://code.visualstudio.com/">VS Code</a>{' '}
+        <span class="marker-highlight">VS Code</span>{' '}
         team at Microsoft. This is where I keep notes on security, software,
         homelabs, travel, and things I make.
       </p>

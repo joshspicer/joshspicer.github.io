@@ -25,11 +25,52 @@ const canonicalURL = !noindex && Astro.site
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#f6f3eb" />
+    <script is:inline>
+      (() => {
+        const highlightTones = ['yellow', 'coral', 'mint', 'blue'];
+        const randomTone =
+          highlightTones[Math.floor(Math.random() * highlightTones.length)];
+        document.documentElement.dataset.highlightTone = randomTone;
+
+        const highlightSelector = [
+          '.marker-heading span',
+          '.marker-highlight',
+          '.page-title span',
+          '.post-title-large span',
+          '.prose strong',
+        ].join(',');
+
+        document.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof Element) || !target.closest(highlightSelector)) return;
+
+          const currentTone = document.documentElement.dataset.highlightTone;
+          const currentIndex = highlightTones.indexOf(currentTone);
+          const nextIndex = (currentIndex + 1) % highlightTones.length;
+          document.documentElement.dataset.highlightTone = highlightTones[nextIndex];
+        });
+
+        const savedTheme = localStorage.getItem('site-theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+
+        const activeTheme =
+          savedTheme ??
+          (window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light');
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor instanceof HTMLMetaElement) {
+          themeColor.content = activeTheme === 'dark' ? '#383934' : '#f6f3eb';
+        }
+      })();
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
-    <link rel="icon" href={withBase('/favicon.ico')} sizes="16x16" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="alternate" type="application/rss+xml" title={title} href={withBase('/rss.xml')} />
     <title>{title}</title>
   </head>

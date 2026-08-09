@@ -4,6 +4,8 @@ node_modules/
 # Build and framework output
 dist/
 .astro/
+playwright-report/
+test-results/
 
 # Local environment files
 .env
