@@ -1,12 +1,13 @@
 ---
 import { siteConfig } from '../site.config';
+import { withBase } from '../utils/paths';
 import EmailLink from './EmailLink.astro';
 import SocialIcon from './SocialIcon.astro';
 ---
 
 <footer class="site-footer">
   <span>&copy; {new Date().getFullYear()} {siteConfig.name}</span>
-  <nav class="footer-links" aria-label="Social links">
+  <nav class="footer-links" aria-label="Footer links">
     {siteConfig.links.map((link) => (
       <a
         class="icon-link"
@@ -18,6 +19,14 @@ import SocialIcon from './SocialIcon.astro';
         <SocialIcon name={link.icon} />
       </a>
     ))}
+    <a
+      class="icon-link"
+      href={withBase('/rss.xml')}
+      aria-label="RSS feed"
+      title="RSS feed"
+    >
+      <SocialIcon name="rss" />
+    </a>
     <EmailLink iconOnly />
   </nav>
 </footer>

@@ -1,6 +1,6 @@
 ---
 interface Props {
-  name: 'email' | 'github' | 'linkedin' | 'spotify';
+  name: 'email' | 'github' | 'linkedin' | 'rss' | 'spotify';
 }
 
 const { name } = Astro.props;
@@ -15,6 +15,9 @@ const { name } = Astro.props;
   )}
   {name === 'linkedin' && (
     <path d="M5.2 8.1H1.7V22h3.5zM3.45 2A2.04 2.04 0 1 0 3.4 6.08 2.04 2.04 0 0 0 3.45 2M22 14.03c0-4.19-2.23-6.14-5.21-6.14-2.4 0-3.48 1.32-4.08 2.25V8.1H9.2V22h3.51v-6.88c0-1.81.34-3.56 2.58-3.56 2.2 0 2.23 2.06 2.23 3.68V22H22z" />
+  )}
+  {name === 'rss' && (
+    <path d="M4 3.5v3a13.5 13.5 0 0 1 13.5 13.5h3C20.5 10.89 13.11 3.5 4 3.5m0 6v3a7.5 7.5 0 0 1 7.5 7.5h3A10.5 10.5 0 0 0 4 9.5M6.25 16A2.25 2.25 0 1 0 6.25 20.5 2.25 2.25 0 0 0 6.25 16" />
   )}
   {name === 'spotify' && (
     <>
