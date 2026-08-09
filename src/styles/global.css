@@ -158,14 +158,15 @@ input {
 }
 
 .prose strong {
-  padding-inline: 0.1em;
+  padding-inline: 0.22em;
   background:
     linear-gradient(
       to bottom,
-      transparent 0 52%,
-      var(--highlight) 52% 92%,
+      transparent 0 12%,
+      var(--highlight) 12% 92%,
       transparent 92%
     );
+  background-clip: content-box;
   color: inherit;
   font-weight: 750;
   box-decoration-break: clone;
