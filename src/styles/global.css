@@ -134,15 +134,15 @@ input {
 .page-title span,
 .post-title-large span,
 .prose strong {
-  padding-inline: 0.22rem;
+  margin-inline: 0.22rem;
+  padding-block: 0.06em;
   background:
     linear-gradient(
       to bottom,
-      transparent 0 12%,
-      var(--highlight) 12% 92%,
-      transparent 92%
+      transparent 0 4%,
+      var(--highlight) 4% 96%,
+      transparent 96%
     );
-  background-clip: content-box;
   color: inherit;
   font-weight: 750;
   box-decoration-break: clone;
