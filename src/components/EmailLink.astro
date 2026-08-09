@@ -6,31 +6,55 @@ interface Props {
 }
 
 const { iconOnly = false } = Astro.props;
+const statusId = `copy-email-status-${iconOnly ? 'icon' : 'text'}`;
 ---
 
-<a
-  class:list={iconOnly ? ['icon-link'] : ['email-link']}
-  href="/contact/#email"
-  data-obfuscated-email
-  aria-label={iconOnly ? 'Email' : 'Email me'}
-  title={iconOnly ? 'Email' : undefined}
->
-  <SocialIcon name="email" />
-  {!iconOnly && <span>Email me</span>}
-</a>
+<span class="email-copy">
+  <button
+    type="button"
+    class:list={iconOnly ? ['icon-link'] : ['email-link']}
+    data-copy-email
+    aria-label="Copy email address"
+    aria-describedby={statusId}
+    title={iconOnly ? 'Copy email address' : undefined}
+  >
+    <SocialIcon name="email" />
+    {!iconOnly && <span>Copy email</span>}
+  </button>
+  <span
+    class="copy-status"
+    id={statusId}
+    data-copy-status
+    role="status"
+    aria-live="polite"
+  ></span>
+</span>
 
 <script is:inline>
   (() => {
-    for (const link of document.querySelectorAll('[data-obfuscated-email]')) {
-      if (link.hasAttribute('data-email-handler')) continue;
-      link.setAttribute('data-email-handler', '');
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
+    for (const button of document.querySelectorAll('[data-copy-email]')) {
+      if (button.hasAttribute('data-email-handler')) continue;
+      button.setAttribute('data-email-handler', '');
+      button.addEventListener('click', async () => {
+        const status = button.parentElement?.querySelector('[data-copy-status]');
+        if (!(status instanceof HTMLElement)) return;
+
         const address = [
           104, 101, 108, 108, 111, 64, 106, 111, 115, 104, 115, 112, 105, 99,
           101, 114, 46, 99, 111, 109,
         ].map((code) => String.fromCharCode(code)).join('');
-        window.location.href = `mailto:${address}`;
+
+        try {
+          await navigator.clipboard.writeText(address);
+          status.textContent = 'Email address copied to clipboard.';
+        } catch (error) {
+          status.textContent = 'Unable to copy email address.';
+          console.error('Unable to copy email address.', error);
+        }
+
+        window.setTimeout(() => {
+          status.textContent = '';
+        }, 2_500);
       });
     }
   })();

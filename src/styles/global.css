@@ -459,7 +459,10 @@ input {
   justify-content: center;
   border: 1px solid transparent;
   border-radius: 50%;
+  background: transparent;
   color: var(--muted);
+  cursor: pointer;
+  padding: 0;
   text-decoration: none;
 }
 
@@ -493,15 +496,55 @@ input {
   stroke-width: 1.5;
 }
 
+.email-copy {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .email-link {
   display: inline-flex;
   gap: 0.4rem;
   align-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
   font-weight: 700;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
 }
 
 .email-link .social-icon {
   flex: 0 0 auto;
+}
+
+.email-link:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+.copy-status {
+  position: absolute;
+  z-index: 1;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  width: max-content;
+  max-width: min(16rem, 80vw);
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.2rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.72rem;
+  line-height: 1.3;
+  pointer-events: none;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.copy-status:empty {
+  visibility: hidden;
 }
 
 @media (max-width: 34rem) {
