@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailLink from '../components/EmailLink.astro';
+import { siteConfig } from '../site.config';
+---
+
+<BaseLayout
+  title={`Contact — ${siteConfig.name}`}
+  description={`Contact ${siteConfig.name}.`}
+>
+  <div class="page">
+    <header class="page-header">
+      <h1 class="page-title"><span>Contact</span></h1>
+    </header>
+    <EmailLink />
+    <noscript>
+      <p id="email">
+        Email: hello at joshspicer dot com. Replace “at” and “dot” with punctuation.
+      </p>
+    </noscript>
+  </div>
+</BaseLayout>

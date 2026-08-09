@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { discussionNumbers } from '../data/discussions';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const sourcePath =
+  post.filePath ?? `src/content/blog/${post.id.replace(/\/$/, '')}.md`;
+const filename = sourcePath.split('/').at(-1) ?? post.id;
+const discussionKey = filename
+  .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+  .replace(/\.(?:md|mdx)$/, '');
+const discussionNumber = discussionNumbers[discussionKey];
+const editPath = sourcePath
+  .split('/')
+  .map((segment) => encodeURIComponent(segment))
+  .join('/');
+const discussionUrl = discussionNumber
+  ? `https://github.com/joshspicer/joshspicer.github.io/discussions/${discussionNumber}`
+  : withBase('/contact/');
+---
+
+<footer class="post-footer" aria-label="Post links">
+  <ul>
+    <li>
+      <span>Found a mistake or typo?</span>
+      <a
+        href={`https://github.com/joshspicer/joshspicer.github.io/edit/master/${editPath}`}
+      >
+        Suggest an edit
+      </a>
+    </li>
+    <li>
+      <span>Have a comment?</span>
+      <a href={discussionUrl}>
+        {discussionNumber ? 'Join the discussion' : 'Let me know'}
+      </a>
+    </li>
+    <li>
+      <span>Was this helpful?</span>
+      <a href="https://www.buymeacoffee.com/joshspicer">Buy me a coffee</a>
+    </li>
+  </ul>
+</footer>

@@ -1,0 +1,115 @@
+---
+import {
+  getCollection,
+  render,
+  type CollectionEntry,
+} from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../site.config';
+import { withBase } from '../utils/paths';
+
+type Props =
+  | { kind: 'page'; page: CollectionEntry<'pages'> }
+  | { kind: 'redirect'; destination: string };
+
+export async function getStaticPaths() {
+  const legacyRedirects = [
+    ['topics', '/posts/'],
+    ['tags', '/posts/'],
+    ['tag', '/posts/'],
+    ['categories', '/posts/'],
+    ['docker', 'https://github.com/joshspicer/docker/'],
+    ['d', 'https://github.com/joshspicer/docker/'],
+    ['dot', 'https://github.com/joshspicer/dotfiles'],
+    ['dotfiles', 'https://github.com/joshspicer/dotfiles'],
+    ['edit', 'https://github.com/joshspicer/joshspicer.github.io/'],
+    ['src', 'https://github.com/joshspicer/joshspicer.github.io/'],
+    ['git', 'https://github.com/joshspicer/joshspicer.github.io/'],
+    ['source', 'https://github.com/joshspicer/joshspicer.github.io/'],
+    ['github', 'https://github.com/joshspicer'],
+    [
+      'license',
+      'https://github.com/joshspicer/joshspicer.github.io/blob/master/LICENSE',
+    ],
+    [
+      'licenses',
+      'https://github.com/joshspicer/joshspicer.github.io/blob/master/LICENSE',
+    ],
+    ['pgp', '/pgp.txt'],
+    [
+      'quadcopter-test-flight',
+      'https://drive.google.com/file/d/1HQVlZBh3wxqGogVaJxufmES9qJRijI4-/view?usp=share_link',
+    ],
+    ['queue', '/spotify-public-queue/'],
+  ] as const;
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const pages = await getCollection('pages');
+  const includeCaseSensitiveRedirects =
+    import.meta.env.INCLUDE_CASE_SENSITIVE_REDIRECTS === 'true';
+
+  const blogRedirects = posts.flatMap((post) =>
+    post.data.redirectFrom
+      .filter(
+        (redirect) =>
+          redirect !== post.data.slug &&
+          (includeCaseSensitiveRedirects ||
+            redirect.toLowerCase() !== post.data.slug.toLowerCase()),
+      )
+      .map((redirect) => ({
+        params: { redirect },
+        props: {
+          kind: 'redirect' as const,
+          destination: withBase(`/${post.data.slug}/`),
+        },
+      })),
+  );
+
+  const standalonePages = pages.flatMap((page) => [
+    {
+      params: { redirect: page.data.slug },
+      props: { kind: 'page' as const, page },
+    },
+    ...page.data.redirectFrom.map((redirect) => ({
+      params: { redirect },
+      props: {
+        kind: 'redirect' as const,
+        destination: withBase(`/${page.data.slug}/`),
+      },
+    })),
+  ]);
+
+  const legacyRoutes = legacyRedirects.map(([redirect, destination]) => ({
+    params: { redirect },
+    props: {
+      kind: 'redirect' as const,
+      destination: destination.startsWith('/')
+        ? withBase(destination)
+        : destination,
+    },
+  }));
+
+  return [...blogRedirects, ...standalonePages, ...legacyRoutes];
+}
+
+const props = Astro.props as Props;
+if (props.kind === 'redirect') {
+  return Astro.redirect(props.destination);
+}
+
+const { Content } = await render(props.page);
+---
+
+<BaseLayout
+  title={`${props.page.data.title} — ${siteConfig.name}`}
+  description={props.page.data.description}
+>
+  <article class="page">
+    <a class="back-link" href={withBase('/')}>← Home</a>
+    <header class="post-header">
+      <h1 class="post-title-large"><span>{props.page.data.title}</span></h1>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

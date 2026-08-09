@@ -1,0 +1,22 @@
+---
+import { siteConfig } from '../site.config';
+import { withBase } from '../utils/paths';
+---
+
+<header class="site-header">
+  <a
+    class="site-mark"
+    href={withBase('/')}
+    aria-label={`${siteConfig.name} home`}
+  >
+    <img
+      src={withBase('/favicon.svg')}
+      alt=""
+      width="24"
+      height="24"
+    />
+  </a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href={withBase('/posts/')}>Writing</a>
+  </nav>
+</header>

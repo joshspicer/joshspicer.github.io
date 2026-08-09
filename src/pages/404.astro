@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../site.config';
+import { withBase } from '../utils/paths';
+---
+
+<BaseLayout
+  title={`Not found — ${siteConfig.name}`}
+  description="Page not found."
+  noindex
+>
+  <div class="page">
+    <header class="page-header">
+      <h1 class="page-title"><span>Nothing here.</span></h1>
+    </header>
+    <a class="all-posts" href={withBase('/')}>Home</a>
+  </div>
+</BaseLayout>
