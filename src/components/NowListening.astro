@@ -15,9 +15,7 @@ const endpoint = import.meta.env.DEV
   href={siteConfig.spotify.articleUrl}
   aria-label="Music listening status"
 >
-  <span data-listening-status aria-live="polite">
-    Listening status requires JavaScript.
-  </span>
+  <span data-listening-status aria-live="polite"></span>
 </a>
 
 <script>
@@ -69,7 +67,7 @@ const endpoint = import.meta.env.DEV
 
       requestInFlight = true;
       if (!hasLoaded) {
-        statusElement.textContent = 'Checking listening status...';
+        statusElement.textContent = '';
         widget.dataset.state = 'loading';
       }
 
@@ -88,11 +86,11 @@ const endpoint = import.meta.env.DEV
         }
 
         statusElement.textContent = payload.isPlaying
-          ? `Now playing ${payload.songName} by ${payload.artistName}.`
-          : `Last played ${payload.songName} by ${payload.artistName}.`;
+          ? `♪ Now playing ${payload.songName} by ${payload.artistName}.`
+          : `♪ Last played ${payload.songName} by ${payload.artistName}.`;
         widget.dataset.state = payload.isPlaying ? 'playing' : 'idle';
       } catch (error: unknown) {
-        statusElement.textContent = 'Listening status is temporarily unavailable.';
+        statusElement.textContent = '';
         widget.dataset.state = 'error';
         console.error('Unable to update Spotify listening status.', error);
       } finally {

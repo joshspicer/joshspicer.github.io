@@ -191,6 +191,10 @@ input {
   text-decoration-color: transparent;
 }
 
+.now-listening:is([data-state="loading"], [data-state="error"]) {
+  display: none;
+}
+
 .now-listening:hover {
   text-decoration-color: currentColor;
 }
