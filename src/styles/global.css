@@ -130,35 +130,11 @@ input {
 }
 
 .marker-heading span,
-.marker-highlight {
-  padding-inline: 0.14em;
-  background:
-    linear-gradient(
-      to bottom,
-      transparent 0 16%,
-      var(--highlight) 16% 88%,
-      transparent 88%
-    );
-  color: var(--ink);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-.marker-highlight {
-  margin-inline: 0.04em;
-  font-weight: 750;
-  text-decoration: none;
-}
-
-.marker-highlight:hover,
-.marker-highlight:focus-visible {
-  text-decoration: underline;
-  text-decoration-thickness: 0.06em;
-  text-underline-offset: 0.12em;
-}
-
+.marker-highlight,
+.page-title span,
+.post-title-large span,
 .prose strong {
-  padding-inline: 0.22em;
+  padding-inline: 0.22rem;
   background:
     linear-gradient(
       to bottom,
@@ -171,6 +147,17 @@ input {
   font-weight: 750;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+}
+
+.marker-highlight {
+  text-decoration: none;
+}
+
+.marker-highlight:hover,
+.marker-highlight:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
 }
 
 .introduction {
