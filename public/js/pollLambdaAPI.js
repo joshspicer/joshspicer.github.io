@@ -24,7 +24,6 @@ xhttp.onreadystatechange = function() {
     }
 
     let writeup = "https://joshspicer.com/spotify-now-playing";
-    let queue = "./queue";
     // Song name and artist.
     songName = res.songName;
     filler1 = " by ";
