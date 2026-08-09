@@ -170,6 +170,7 @@ input {
 
 .now-listening {
   display: block;
+  min-height: 1.45em;
   margin-top: 0.6rem;
   color: var(--muted);
   font-size: 0.8rem;
@@ -179,7 +180,7 @@ input {
 }
 
 .now-listening:is([data-state="loading"], [data-state="error"]) {
-  display: none;
+  visibility: hidden;
 }
 
 .now-listening:hover {
