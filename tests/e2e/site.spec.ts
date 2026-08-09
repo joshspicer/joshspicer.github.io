@@ -329,7 +329,7 @@ test('highlighted prose links use dark underlines in dark mode', async ({
 
   const appStoreLink = page
     .locator('.prose a:has(> strong)')
-    .filter({ hasText: 'App Store!' });
+    .filter({ hasText: 'App Store' });
   await expect(appStoreLink).toBeVisible();
 
   const colors = await appStoreLink.evaluate((link) => {
