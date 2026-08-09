@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PostFooter from '../components/PostFooter.astro';
 import { siteConfig } from '../site.config';
 import { withBase } from '../utils/paths';
 
@@ -51,5 +52,6 @@ const formatDate = (date: Date) =>
     <div class="prose">
       <Content />
     </div>
+    <PostFooter post={post} />
   </article>
 </BaseLayout>
