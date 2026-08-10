@@ -1,6 +1,12 @@
 ---
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import {
+  DEFAULT_HIGHLIGHT_ANIMATION,
+  HIGHLIGHT_ANIMATION_STORAGE_KEY,
+  HIGHLIGHT_ANIMATIONS,
+  HIGHLIGHT_TONES,
+} from '../scripts/highlightAnimations';
 import { withBase } from '../utils/paths';
 import '../styles/global.css';
 
@@ -25,30 +31,56 @@ const canonicalURL = !noindex && Astro.site
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#f6f3eb" />
-    <script is:inline>
+    <script
+      is:inline
+      define:vars={{
+        defaultHighlightAnimation: DEFAULT_HIGHLIGHT_ANIMATION,
+        highlightAnimationStorageKey: HIGHLIGHT_ANIMATION_STORAGE_KEY,
+        highlightAnimations: HIGHLIGHT_ANIMATIONS,
+        highlightTones: HIGHLIGHT_TONES,
+      }}
+    >
       (() => {
-        const highlightTones = ['yellow', 'coral', 'mint', 'blue'];
-        const randomTone =
-          highlightTones[Math.floor(Math.random() * highlightTones.length)];
-        document.documentElement.dataset.highlightTone = randomTone;
+        const toneStorageKey = 'site-highlight-tone';
+        const skipIntroStorageKey = 'site-highlight-skip-next-intro';
+        const root = document.documentElement;
+        const savedTone = sessionStorage.getItem(toneStorageKey);
+        const finalTone = highlightTones.includes(savedTone)
+          ? savedTone
+          : highlightTones[Math.floor(Math.random() * highlightTones.length)];
+        const requestedAnimation =
+          new URLSearchParams(window.location.search).get('animation');
+        const savedAnimation = localStorage.getItem(
+          highlightAnimationStorageKey,
+        );
+        const animation = highlightAnimations.includes(requestedAnimation)
+          ? requestedAnimation
+          : highlightAnimations.includes(savedAnimation)
+            ? savedAnimation
+            : defaultHighlightAnimation;
+        const skipInternalIntro =
+          sessionStorage.getItem(skipIntroStorageKey) === 'true';
+        sessionStorage.removeItem(skipIntroStorageKey);
+        const navigationEntry = performance.getEntriesByType('navigation')[0];
+        const navigationType =
+          navigationEntry instanceof PerformanceNavigationTiming
+            ? navigationEntry.type
+            : 'navigate';
+        const isReload = navigationType === 'reload';
+        const shouldAnimate =
+          !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+          (
+            isReload ||
+            (!skipInternalIntro && navigationType !== 'back_forward')
+          );
+        const finalToneIndex = highlightTones.indexOf(finalTone);
 
-        const highlightSelector = [
-          '.marker-heading span',
-          '.marker-highlight',
-          '.page-title span',
-          '.post-title-large span',
-          '.prose strong',
-        ].join(',');
-
-        document.addEventListener('click', (event) => {
-          const target = event.target;
-          if (!(target instanceof Element) || !target.closest(highlightSelector)) return;
-
-          const currentTone = document.documentElement.dataset.highlightTone;
-          const currentIndex = highlightTones.indexOf(currentTone);
-          const nextIndex = (currentIndex + 1) % highlightTones.length;
-          document.documentElement.dataset.highlightTone = highlightTones[nextIndex];
-        });
+        sessionStorage.setItem(toneStorageKey, finalTone);
+        root.dataset.highlightAnimation = animation;
+        root.dataset.highlightIntro = shouldAnimate ? 'pending' : 'skip';
+        root.dataset.highlightTone = shouldAnimate
+          ? highlightTones[(finalToneIndex + 1) % highlightTones.length]
+          : finalTone;
 
         const savedTheme = localStorage.getItem('site-theme');
         if (savedTheme === 'light' || savedTheme === 'dark') {
@@ -65,6 +97,11 @@ const canonicalURL = !noindex && Astro.site
           themeColor.content = activeTheme === 'dark' ? '#383934' : '#f6f3eb';
         }
       })();
+    </script>
+    <script>
+      import { initHighlightAnimations } from '../scripts/highlightAnimations';
+
+      initHighlightAnimations();
     </script>
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

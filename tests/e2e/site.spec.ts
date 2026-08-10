@@ -1,6 +1,12 @@
 import { expect, test, type Page } from '@playwright/test';
 
 const tones = ['yellow', 'coral', 'mint', 'blue'] as const;
+const animations = {
+  a: 'highlight-jackpot-land',
+  b: 'highlight-shuffle-tick',
+  c: 'highlight-step-reel',
+  d: 'highlight-marker-wipe',
+} as const;
 const spotifyEndpoint = 'https://api.joshspicer.com/api/spotify';
 
 test.beforeEach(async ({ page }) => {
@@ -22,6 +28,79 @@ const chooseTone = async (page: Page, index: number) => {
   }, (index + 0.5) / tones.length);
 };
 
+const traceHighlightIntro = async (page: Page) => {
+  await page.addInitScript(() => {
+    const trace = {
+      animations: [] as string[],
+      motions: [] as string[],
+      nodeSpins: 0,
+      tones: [] as string[],
+    };
+    Object.assign(window, { __highlightIntroTrace: trace });
+    document.addEventListener(
+      'animationstart',
+      (event) => trace.animations.push(event.animationName),
+      true,
+    );
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+        new MutationObserver((records) => {
+          for (const record of records) {
+            if (record.attributeName === 'data-highlight-node-spinning') {
+              trace.nodeSpins += 1;
+            }
+            if (
+              record.attributeName === 'data-highlight-motion' &&
+              document.documentElement.dataset.highlightMotion
+            ) {
+              trace.motions.push(
+                document.documentElement.dataset.highlightMotion,
+              );
+            }
+            if (
+              record.attributeName === 'data-highlight-tone' &&
+              document.documentElement.dataset.highlightTone
+            ) {
+              trace.tones.push(document.documentElement.dataset.highlightTone);
+            }
+          }
+        }).observe(document.documentElement, {
+          attributeFilter: [
+            'data-highlight-motion',
+            'data-highlight-node-spinning',
+            'data-highlight-tone',
+          ],
+          subtree: true,
+        });
+      },
+      { once: true },
+    );
+  });
+};
+
+const readHighlightTrace = (page: Page) =>
+  page.evaluate(
+    () =>
+      (
+        window as typeof window & {
+          __highlightIntroTrace: {
+            animations: string[];
+            motions: string[];
+            nodeSpins: number;
+            tones: string[];
+          };
+        }
+      ).__highlightIntroTrace,
+  );
+
+const openSettings = async (page: Page) => {
+  const button = page.locator('[data-settings-toggle]');
+  await button.click();
+  await expect(button).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('[data-settings-menu]')).toBeVisible();
+};
+
 const readTheme = (page: Page) =>
   page.evaluate(() => {
     const style = getComputedStyle(document.documentElement);
@@ -36,6 +115,7 @@ const readTheme = (page: Page) =>
 
 for (const [index, tone] of tones.entries()) {
   test(`loads the ${tone} highlight before paint`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await chooseTone(page, index);
     await page.goto('/');
 
@@ -61,9 +141,237 @@ for (const [index, tone] of tones.entries()) {
   });
 }
 
+for (const [animation, expectedKeyframe] of Object.entries(animations)) {
+  test(`animation ${animation} lands on the selected session tone`, async ({
+    page,
+  }) => {
+    await chooseTone(page, 2);
+    await traceHighlightIntro(page);
+    await page.goto(`/?animation=${animation}`);
+
+    const root = page.locator('html');
+    await expect(root).toHaveAttribute('data-highlight-animation', animation);
+    await expect(root).not.toHaveAttribute('data-highlight-intro', /.+/, {
+      timeout: 3_000,
+    });
+    await expect(root).toHaveAttribute('data-highlight-tone', 'mint');
+
+    const trace = await readHighlightTrace(page);
+    expect(trace.animations).toContain(expectedKeyframe);
+    expect(await page.evaluate(
+      () => sessionStorage.getItem('site-highlight-tone'),
+    )).toBe('mint');
+  });
+}
+
+test('wipe stays synchronized on pages with many highlights', async ({ page }) => {
+  await chooseTone(page, 2);
+  await traceHighlightIntro(page);
+  await page.goto('/josh-top-songs-2019/?animation=d');
+
+  expect(await page.locator('.prose strong').count()).toBeGreaterThanOrEqual(100);
+  await expect(page.locator('html')).not.toHaveAttribute(
+    'data-highlight-intro',
+    /.+/,
+    { timeout: 3_000 },
+  );
+  const trace = await readHighlightTrace(page);
+  expect(trace.animations).toContain(
+    'highlight-marker-wipe',
+  );
+  expect(trace.motions).toEqual(Array(9).fill('wipe'));
+  expect(trace.nodeSpins).toBe(0);
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-tone',
+    'mint',
+  );
+});
+
+test('direct arrivals and explicit reloads animate with the default jackpot', async ({
+  page,
+}) => {
+  await chooseTone(page, 2);
+  await traceHighlightIntro(page);
+  await page.goto('/');
+
+  const root = page.locator('html');
+  await expect(root).not.toHaveAttribute('data-highlight-intro', /.+/, {
+    timeout: 3_000,
+  });
+  expect((await readHighlightTrace(page)).animations).toContain(
+    'highlight-jackpot-land',
+  );
+
+  await page.reload();
+  await expect(root).not.toHaveAttribute('data-highlight-intro', /.+/, {
+    timeout: 3_000,
+  });
+  expect((await readHighlightTrace(page)).animations).toContain(
+    'highlight-jackpot-land',
+  );
+  await expect(root).toHaveAttribute('data-highlight-tone', 'mint');
+});
+
+test('internal navigation skips the intro, but reloading that page plays it', async ({
+  page,
+}) => {
+  await traceHighlightIntro(page);
+  await page.goto('/');
+  await expect(page.locator('html')).not.toHaveAttribute(
+    'data-highlight-intro',
+    /.+/,
+    { timeout: 3_000 },
+  );
+
+  await page.locator('.all-posts').click();
+  await expect(page).toHaveURL(/\/posts\/$/);
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-animation',
+    'a',
+  );
+  expect((await readHighlightTrace(page)).animations).toEqual([]);
+
+  await page.reload();
+  await expect(page.locator('html')).not.toHaveAttribute(
+    'data-highlight-intro',
+    /.+/,
+    { timeout: 3_000 },
+  );
+  expect((await readHighlightTrace(page)).animations).toContain(
+    'highlight-jackpot-land',
+  );
+});
+
+test('an unknown animation query falls back to the default jackpot', async ({
+  page,
+}) => {
+  await traceHighlightIntro(page);
+  await page.goto('/?animation=unknown');
+
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-animation',
+    'a',
+  );
+  await expect(page.locator('html')).not.toHaveAttribute(
+    'data-highlight-intro',
+    /.+/,
+    { timeout: 3_000 },
+  );
+  expect((await readHighlightTrace(page)).animations).toContain(
+    'highlight-jackpot-land',
+  );
+});
+
+test('reduced motion skips every animation strategy', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await traceHighlightIntro(page);
+
+  for (const animation of Object.keys(animations)) {
+    await page.goto(`/?animation=${animation}`);
+    await expect(page.locator('html')).toHaveAttribute(
+      'data-highlight-animation',
+      animation,
+    );
+    await expect(page.locator('html')).not.toHaveAttribute(
+      'data-highlight-intro',
+      /.+/,
+    );
+    expect((await readHighlightTrace(page)).animations).toEqual([]);
+  }
+});
+
+test('the footer settings menu selects animation variants through the URL', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await openSettings(page);
+
+  await expect(page.locator('[data-animation-option="a"]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(
+    page.getByRole('button', { name: 'A Jackpot (*)', exact: true }),
+  ).toBeVisible();
+  await page.locator('[data-animation-option="d"]').click();
+
+  await expect(page).toHaveURL(/\?animation=d$/);
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-animation',
+    'd',
+  );
+  await openSettings(page);
+  await expect(page.locator('[data-animation-option="d"]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  expect(await page.evaluate(
+    () => localStorage.getItem('site-highlight-animation'),
+  )).toBe('d');
+
+  await page.goto('/posts/');
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-animation',
+    'd',
+  );
+  await openSettings(page);
+  await expect(page.locator('[data-animation-option="d"]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+
+  await page.goto('/?animation=c');
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-animation',
+    'c',
+  );
+  expect(await page.evaluate(
+    () => localStorage.getItem('site-highlight-animation'),
+  )).toBe('d');
+});
+
+test('clearing saved settings resets local and session storage', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/?animation=d');
+  await page.evaluate(() => {
+    localStorage.setItem('test-local-setting', 'saved');
+    localStorage.setItem('site-highlight-animation', 'd');
+    localStorage.setItem('site-theme', 'dark');
+    sessionStorage.setItem('test-session-setting', 'saved');
+  });
+  await openSettings(page);
+
+  await Promise.all([
+    page.waitForEvent('framenavigated'),
+    page.locator('[data-clear-site-storage]').click(),
+  ]);
+
+  expect(await page.evaluate(() => ({
+    animation: localStorage.getItem('site-highlight-animation'),
+    local: localStorage.getItem('test-local-setting'),
+    session: sessionStorage.getItem('test-session-setting'),
+    theme: localStorage.getItem('site-theme'),
+    urlAnimation: new URL(window.location.href).searchParams.get('animation'),
+  }))).toEqual({
+    animation: null,
+    local: null,
+    session: null,
+    theme: null,
+    urlAnimation: null,
+  });
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-animation',
+    'a',
+  );
+});
+
 test('clicking either highlight cycles every highlight together', async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await chooseTone(page, 0);
   await page.goto('/');
 
@@ -91,6 +399,15 @@ test('clicking either highlight cycles every highlight together', async ({
       nodes.map((node) => getComputedStyle(node).backgroundImage),
     );
   expect(new Set(backgrounds).size).toBe(1);
+  expect(await page.evaluate(() => sessionStorage.getItem('site-highlight-tone'))).toBe(
+    'mint',
+  );
+
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-tone',
+    'mint',
+  );
 });
 
 test('Spotify status renders from the expected API response shape', async ({
@@ -124,12 +441,16 @@ test('system dark mode and explicit theme choices stay synchronized', async ({
     paper: '#383934',
     themeColor: '#383934',
   });
-  await expect(page.locator('[data-theme-toggle]')).toHaveAttribute(
-    'aria-label',
-    'Switch to light theme',
-  );
 
-  await page.locator('[data-theme-toggle]').click();
+  await openSettings(page);
+  await expect(page.locator('[data-theme-option="system"]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(
+    page.getByRole('button', { name: 'System (*)', exact: true }),
+  ).toBeVisible();
+  await page.locator('[data-theme-option="light"]').click();
   expect(await readTheme(page)).toEqual({
     theme: 'light',
     paper: '#f6f3eb',
@@ -146,7 +467,12 @@ test('system dark mode and explicit theme choices stay synchronized', async ({
     themeColor: '#f6f3eb',
   });
 
-  await page.locator('[data-theme-toggle]').click();
+  await openSettings(page);
+  await expect(page.locator('[data-theme-option="light"]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await page.locator('[data-theme-option="dark"]').click();
   expect(await readTheme(page)).toEqual({
     theme: 'dark',
     paper: '#383934',
@@ -155,6 +481,17 @@ test('system dark mode and explicit theme choices stay synchronized', async ({
   expect(await page.evaluate(() => localStorage.getItem('site-theme'))).toBe(
     'dark',
   );
+  await page.locator('[data-theme-option="system"]').click();
+  expect(await readTheme(page)).toEqual({
+    theme: null,
+    paper: '#383934',
+    themeColor: '#383934',
+  });
+  await expect(page.locator('[data-theme-option="system"]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  expect(await page.evaluate(() => localStorage.getItem('site-theme'))).toBeNull();
 });
 
 test('dark theme text and every highlight tone meet contrast requirements', async ({
@@ -223,7 +560,7 @@ test('portrait-free homepage and footer remain responsive', async ({ page }) => 
   const desktop = await page.locator('.site-footer').evaluate((footer) => {
     const meta = footer.querySelector('.footer-meta');
     const links = footer.querySelector('.footer-links');
-    const toggle = footer.querySelector('[data-theme-toggle]');
+    const toggle = footer.querySelector('[data-settings-toggle]');
     const toggleBox = toggle?.getBoundingClientRect();
     const linksBox = links?.getBoundingClientRect();
 
@@ -240,25 +577,49 @@ test('portrait-free homepage and footer remain responsive', async ({ page }) => 
   });
 
   await page.setViewportSize({ width: 390, height: 844 });
+  await openSettings(page);
   const mobile = await page.locator('.site-footer').evaluate((footer) => {
     const meta = footer.querySelector('.footer-meta')?.getBoundingClientRect();
     const links = footer.querySelector('.footer-links')?.getBoundingClientRect();
+    const settings = footer
+      .querySelector('[data-settings-menu]')
+      ?.getBoundingClientRect();
 
     return {
-      stacked: Boolean(meta && links && meta.bottom <= links.top),
+      socialLinksFirst: Boolean(meta && links && links.bottom <= meta.top),
       leftAligned: Boolean(
         meta && links && Math.abs(meta.left - links.left) < 1,
       ),
+      visibleSocialActions: [...footer.querySelectorAll('.footer-links .icon-link')]
+        .filter((action) => {
+          const box = action.getBoundingClientRect();
+          const style = getComputedStyle(action);
+          return (
+            box.width > 0 &&
+            box.height > 0 &&
+            style.display !== 'none' &&
+            style.visibility !== 'hidden'
+          );
+        }).length,
       footerOverflow: footer.scrollWidth > footer.clientWidth,
+      settingsWithinViewport: Boolean(
+        settings &&
+        settings.left >= 0 &&
+        settings.right <= window.innerWidth &&
+        settings.top >= 0 &&
+        settings.bottom <= window.innerHeight,
+      ),
       pageOverflow:
         document.documentElement.scrollWidth >
         document.documentElement.clientWidth,
     };
   });
   expect(mobile).toEqual({
-    stacked: true,
+    socialLinksFirst: true,
     leftAligned: true,
+    visibleSocialActions: 5,
     footerOverflow: false,
+    settingsWithinViewport: true,
     pageOverflow: false,
   });
 });

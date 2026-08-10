@@ -8,25 +8,53 @@ import SocialIcon from './SocialIcon.astro';
 <footer class="site-footer">
   <div class="footer-meta">
     <span>&copy; {new Date().getFullYear()} {siteConfig.name}</span>
-    <button
-      type="button"
-      class="icon-link theme-toggle"
-      data-theme-toggle
-      aria-label="Switch theme"
-      title="Switch theme"
-      hidden
-    >
-      <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path
-          class="theme-icon-sun"
-          d="M12 3V1.75M12 22.25V21M3 12H1.75M22.25 12H21M5.64 5.64 4.75 4.75M19.25 19.25l-.89-.89M18.36 5.64l.89-.89M4.75 19.25l.89-.89M16.25 12A4.25 4.25 0 1 1 7.75 12a4.25 4.25 0 0 1 8.5 0Z"
-        />
-        <path
-          class="theme-icon-moon"
-          d="M20 15.4A8.5 8.5 0 0 1 8.6 4a8.5 8.5 0 1 0 11.4 11.4Z"
-        />
-      </svg>
-    </button>
+    <div class="footer-settings" data-settings hidden>
+      <button
+        type="button"
+        class="icon-link settings-toggle"
+        data-settings-toggle
+        aria-label="Open site settings"
+        title="Site settings"
+        aria-expanded="false"
+        aria-controls="site-settings-menu"
+      >
+        <svg class="settings-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
+          <circle cx="16" cy="7" r="2" />
+          <circle cx="8" cy="17" r="2" />
+        </svg>
+      </button>
+      <div
+        class="settings-menu"
+        id="site-settings-menu"
+        data-settings-menu
+        role="dialog"
+        aria-label="Site settings"
+        hidden
+      >
+        <div class="settings-group" role="group" aria-labelledby="animation-label">
+          <span class="settings-label" id="animation-label">Animation</span>
+          <div class="settings-options animation-options">
+            <button type="button" data-animation-option="a">A <small>Jackpot <span class="default-marker">(*)</span></small></button>
+            <button type="button" data-animation-option="b">B <small>Shuffle</small></button>
+            <button type="button" data-animation-option="c">C <small>Reel</small></button>
+            <button type="button" data-animation-option="d">D <small>Wipe</small></button>
+          </div>
+        </div>
+        <div class="settings-group" role="group" aria-labelledby="theme-label">
+          <span class="settings-label" id="theme-label">Theme</span>
+          <div class="settings-options theme-options">
+            <button type="button" data-theme-option="system">System <span class="default-marker">(*)</span></button>
+            <button type="button" data-theme-option="light">Light</button>
+            <button type="button" data-theme-option="dark">Dark</button>
+          </div>
+        </div>
+        <button type="button" class="settings-row settings-reset" data-clear-site-storage>
+          <span>Clear saved settings</span>
+          <span class="settings-value">Reset</span>
+        </button>
+      </div>
+    </div>
   </div>
   <nav class="footer-links" aria-label="Footer links">
     {siteConfig.links.map((link) => (
@@ -53,7 +81,14 @@ import SocialIcon from './SocialIcon.astro';
 </footer>
 
 <script>
-  const themeButton = document.querySelector('[data-theme-toggle]');
+  import { HIGHLIGHT_ANIMATION_STORAGE_KEY } from '../scripts/highlightAnimations';
+
+  const settings = document.querySelector('[data-settings]');
+  const settingsButton = document.querySelector('[data-settings-toggle]');
+  const settingsMenu = document.querySelector('[data-settings-menu]');
+  const clearStorageButton = document.querySelector('[data-clear-site-storage]');
+  const animationButtons = document.querySelectorAll('[data-animation-option]');
+  const themeButtons = document.querySelectorAll('[data-theme-option]');
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const darkMode = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -61,33 +96,124 @@ import SocialIcon from './SocialIcon.astro';
     document.documentElement.dataset.theme ??
     (darkMode.matches ? 'dark' : 'light');
 
-  const updateThemeControl = () => {
-    if (!(themeButton instanceof HTMLButtonElement)) return;
-
+  const updateThemeControls = () => {
     const activeTheme = getActiveTheme();
-    const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
-    const label = `Switch to ${targetTheme} theme`;
-
-    themeButton.dataset.activeTheme = activeTheme;
-    themeButton.ariaLabel = label;
-    themeButton.title = label;
-    themeButton.hidden = false;
+    const themeSetting = document.documentElement.dataset.theme ?? 'system';
+    for (const button of themeButtons) {
+      if (!(button instanceof HTMLButtonElement)) continue;
+      button.setAttribute(
+        'aria-pressed',
+        String(button.dataset.themeOption === themeSetting),
+      );
+    }
 
     if (themeColor instanceof HTMLMetaElement) {
       themeColor.content = activeTheme === 'dark' ? '#383934' : '#f6f3eb';
     }
   };
 
-  themeButton?.addEventListener('click', () => {
-    const nextTheme = getActiveTheme() === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = nextTheme;
-    localStorage.setItem('site-theme', nextTheme);
-    updateThemeControl();
+  for (const button of themeButtons) {
+    if (!(button instanceof HTMLButtonElement)) continue;
+    button.addEventListener('click', () => {
+      const theme = button.dataset.themeOption;
+      if (theme === 'light' || theme === 'dark') {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem('site-theme', theme);
+      } else if (theme === 'system') {
+        delete document.documentElement.dataset.theme;
+        localStorage.removeItem('site-theme');
+      }
+      updateThemeControls();
+    });
+  }
+
+  const closeSettings = () => {
+    if (
+      !(settingsButton instanceof HTMLButtonElement) ||
+      !(settingsMenu instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    settingsButton.ariaExpanded = 'false';
+    settingsButton.ariaLabel = 'Open site settings';
+    settingsMenu.hidden = true;
+  };
+
+  settingsButton?.addEventListener('click', () => {
+    if (
+      !(settingsButton instanceof HTMLButtonElement) ||
+      !(settingsMenu instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    const willOpen = settingsMenu.hidden;
+    settingsMenu.hidden = !willOpen;
+    settingsButton.ariaExpanded = String(willOpen);
+    settingsButton.ariaLabel = willOpen
+      ? 'Close site settings'
+      : 'Open site settings';
+  });
+
+  document.addEventListener('click', (event) => {
+    if (
+      settings instanceof HTMLElement &&
+      event.target instanceof Node &&
+      !settings.contains(event.target)
+    ) {
+      closeSettings();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !(settingsMenu instanceof HTMLElement)) return;
+    if (settingsMenu.hidden) return;
+
+    closeSettings();
+    if (settingsButton instanceof HTMLButtonElement) settingsButton.focus();
+  });
+
+  for (const button of animationButtons) {
+    if (!(button instanceof HTMLButtonElement)) continue;
+    const selected =
+      button.dataset.animationOption ===
+      document.documentElement.dataset.highlightAnimation;
+    button.setAttribute('aria-pressed', String(selected));
+    button.addEventListener('click', () => {
+      const animation = button.dataset.animationOption;
+      if (!animation) return;
+
+      localStorage.setItem(HIGHLIGHT_ANIMATION_STORAGE_KEY, animation);
+      const url = new URL(window.location.href);
+      url.searchParams.set('animation', animation);
+      window.location.assign(url);
+    });
+  }
+
+  clearStorageButton?.addEventListener('click', () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    const url = new URL(window.location.href);
+    url.searchParams.delete('animation');
+    window.location.replace(url);
   });
 
   darkMode.addEventListener('change', () => {
-    if (!document.documentElement.dataset.theme) updateThemeControl();
+    if (!document.documentElement.dataset.theme) updateThemeControls();
   });
 
-  updateThemeControl();
+  if (settings instanceof HTMLElement) settings.hidden = false;
+  updateThemeControls();
 </script>
+<style>
+  @media (max-width: 34rem) {
+    .site-footer {
+      padding-bottom: max(2.5rem, calc(env(safe-area-inset-bottom) + 1.5rem));
+    }
+
+    .footer-links {
+      order: -1;
+    }
+  }
+</style>

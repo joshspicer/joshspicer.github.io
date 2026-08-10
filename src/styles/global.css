@@ -194,6 +194,146 @@ input {
   cursor: pointer;
 }
 
+:root[data-highlight-motion="shuffle"] .marker-heading span,
+:root[data-highlight-motion="shuffle"] .marker-highlight,
+:root[data-highlight-motion="shuffle"] .page-title span,
+:root[data-highlight-motion="shuffle"] .post-title-large span,
+:root[data-highlight-motion="shuffle"] .prose strong {
+  animation: highlight-shuffle-tick var(--highlight-motion-duration) ease-out;
+}
+
+@keyframes highlight-shuffle-tick {
+  0% {
+    filter: brightness(0.94) saturate(1.24);
+  }
+
+  45% {
+    transform: translateY(-1px) scaleY(0.96);
+  }
+
+  100% {
+    filter: brightness(1) saturate(1);
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+:root:is([data-highlight-motion="reel"], [data-highlight-motion="jackpot"])
+  .marker-heading span,
+:root:is([data-highlight-motion="reel"], [data-highlight-motion="jackpot"])
+  .marker-highlight,
+:root:is([data-highlight-motion="reel"], [data-highlight-motion="jackpot"])
+  .page-title span,
+:root:is([data-highlight-motion="reel"], [data-highlight-motion="jackpot"])
+  .post-title-large span,
+:root:is([data-highlight-motion="reel"], [data-highlight-motion="jackpot"])
+  .prose strong {
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0 2%,
+      var(--highlight-motion-from) 2% 48%,
+      transparent 48% 52%,
+      var(--highlight-motion-to) 52% 98%,
+      transparent 98%
+    )
+    0 0 / 100% 200%;
+}
+
+:root[data-highlight-motion="reel"] .marker-heading span,
+:root[data-highlight-motion="reel"] .marker-highlight,
+:root[data-highlight-motion="reel"] .page-title span,
+:root[data-highlight-motion="reel"] .post-title-large span,
+:root[data-highlight-motion="reel"] .prose strong {
+  animation: highlight-step-reel var(--highlight-motion-duration) linear both;
+}
+
+@keyframes highlight-step-reel {
+  0% {
+    background-position: 0 0;
+    filter: brightness(1) saturate(1);
+  }
+
+  55% {
+    filter: brightness(0.96) saturate(1.18);
+  }
+
+  100% {
+    background-position: 0 100%;
+    filter: brightness(1) saturate(1);
+  }
+}
+
+:root[data-highlight-motion="jackpot"] .marker-heading span,
+:root[data-highlight-motion="jackpot"] .marker-highlight,
+:root[data-highlight-motion="jackpot"] .page-title span,
+:root[data-highlight-motion="jackpot"] .post-title-large span,
+:root[data-highlight-motion="jackpot"] .prose strong {
+  animation:
+    highlight-jackpot-land var(--highlight-motion-duration)
+    cubic-bezier(0.2, 0.8, 0.25, 1.15) both;
+}
+
+:root[data-highlight-motion="wipe"] .marker-heading span,
+:root[data-highlight-motion="wipe"] .marker-highlight,
+:root[data-highlight-motion="wipe"] .page-title span,
+:root[data-highlight-motion="wipe"] .post-title-large span,
+:root[data-highlight-motion="wipe"] .prose strong {
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0 4%,
+      var(--highlight-motion-to) 4% 96%,
+      transparent 96%
+    )
+    left / 0 100% no-repeat,
+    linear-gradient(
+      to bottom,
+      transparent 0 4%,
+      var(--highlight-motion-from) 4% 96%,
+      transparent 96%
+    );
+  animation:
+    highlight-marker-wipe var(--highlight-motion-duration)
+    cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes highlight-marker-wipe {
+  to {
+    background-size: 100% 100%, 100% 100%;
+  }
+}
+
+@keyframes highlight-jackpot-land {
+  0% {
+    background-position: 0 0;
+    filter: saturate(1);
+  }
+
+  68% {
+    background-position: 0 112%;
+    filter: saturate(1.28);
+  }
+
+  84% {
+    background-position: 0 94%;
+  }
+
+  100% {
+    background-position: 0 100%;
+    filter: saturate(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-highlight-motion] .marker-heading span,
+  :root[data-highlight-motion] .marker-highlight,
+  :root[data-highlight-motion] .page-title span,
+  :root[data-highlight-motion] .post-title-large span,
+  :root[data-highlight-motion] .prose strong {
+    animation: none;
+  }
+}
+
 .marker-heading span,
 .page-title span,
 .post-title-large span {
@@ -498,6 +638,10 @@ input {
   align-items: center;
 }
 
+.footer-settings {
+  position: relative;
+}
+
 .footer-links {
   display: flex;
   gap: 0.4rem;
@@ -526,7 +670,7 @@ input {
   color: var(--ink);
 }
 
-.theme-icon {
+.settings-icon {
   width: 1rem;
   height: 1rem;
   fill: none;
@@ -536,9 +680,119 @@ input {
   stroke-width: 1.6;
 }
 
-.theme-toggle[data-active-theme="light"] .theme-icon-sun,
-.theme-toggle[data-active-theme="dark"] .theme-icon-moon {
+.settings-menu {
+  position: absolute;
+  z-index: 10;
+  bottom: calc(100% + 0.55rem);
+  left: 0;
+  width: min(18rem, calc(100vw - 2.5rem));
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: var(--paper);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 0.14);
+  color: var(--ink);
+}
+
+.settings-menu[hidden] {
   display: none;
+}
+
+.settings-group {
+  padding: 0.2rem 0.2rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.settings-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.settings-options {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.animation-options {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.theme-options {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.settings-options button,
+.settings-row {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.settings-options button {
+  min-width: 0;
+  padding: 0.45rem 0.25rem;
+  border-radius: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.settings-options button small {
+  display: block;
+  overflow: hidden;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.56rem;
+  font-weight: 650;
+  text-overflow: ellipsis;
+}
+
+.settings-options button:hover,
+.settings-options button:focus-visible,
+.settings-row:hover,
+.settings-row:focus-visible {
+  background: var(--paper-deep);
+}
+
+.settings-options button[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.settings-options button[aria-pressed="true"] small {
+  color: inherit;
+}
+
+.settings-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.2rem;
+  border-width: 0 0 1px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.settings-row:last-child {
+  padding-bottom: 0.2rem;
+  border-bottom: 0;
+}
+
+.settings-value {
+  color: var(--muted);
+  font-size: 0.66rem;
+}
+
+.settings-reset {
+  color: var(--muted);
 }
 
 .social-icon {
@@ -641,6 +895,14 @@ input {
 
   .footer-links {
     justify-content: flex-start;
+  }
+
+  .settings-menu {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    width: auto;
   }
 }
 
