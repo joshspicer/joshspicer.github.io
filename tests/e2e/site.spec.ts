@@ -601,6 +601,19 @@ test('portrait-free homepage and footer remain responsive', async ({ page }) => 
             style.visibility !== 'hidden'
           );
         }).length,
+      visibleSocialMarks: [
+        ...footer.querySelectorAll('.footer-links .site-social-mark'),
+      ].filter((mark) => {
+        const box = mark.getBoundingClientRect();
+        const style = getComputedStyle(mark);
+        return (
+          box.width > 0 &&
+          box.height > 0 &&
+          style.display !== 'none' &&
+          style.visibility !== 'hidden'
+        );
+      }).length,
+      blockerProneSocialClasses: footer.querySelectorAll('.social-icon').length,
       footerOverflow: footer.scrollWidth > footer.clientWidth,
       settingsWithinViewport: Boolean(
         settings &&
@@ -618,6 +631,8 @@ test('portrait-free homepage and footer remain responsive', async ({ page }) => 
     socialLinksFirst: true,
     leftAligned: true,
     visibleSocialActions: 5,
+    visibleSocialMarks: 5,
+    blockerProneSocialClasses: 0,
     footerOverflow: false,
     settingsWithinViewport: true,
     pageOverflow: false,

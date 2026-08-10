@@ -795,7 +795,7 @@ input {
   color: var(--muted);
 }
 
-.social-icon {
+.site-social-mark {
   width: 1rem;
   height: 1rem;
   overflow: visible;
@@ -803,14 +803,14 @@ input {
   stroke: none;
 }
 
-.social-icon path,
-.social-icon circle {
+.site-social-mark path,
+.site-social-mark circle {
   vector-effect: non-scaling-stroke;
 }
 
-.social-icon path[d^="M2.5"],
-.social-icon circle,
-.social-icon circle + path {
+.site-social-mark path[d^="M2.5"],
+.site-social-mark circle,
+.site-social-mark circle + path {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -839,7 +839,7 @@ input {
   text-underline-offset: 0.16em;
 }
 
-.email-link .social-icon {
+.email-link .site-social-mark {
   flex: 0 0 auto;
 }
 
