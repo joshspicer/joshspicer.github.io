@@ -323,12 +323,16 @@ test('the footer settings menu selects animation variants through the URL', asyn
   await page.goto('/');
   await openSettings(page);
 
+  await expect(page.locator('[data-animation-option]').first()).toHaveAttribute(
+    'data-animation-option',
+    'a',
+  );
   await expect(page.locator('[data-animation-option="a"]')).toHaveAttribute(
     'aria-pressed',
     'true',
   );
   await expect(
-    page.getByRole('button', { name: 'A Jackpot (*)', exact: true }),
+    page.getByRole('button', { name: 'A Jackpot', exact: true }),
   ).toBeVisible();
   await page.locator('[data-animation-option="d"]').click();
 
@@ -479,12 +483,16 @@ test('system dark mode and explicit theme choices stay synchronized', async ({
   });
 
   await openSettings(page);
+  await expect(page.locator('[data-theme-option]').first()).toHaveAttribute(
+    'data-theme-option',
+    'system',
+  );
   await expect(page.locator('[data-theme-option="system"]')).toHaveAttribute(
     'aria-pressed',
     'true',
   );
   await expect(
-    page.getByRole('button', { name: 'System (*)', exact: true }),
+    page.getByRole('button', { name: 'System', exact: true }),
   ).toBeVisible();
   await page.locator('[data-theme-option="light"]').click();
   expect(await readTheme(page)).toEqual({
