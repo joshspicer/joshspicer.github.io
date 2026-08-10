@@ -7,9 +7,17 @@ const animations = {
   c: 'highlight-step-reel',
   d: 'highlight-marker-wipe',
 } as const;
+const analyticsScript =
+  'https://www.googletagmanager.com/gtag/js?id=UA-43238538-1';
 const spotifyEndpoint = 'https://api.joshspicer.com/api/spotify';
 
 test.beforeEach(async ({ page }) => {
+  await page.route(analyticsScript, async (route) => {
+    await route.fulfill({
+      contentType: 'application/javascript',
+      body: '',
+    });
+  });
   await page.route(spotifyEndpoint, async (route) => {
     await route.fulfill({
       contentType: 'application/json',
@@ -19,6 +27,34 @@ test.beforeEach(async ({ page }) => {
         songName: 'CI Song',
       },
     });
+  });
+});
+
+test('the legacy Google Analytics tag initializes on every page', async ({
+  page,
+}) => {
+  await page.goto('/');
+
+  const loader = page.locator(`script[src="${analyticsScript}"]`);
+  await expect(loader).toHaveCount(1);
+  await expect(loader).toHaveAttribute('async', '');
+
+  const analytics = await page.evaluate(() => {
+    const analyticsWindow = window as typeof window & {
+      dataLayer: IArguments[];
+      gtag: (...args: unknown[]) => void;
+    };
+    return {
+      configuredProperty: Array.from(analyticsWindow.dataLayer[1] ?? []),
+      dataLayerLength: analyticsWindow.dataLayer.length,
+      hasGtag: typeof analyticsWindow.gtag === 'function',
+    };
+  });
+
+  expect(analytics).toEqual({
+    configuredProperty: ['config', 'UA-43238538-1'],
+    dataLayerLength: 2,
+    hasGtag: true,
   });
 });
 

@@ -6,6 +6,6 @@ redirectFrom:
   - privacy_policy
 ---
 
-This site is hosted using GitHub Pages. It does not use first-party analytics or advertising cookies.
+This site is hosted using GitHub Pages. Google Analytics is used for page traffic analytics.
 
 Some pages embed or link to third-party services. Those services may receive standard request information and apply their own privacy policies when you load or interact with their content.
