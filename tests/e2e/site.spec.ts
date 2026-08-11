@@ -2,8 +2,8 @@ import { expect, test, type Page } from '@playwright/test';
 
 const tones = ['yellow', 'coral', 'mint', 'blue'] as const;
 const animations = {
-  a: 'highlight-jackpot-land',
-  b: 'highlight-shuffle-tick',
+  a: 'highlight-shuffle-tick',
+  b: 'highlight-jackpot-land',
   c: 'highlight-step-reel',
   d: 'highlight-marker-wipe',
 } as const;
@@ -223,7 +223,7 @@ test('wipe stays synchronized on pages with many highlights', async ({ page }) =
   );
 });
 
-test('direct arrivals and explicit reloads animate with the default jackpot', async ({
+test('direct arrivals and explicit reloads animate with the default shuffle', async ({
   page,
 }) => {
   await chooseTone(page, 2);
@@ -235,7 +235,7 @@ test('direct arrivals and explicit reloads animate with the default jackpot', as
     timeout: 3_000,
   });
   expect((await readHighlightTrace(page)).animations).toContain(
-    'highlight-jackpot-land',
+    'highlight-shuffle-tick',
   );
 
   await page.reload();
@@ -243,7 +243,7 @@ test('direct arrivals and explicit reloads animate with the default jackpot', as
     timeout: 3_000,
   });
   expect((await readHighlightTrace(page)).animations).toContain(
-    'highlight-jackpot-land',
+    'highlight-shuffle-tick',
   );
   await expect(root).toHaveAttribute('data-highlight-tone', 'mint');
 });
@@ -274,11 +274,11 @@ test('internal navigation skips the intro, but reloading that page plays it', as
     { timeout: 3_000 },
   );
   expect((await readHighlightTrace(page)).animations).toContain(
-    'highlight-jackpot-land',
+    'highlight-shuffle-tick',
   );
 });
 
-test('an unknown animation query falls back to the default jackpot', async ({
+test('an unknown animation query falls back to the default shuffle', async ({
   page,
 }) => {
   await traceHighlightIntro(page);
@@ -294,7 +294,7 @@ test('an unknown animation query falls back to the default jackpot', async ({
     { timeout: 3_000 },
   );
   expect((await readHighlightTrace(page)).animations).toContain(
-    'highlight-jackpot-land',
+    'highlight-shuffle-tick',
   );
 });
 
@@ -332,7 +332,7 @@ test('the footer settings menu selects animation variants through the URL', asyn
     'true',
   );
   await expect(
-    page.getByRole('button', { name: 'A Jackpot', exact: true }),
+    page.getByRole('button', { name: 'A Shuffle', exact: true }),
   ).toBeVisible();
   await page.locator('[data-animation-option="d"]').click();
 

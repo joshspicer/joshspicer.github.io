@@ -151,8 +151,8 @@ const runJackpot: AnimationStrategy = (controller) => {
 };
 
 const animationStrategies: Record<HighlightAnimation, AnimationStrategy> = {
-  a: runJackpot,
-  b: runShuffle,
+  a: runShuffle,
+  b: runJackpot,
   c: runReel,
   d: runWipe,
 };
