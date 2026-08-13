@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostFooter from '../components/PostFooter.astro';
 import { siteConfig } from '../site.config';
+import { getBlogPostSourcePath } from '../utils/repository';
 import { withBase } from '../utils/paths';
 
 interface Props {
@@ -24,6 +25,7 @@ if (post.data.redirectTo) {
 }
 
 const { Content } = await render(post);
+const repositoryPath = getBlogPostSourcePath(post);
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('en', {
     year: 'numeric',
@@ -35,6 +37,7 @@ const formatDate = (date: Date) =>
 <BaseLayout
   title={`${post.data.title} — ${siteConfig.name}`}
   description={post.data.description}
+  repositoryPath={repositoryPath}
 >
   <article class="page">
     <a class="back-link" href={withBase('/posts/')}>← All writing</a>

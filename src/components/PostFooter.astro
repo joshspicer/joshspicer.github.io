@@ -1,6 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { discussionNumbers } from '../data/discussions';
+import {
+  getBlogPostSourcePath,
+  getRepositoryEditUrl,
+} from '../utils/repository';
 import { withBase } from '../utils/paths';
 
 interface Props {
@@ -8,17 +12,12 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const sourcePath =
-  post.filePath ?? `src/content/blog/${post.id.replace(/\/$/, '')}.md`;
+const sourcePath = getBlogPostSourcePath(post);
 const filename = sourcePath.split('/').at(-1) ?? post.id;
 const discussionKey = filename
   .replace(/^\d{4}-\d{2}-\d{2}-/, '')
   .replace(/\.(?:md|mdx)$/, '');
 const discussionNumber = discussionNumbers[discussionKey];
-const editPath = sourcePath
-  .split('/')
-  .map((segment) => encodeURIComponent(segment))
-  .join('/');
 const discussionUrl = discussionNumber
   ? `https://github.com/joshspicer/joshspicer.github.io/discussions/${discussionNumber}`
   : withBase('/contact/');
@@ -29,7 +28,7 @@ const discussionUrl = discussionNumber
     <li>
       <span>Found a mistake or typo?</span>
       <a
-        href={`https://github.com/joshspicer/joshspicer.github.io/edit/master/${editPath}`}
+        href={getRepositoryEditUrl(sourcePath)}
       >
         Suggest an edit
       </a>

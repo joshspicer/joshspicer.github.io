@@ -10,6 +10,8 @@ const animations = {
 const analyticsScript =
   'https://www.googletagmanager.com/gtag/js?id=UA-43238538-1';
 const spotifyEndpoint = 'https://api.joshspicer.com/api/spotify';
+const repositoryEditorUrl =
+  'https://github.dev/joshspicer/joshspicer.github.io';
 
 test.beforeEach(async ({ page }) => {
   await page.route(analyticsScript, async (route) => {
@@ -28,6 +30,50 @@ test.beforeEach(async ({ page }) => {
       },
     });
   });
+});
+
+const captureEditorNavigation = async (page: Page, expectedUrl: string) => {
+  const navigation = page.waitForRequest(expectedUrl);
+  await page.route('https://github.dev/**', async (route) => {
+    await route.abort();
+  });
+
+  await page.keyboard.press('.');
+  expect((await navigation).url()).toBe(expectedUrl);
+};
+
+test('period opens the repository root from the home page', async ({ page }) => {
+  await page.goto('/');
+
+  await captureEditorNavigation(page, repositoryEditorUrl);
+});
+
+test('period opens the current post source from a post page', async ({
+  page,
+}) => {
+  await page.goto('/tankgame/');
+
+  await captureEditorNavigation(
+    page,
+    `${repositoryEditorUrl}/blob/master/src/content/blog/2026-01-24-tankgame.md`,
+  );
+});
+
+test('period does not navigate while typing in an editable element', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.evaluate(() => {
+    const input = document.createElement('input');
+    input.setAttribute('aria-label', 'Shortcut test input');
+    document.body.append(input);
+  });
+  const input = page.getByLabel('Shortcut test input');
+
+  await input.press('.');
+
+  await expect(input).toHaveValue('.');
+  await expect(page).toHaveURL('/');
 });
 
 test('the legacy Google Analytics tag initializes on every page', async ({

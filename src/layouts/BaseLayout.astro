@@ -7,6 +7,7 @@ import {
   HIGHLIGHT_ANIMATIONS,
   HIGHLIGHT_TONES,
 } from '../scripts/highlightAnimations';
+import { getRepositoryEditorUrl } from '../utils/repository';
 import { withBase } from '../utils/paths';
 import '../styles/global.css';
 
@@ -14,12 +15,14 @@ interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  repositoryPath?: string;
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, repositoryPath } = Astro.props;
 const canonicalURL = !noindex && Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : undefined;
+const repositoryEditorUrl = getRepositoryEditorUrl(repositoryPath);
 ---
 
 <!doctype html>
@@ -29,6 +32,7 @@ const canonicalURL = !noindex && Astro.site
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="repository-editor-url" content={repositoryEditorUrl} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#f6f3eb" />
     <script
@@ -100,8 +104,15 @@ const canonicalURL = !noindex && Astro.site
     </script>
     <script>
       import { initHighlightAnimations } from '../scripts/highlightAnimations';
+      import { initRepositoryShortcut } from '../scripts/repositoryShortcut';
 
       initHighlightAnimations();
+      const repositoryEditorMeta = document.querySelector(
+        'meta[name="repository-editor-url"]',
+      );
+      if (repositoryEditorMeta instanceof HTMLMetaElement) {
+        initRepositoryShortcut(repositoryEditorMeta.content);
+      }
     </script>
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=UA-43238538-1"></script>
     <script is:inline>
