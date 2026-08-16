@@ -7,7 +7,15 @@ import SocialIcon from './SocialIcon.astro';
 
 <footer class="site-footer">
   <div class="footer-meta">
-    <span>&copy; {new Date().getFullYear()} {siteConfig.name}</span>
+    <img
+      class="footer-portrait"
+      src={withBase('/assets/portrait.jpg')}
+      alt={`Portrait of ${siteConfig.name}`}
+      width="792"
+      height="792"
+      loading="lazy"
+      decoding="async"
+    />
     <div class="footer-settings" data-settings hidden>
       <button
         type="button"

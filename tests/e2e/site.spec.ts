@@ -635,10 +635,10 @@ test('dark theme text and every highlight tone meet contrast requirements', asyn
   }
 });
 
-test('portrait-free homepage and footer remain responsive', async ({ page }) => {
+test('homepage and footer remain responsive', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.locator('.portrait')).toHaveCount(0);
+  await expect(page.locator('.site-footer .footer-portrait')).toBeVisible();
   await expect(
     page.getByRole('region', { name: 'Josh Spicer' }).getByRole('heading', {
       name: 'Josh Spicer',
