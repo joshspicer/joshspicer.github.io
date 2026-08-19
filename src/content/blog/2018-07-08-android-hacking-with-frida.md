@@ -21,7 +21,7 @@ but i'm sure it'll be apparent once we get the app running.
 I have little experience with Frida, so this will be a complete beginner's walkthrough. For more detail
 on what Frida is, please check our their [documentation](https://frida.re/docs/home) first.
 
-<h2>Prereqs</h2>
+## Prereqs
 - Rooted Android Phone
 - [OWASP's First CrackMe APK](https://github.com/OWASP/owasp-mstg/tree/master/Crackmes)
 <br>
@@ -35,17 +35,17 @@ Check my [earlier article](/root-pixel-1) for how to root Pixel Phones.
 <br><br>
 Download the APK and sideload it onto your device. `adb install <APK>`
 
-<h2>Installing Frida</h2>
+## Installing Frida
 Installing Frida is pretty well-documented over at [Frida's project webpage](https://www.frida.re/docs/installation/).
 I worked off our my Macbook after installing with pip .
 
-<h2>frida-server</h2>
+## frida-server
 The easiest way to get up and running is to run the `frida-server` software directly on your rooted
 android phone. I again followed [their guide](https://www.frida.re/docs/android/) on that. I had difficulty escalating to root
 through adb, so I just downloaded a terminal app from the play store, became root through `su root`, and ran the server
 from there.
 
-<h2>Get started</h2>
+## Get started
 
 We're now ready to take a look at the .apk we're testing. Our goal is to reverse engineer the app enough to
 uncover the secret key. Our best bet is to see if we can understand what any of the decompiled code is doing.
@@ -69,7 +69,7 @@ On the left sidebar you'll see the hierarchical list of classes found in this .a
 there's only a few classes we have to worry about. In the center-left panel is the JD-GUI decompiled output.
 I've found this output to be pretty good, and will be referencing this output for the remainder of the article.
 
-<h2>Investigation: Root Detection</h2>
+## Investigation: Root Detection
 
 Hm, immediately after booting into the Android app, we hit a roadblock. There seems to be some kind
 of root-detection in this app. We need root to utilize Frida, so we got to figure out a way past this.
@@ -159,7 +159,7 @@ It's pretty clear that these three functions all perform different checks to
 make a guess if the phone is rooted. Since it doesn't seem like we _actually_ need these
 methods for the functionality of the app, lets overwrite them with Frida to all return `false`.
 
-<h2>Exploitation: Root Detection</h2>
+## Exploitation: Root Detection
 
 Have a look at the [Frida Java API](https://www.frida.re/docs/javascript-api/#java) before continuing. We will
 be using `Java.perform` to hook and modify the implementation of methods in the class above.
@@ -237,7 +237,7 @@ Android app - so cool!
 
 ![bypass-root](/assets/resources-frida-post/bypass-root.png)
 
-<h2>Investigation: Secret String</h2>
+## Investigation: Secret String
 
 We're in the app, but we still need the "secret string" to complete the challenge.  
 Digging around the app, there's a couple crypto classes imported into various files.
@@ -304,7 +304,7 @@ With frida we have the ability to call any function we'd like. Lets try to
 get the app to print the password for us, instead of feeding it into the variable in
 the function above.
 
-<h2>Exploitation: Secret String</h2>
+## Exploitation: Secret String
 
 Originally I started writing code to get me the values for the _arguments_ of `sg.vantagepoint.a.a.a()`.
 I was then going to call the method myself with those calculated values.
@@ -402,7 +402,7 @@ in the password `I want to believe`.
 
 ![correct-password](/assets/resources-frida-post/correct-password.png)
 
-<h2>Conclusion</h2>
+## Conclusion
 
 I hope this guide has helped illustrate the power of Frida. I definitely learned a ton
 by working through this problem.

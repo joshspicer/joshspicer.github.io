@@ -811,3 +811,302 @@ test('highlighted prose links use dark underlines in dark mode', async ({
   expect(colors.underline).toBe(colors.text);
   expect(colors.underline).toBe('rgb(32, 32, 30)');
 });
+
+test('post images become captioned figures with layout-stable dimensions', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/');
+
+  const figures = page.locator('.prose-figure');
+  await expect(figures.first()).toBeVisible();
+
+  const images = await page.locator('.prose-figure img').evaluateAll((nodes) =>
+    nodes.map((node) => {
+      const image = node as HTMLImageElement;
+      return {
+        alt: image.alt,
+        width: image.getAttribute('width'),
+        height: image.getAttribute('height'),
+        loading: image.getAttribute('loading'),
+        decoding: image.getAttribute('decoding'),
+      };
+    }),
+  );
+
+  expect(images.length).toBeGreaterThan(1);
+  for (const image of images) {
+    expect(image.alt).not.toBe('');
+    expect(Number(image.width)).toBeGreaterThan(0);
+    expect(Number(image.height)).toBeGreaterThan(0);
+  }
+
+  // Only the first image is eager, so the rest never block the initial render.
+  expect(images[0].loading).toBe('eager');
+  expect(images.slice(1).every((image) => image.loading === 'lazy')).toBe(true);
+  expect(images.slice(1).every((image) => image.decoding === 'async')).toBe(true);
+
+  await expect(page.locator('.prose-caption').first()).toHaveText(
+    /Drop points to trace the play area/,
+  );
+});
+
+test('adjacent images collapse into a single responsive gallery row', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/');
+
+  const gallery = page.locator('.prose-gallery');
+  await expect(gallery).toHaveAttribute('data-count', '3');
+
+  const tops = await gallery
+    .locator('.prose-figure')
+    .evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().top));
+  expect(tops).toHaveLength(3);
+  expect(new Set(tops).size).toBe(1);
+
+  await page.setViewportSize({ width: 380, height: 900 });
+  const stackedTops = await gallery
+    .locator('.prose-figure')
+    .evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().top));
+  expect(new Set(stackedTops).size).toBe(3);
+});
+
+test('figures open an accessible lightbox that navigates and closes', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/');
+
+  const trigger = page.locator('.prose-gallery img').first();
+  await expect(trigger).toHaveAttribute('role', 'button');
+  await expect(trigger).toHaveAttribute('aria-label', /^Expand image: /);
+
+  await trigger.focus();
+  await page.keyboard.press('Enter');
+
+  const lightbox = page.locator('dialog.lightbox');
+  await expect(lightbox).toBeVisible();
+  await expect(page.locator('.lightbox-caption')).toHaveText(
+    /Radar: rule out everything/,
+  );
+
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('.lightbox-caption')).toHaveText(
+    /Thermometer: slice the play area/,
+  );
+
+  await page.locator('.lightbox-close').click();
+  await expect(lightbox).toBeHidden();
+  await expect(trigger).toBeFocused();
+});
+
+test('linked images stay links instead of opening the lightbox', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/');
+
+  const linkedImages = page.locator('.prose-figure[data-linked] img');
+  expect(await linkedImages.count()).toBe(
+    await page.locator('.prose-figure[data-linked] img:not([data-zoomable])').count(),
+  );
+});
+
+test('figure images never distort their aspect ratio', async ({ page }) => {
+  await page.goto('/mapcalipers/');
+  // Lazy images only decode once they are scrolled near the viewport.
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += 500) {
+      window.scrollTo(0, y);
+      await new Promise((resolve) => setTimeout(resolve, 30));
+    }
+  });
+  await expect
+    .poll(() =>
+      page
+        .locator('.prose img')
+        .evaluateAll((nodes) =>
+          nodes.every((node) => (node as HTMLImageElement).naturalWidth > 0),
+        ),
+    )
+    .toBe(true);
+
+  const ratios = await page.locator('.prose img').evaluateAll((nodes) =>
+    nodes.map((node) => {
+      const image = node as HTMLImageElement;
+      return {
+        src: image.getAttribute('src'),
+        natural: image.naturalWidth / image.naturalHeight,
+        // clientWidth/Height exclude the border, unlike the border-box rect.
+        rendered: image.clientWidth / image.clientHeight,
+      };
+    }),
+  );
+
+  expect(ratios.length).toBeGreaterThan(0);
+  for (const { src, natural, rendered } of ratios) {
+    expect(
+      Math.abs(natural - rendered) / natural,
+      `${src} renders at ${rendered.toFixed(3)} but is naturally ${natural.toFixed(3)}`,
+    ).toBeLessThan(0.02);
+  }
+});
+
+test('section headings expose deep links that copy to the clipboard', async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto('/mapcalipers/');
+
+  const anchor = page.locator('.heading-group:has(h3#tools) .heading-anchor');
+
+  await expect(anchor).toBeVisible();
+  await expect(anchor).toHaveAttribute('href', '#tools');
+  await expect(anchor).toHaveText('#Copy link to section: Tools');
+
+  await anchor.click();
+
+  await expect(page).toHaveURL(/#tools$/);
+  await expect(anchor).toHaveAttribute('data-copied', 'true');
+  // Confirmation swaps the glyph in place rather than opening a badge.
+  await expect(anchor.locator('.heading-anchor-mark')).toHaveText('✓');
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    `${new URL(page.url()).origin}/mapcalipers/#tools`,
+  );
+  await expect(page.locator('[role="status"]').last()).toHaveText(
+    'Link copied to clipboard',
+  );
+});
+
+test('heading anchors stay out of the heading for screen readers', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/');
+
+  const details = await page
+    .locator('.prose :is(h2, h3, h4, h5, h6)')
+    .evaluateAll((nodes) =>
+      nodes.map((node) => {
+        const anchor = node.parentElement?.querySelector(':scope > .heading-anchor');
+        return {
+          id: node.id,
+          // The link must not live inside the heading, or screen reader
+          // heading lists read the anchor as part of the heading text.
+          anchorsInside: node.querySelectorAll('.heading-anchor').length,
+          text: node.textContent?.trim(),
+          hasSiblingAnchor: Boolean(anchor),
+          markHidden:
+            anchor?.querySelector('.heading-anchor-mark')?.getAttribute('aria-hidden') ===
+            'true',
+          hasVisibleLabel: Boolean(anchor?.querySelector('.visually-hidden')?.textContent),
+          usesAriaLabel: anchor?.hasAttribute('aria-label') ?? false,
+        };
+      }),
+    );
+
+  expect(details.length).toBeGreaterThan(0);
+  for (const heading of details) {
+    expect(heading.anchorsInside, heading.id).toBe(0);
+    expect(heading.hasSiblingAnchor, heading.id).toBe(true);
+    expect(heading.markHidden, heading.id).toBe(true);
+    expect(heading.hasVisibleLabel, heading.id).toBe(true);
+    // aria-label is skipped by some translation tools, so real text is used.
+    expect(heading.usesAriaLabel, heading.id).toBe(false);
+    expect(heading.text, heading.id).not.toContain('#');
+  }
+});
+
+test('every article heading is addressable and anchored exactly once', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/');
+
+  const headings = await page
+    .locator('.prose :is(h2, h3, h4, h5, h6)')
+    .evaluateAll((nodes) =>
+      nodes.map((node) => ({
+        id: node.id,
+        anchors:
+          node.parentElement?.querySelectorAll(':scope > .heading-anchor').length ?? 0,
+      })),
+    );
+
+  expect(headings.length).toBeGreaterThan(0);
+  expect(headings.every((heading) => heading.id !== '')).toBe(true);
+  expect(headings.every((heading) => heading.anchors === 1)).toBe(true);
+  expect(new Set(headings.map((heading) => heading.id)).size).toBe(headings.length);
+});
+
+test('loading a heading deep link scrolls that section into view', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/#self-hosting');
+
+  const box = await page.locator('h2#self-hosting').boundingBox();
+  expect(box).not.toBeNull();
+  expect(box!.y).toBeGreaterThanOrEqual(0);
+  expect(box!.y).toBeLessThan(100);
+});
+
+test('article images are served as resized WebP with the original as fallback', async ({
+  page,
+}) => {
+  await page.goto('/mapcalipers/');
+  await page.locator('.prose img').first().scrollIntoViewIfNeeded();
+
+  const images = await page.locator('.prose-figure img').evaluateAll((nodes) =>
+    nodes.map((node) => {
+      const image = node as HTMLImageElement;
+      return {
+        src: image.getAttribute('src') ?? '',
+        inPicture: image.parentElement?.tagName === 'PICTURE',
+        webpSource:
+          image.parentElement?.querySelector('source')?.getAttribute('type') ?? '',
+        srcset: image.parentElement?.querySelector('source')?.getAttribute('srcset') ?? '',
+        sizes: image.getAttribute('sizes') ?? '',
+        zoomSrc: image.dataset.zoomSrc ?? '',
+      };
+    }),
+  );
+
+  expect(images.length).toBeGreaterThan(0);
+  for (const image of images) {
+    expect(image.inPicture, image.src).toBe(true);
+    expect(image.webpSource, image.src).toBe('image/webp');
+    expect(image.srcset, image.src).toMatch(/\.webp \d+w/);
+    expect(image.sizes, image.src).not.toBe('');
+    // The viewer opens an optimized variant rather than the full-size original.
+    expect(image.zoomSrc, image.src).toMatch(/\.webp$/);
+    // The untouched original stays as the fallback for browsers without WebP.
+    expect(image.src, image.src).not.toMatch(/\.webp$/);
+  }
+
+  const chosen = await page
+    .locator('.prose-figure img')
+    .first()
+    .evaluate((node) => (node as HTMLImageElement).currentSrc);
+  expect(chosen).toMatch(/\.webp$/);
+});
+
+test('the optimized variant is a fraction of the original download', async ({
+  page,
+  request,
+}) => {
+  await page.goto('/mapcalipers/');
+
+  const { original, variant } = await page
+    .locator('.prose-figure img')
+    .first()
+    .evaluate((node) => {
+      const image = node as HTMLImageElement;
+      return { original: image.getAttribute('src')!, variant: image.currentSrc };
+    });
+
+  const [originalResponse, variantResponse] = await Promise.all([
+    request.get(original),
+    request.get(variant),
+  ]);
+  const originalBytes = (await originalResponse.body()).length;
+  const variantBytes = (await variantResponse.body()).length;
+
+  expect(variantBytes).toBeLessThan(originalBytes * 0.25);
+});

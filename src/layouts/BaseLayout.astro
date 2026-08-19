@@ -104,9 +104,13 @@ const repositoryEditorUrl = getRepositoryEditorUrl(repositoryPath);
     </script>
     <script>
       import { initHighlightAnimations } from '../scripts/highlightAnimations';
+      import { initHeadingAnchors } from '../scripts/headingAnchors';
+      import { initImageLightbox } from '../scripts/imageLightbox';
       import { initRepositoryShortcut } from '../scripts/repositoryShortcut';
 
       initHighlightAnimations();
+      initHeadingAnchors();
+      initImageLightbox();
       const repositoryEditorMeta = document.querySelector(
         'meta[name="repository-editor-url"]',
       );

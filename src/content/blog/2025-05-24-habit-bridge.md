@@ -15,15 +15,8 @@ redirectFrom:
 
 Meet [**HabitBridge**](https://apps.apple.com/us/app/habitbridge/id6742713867) - a habit tracking app designed for developers, hackers, and anyone else who wants _real_ control over their digital habit tracking. 
 
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 250px; padding-right: 10px;">
-    <img src="/assets/resources-habit-bridge/9.png" width="250">
-  </div>
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/resources-habit-bridge/2.png" width="250">
-  </div>
-</div>
-<br>
+![The HabitBridge home screen listing habits with daily check-off grids](/assets/resources-habit-bridge/9.png "Track habits day by day")
+![A plugin challenge asking the user to conjugate an Italian verb](/assets/resources-habit-bridge/2.png "…or gate a habit behind a custom plugin challenge")
 
 HabitBridge aims to be infinitely extensible to make habit tracking more effective and engaging. It combines "traditional" habit tracking features with a robust plugin framework and webhooks to trigger automations and integrate with any system you choose.
 
@@ -39,15 +32,8 @@ HabitBridge is available **for free** on the App Store:
 
 HabitBridge lets you set limits on distracting apps and only unlocks them after you've completed your daily habits. Want to check Instagram? Complete your morning workout first.
 
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 250px; padding-right: 10px;">
-  <img src="/assets/resources-habit-bridge/12.png" alt="Screen Time permission screen showing HabitBridge requesting access to restrict app usage" width="250">
-  </div>
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/resources-habit-bridge/3.png" alt="" width="250">
-  </div>
-</div>
-<br>
+![Screen Time permission screen showing HabitBridge requesting access to restrict app usage](/assets/resources-habit-bridge/12.png "HabitBridge asks for Screen Time access")
+![Choosing which app categories to lock, such as Social and Games](/assets/resources-habit-bridge/3.png "Pick the categories to lock until habits are done")
 
 The app integrates directly with the iOS system Screen Time APIs.
 
@@ -55,15 +41,8 @@ The app integrates directly with the iOS system Screen Time APIs.
 
 HabitBridge makes it easy to manually track granular-based habits.
 
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 250px; padding-right: 10px;">
-  <img src="/assets/resources-habit-bridge/10.png" width="250">
-  </div>
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/resources-habit-bridge/4.png" width="250">
-  </div>
-</div>
-<br>
+![The habit list showing a piano practice timer and a push-up counter](/assets/resources-habit-bridge/10.png "Timers and counters live alongside simple check-offs")
+![A habit detail screen showing 70% progress toward a 60 minute target](/assets/resources-habit-bridge/4.png "Each habit tracks progress toward its own target")
 
 
 ### Custom Plugin System
@@ -78,19 +57,12 @@ Want to share your creations? Submit your plugins to the [**HabitBridge repo on 
 
 Send your habit data to any system via webhooks, enabling powerful automations. Track your habits in spreadsheets, trigger smart home devices, or integrate with your existing productivity tools.
 
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 250px; padding-right: 10px;">
-  <img src="/assets/resources-habit-bridge/16.png" alt="" width="250">
-  </div>
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/resources-habit-bridge/17.png" alt="" width="250">
-  </div>
-</div>
-<br>
+![HabitBridge settings with webhooks enabled and a local webhook URL](/assets/resources-habit-bridge/16.png "Point HabitBridge at any webhook URL")
+![A webhook log entry showing the JSON payload sent on habit completion](/assets/resources-habit-bridge/17.png "Every delivery is logged with its payload")
 
 This can be sent to any web service that accepts webhooks, allowing for endless integration possibilities. Every habit completion is logged with timestamps, making it easy to track your progress programmatically.
 
-<img src="/assets/resources-habit-bridge/15.png" alt="" width="700">
+![A terminal running an echo server printing the JSON payload HabitBridge posted](/assets/resources-habit-bridge/15.png)
 
 #### Home Assistant
 
@@ -111,9 +83,7 @@ After the first webhook is received, several new `habitbridge` prefixed sensors 
 
 Use these sensors to trigger automations based on habit completions.
 
-<img src="/assets/resources-habit-bridge/ha.gif" alt="" width="500">
-<div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Enables an LED strip when all habits are completed for the day</small>
-</div>
+![An LED strip switching on once the day's habits are complete](/assets/resources-habit-bridge/ha.gif "Enables an LED strip when all habits are completed for the day")
 
 Imagine your smart lights changing color when you complete your morning routine, or your coffee maker starting when you finish your workout.
 
@@ -122,7 +92,7 @@ Imagine your smart lights changing color when you complete your morning routine,
 
 See your habit completions at a glance with home screen widgets. More system integrations are planned and coming soon!
 
-<img src="/assets/resources-habit-bridge/7.png" width="400">
+![The HabitBridge home screen widget showing a completion grid](/assets/resources-habit-bridge/7.png "A home screen widget with the month's completions")
 
 ## Privacy & Data
 
@@ -216,15 +186,8 @@ app.init(() => {
 
 Need some more ideas? Check out the [Memory Sequence](https://github.com/joshspicer/HabitBridgeMarketplace/tree/main/memory-sequence) or [Meditation Timer](https://github.com/joshspicer/HabitBridgeMarketplace/tree/main/meditation-timer) plugin source code.
 
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 250px; padding-right: 10px;">
-  <img src="/assets/resources-habit-bridge/18.gif" alt="" width="250">
-  </div>
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/resources-habit-bridge/19.gif" alt="" width="250">
-  </div>
-</div>
-<br>
+![The Memory Game plugin listed as a habit in HabitBridge](/assets/resources-habit-bridge/18.gif "Memory Sequence")
+![The Meditation Timer plugin listed as a habit in HabitBridge](/assets/resources-habit-bridge/19.gif "Meditation Timer")
 
 #### Publishing Your Plugin
 

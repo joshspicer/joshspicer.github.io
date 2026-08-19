@@ -93,7 +93,7 @@ _handleOpenURL(evt) {
 }
 ```
 
-<h2>Test Links!</h2>
+## Test Links!
 
 Obviously none of these will work if you don't have Parade installed! These links are helping me test a few
 finer details (valid URLs but invalid IDs, etc...).

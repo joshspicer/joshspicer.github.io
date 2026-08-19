@@ -16,9 +16,9 @@ featured: true
 **Friday 9am**
 
 The race begins and it sets in that we had absolutely no plan. Do we head to Princes Street and try to beg for some cash? Do we head toward Waverley Station and try to get ourselves on **any** train heading south? We did none of those things - we just started walking. We ended up heading through Newington and generally south. We’d prepared our first whiteboard sign “Charity Hitch, Going South”, and started flashing it to passerbys and cars.
-<br><br>
+
 ![start](/assets/resources-hitch/start.jpeg)
-<br><br>
+
 Our sign attracted Brian, a uni employee that asked what we were up to! We explained, and he gave us some tips on the fastest route toward the motorway. We also got our first donation (~60p) from him!
 
 **Friday 10:30am**
@@ -28,13 +28,13 @@ Our walk took almost an hour and brought us to the Cameron Toll shopping center.
 Our first hitch was a younger woman on her morning ritual (getting coffee after dropping off her kid at school). She also was driving with a dog (which got us our first completed challenge!). Everyday she gets that coffee, and kept on telling me “I totally would’ve done this when I was in uni”.
 <br><br>
 She dropped us at a service station right off the A1, where (no surprise) there were several more teams trying to secure their next hitch as well!
-<br><br>
+
 ![first-hitch](/assets/resources-hitch/first-hitch.jpeg)
-<br><br>
+
 Our next hitch took a bit longer due to all the competition. Alek and I changed the sign to “A1 south” and approached every car we could filling up. A black VW eventually pulled in, and to my surprise I was the only hitcher to approach! I asked the man, and while he wasn’t going along the A1, he WAS going south. He went to pay for his gas and took a moment to “think about it”. When he returned, he agreed! Alek and I quickly hopped in before he changed his mind.
-<br><br>
+
 ![police](/assets/resources-hitch/police.jpeg)
-<br><br>
+
 This hitch was a New Zealand expat that was currently a regional salesman (he was traveling south for work). He originally moved to the UK for rugby, and agreed to drive us 50 miles!! This hitch brought us well over the Scottish border into England. He was a blast to talk with, and was the first to ask the question “soooo…what do you think of Trump?” (Awkward question to say the least, but our answers always seemed satisfactory to our drivers.) He brought us to a service station along the A1 in Berwick-upon-Tweed (TD15 2PD).
 
 **1pm**
@@ -46,9 +46,9 @@ After about 45 minutes of waving our sign outside the service station door we me
 This was perhaps our most interesting hitch! The son, named Leon Flint, turned out to be a semi-pro motocross racer. He races all over Europe (sometimes with crowds of 10,000 people!). His dad and him drive to all these races in this van we were passengers in, and have traveled thousands of miles together in it. Strapped in the back of the van was Leon’s motorcross bike, so the story seemed to check out.
 <br><br>
 We heard all about life on the road, crazy drunk nights that Leon’s dad spent in London, and also answered the Trump question again. We also learned about this crazy previous hitch of theirs where a man left a bag in the van (ask me about it). In the end, I left with the signed photo of Leon and a 2019 calendar of him racing. Totally hanging that up come January.
-<br><br>
+
 ![leon](/assets/resources-hitch/leon.jpeg)
-<br><br>
+
 We made a couple stops along the way (once for dinner - I got amazing Fish and Chips), and in the end were together for an amazing SIX HOURS!
 
 **7pm**

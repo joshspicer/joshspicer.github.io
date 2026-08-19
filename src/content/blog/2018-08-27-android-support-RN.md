@@ -10,17 +10,18 @@ tags:
 
 > Edit: Our Android release is out NOW on Google Play! Find it [here](https://play.google.com/store/apps/details?id=com.parade).
 
-<h2>Intro</h2>
+## Intro
 We focused on iOS for the initial development of Parade. Here are a small set of the things I learned had to be done differently when "porting" to Android.
 
 ![notebook](/assets/resources-android-support/notebook.png)
 
-<h2>Yoga Bug</h2>
+## Yoga Bug
 When prettier adds a stray semicolon automatically, iOS doesn't care but Android crashes..... I've seen this
 soo much.
+
 ![yoga_bug](/assets/resources-android-support/yoga-bug.png)
 
-<h2>Text Inputs look Ugly</h2>
+## Text Inputs look Ugly
 
 If you designed text inputs on iOS and are happy with them, you can make it look similar by adding `underlineColorAndroid`.
 ```javascript
@@ -35,7 +36,7 @@ underlineColorAndroid="transparent" <------- Add me!
 />
 ```
 
-<h2>Hardware Back Button</h2>
+## Hardware Back Button
 I love Android's "hardware" (it's on the screen of my pixel, but ya know what I mean) back button. iOS doesn't have this,
 so obviously it was not working as intended on Android. `React-navigation`'s docs said that it should work out of the box,
 but that didn't seem to be the case. Perhaps it's because we're utilizing 'modal' views (because of the animation).
@@ -58,10 +59,10 @@ handleBackPress = () => {
 }
 ```
 
-<h2>Fix Universal (HTTP) Linking</h2>
+## Fix Universal (HTTP) Linking
  Check out the dedicated post on it at [Android React Native Linking](/parade-linking-android).
 
- <h2>Software Keyboard Pushing Absolute Elements</h2>
+## Software Keyboard Pushing Absolute Elements
  On iOS elements styled with 'absolute' don't get pushed around - and we used that in our designs.
 
 ![keyboard-aware-before](/assets/resources-android-support/keyboard-aware-before.png)
@@ -72,11 +73,11 @@ I use react-native-keyboard-aware-scroll-view to do keyboard padding for us, sin
 
 ![keyboard-aware-after](/assets/resources-android-support/keyboard-aware-after.png)
 
-<h2>Manifest Updates</h2>
+## Manifest Updates
 
 I configured a lot of things in Xcode that I needed to re-do on Android.
 
-<h3>App Icons</h3>
+### App Icons
 I used [this site](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html) to create both
 rectangular and circular app icons. I then declared both in the manifest.
 ```xml
@@ -88,7 +89,7 @@ rectangular and circular app icons. I then declared both in the manifest.
   ...
   ...
 ```
-<h3>Device orientation</h3>
+### Device orientation
 Simple one. In my main MainActivity...
 ```xml
 <activity
@@ -102,7 +103,7 @@ Simple one. In my main MainActivity...
     ....
 ```
 
-<h2>Must meet API requirements for new apps</h2>
+## Must meet API requirements for new apps
 
 > Google Play will require that new apps target at least Android 8.0 (API level 26) from August 1, 2018...
 > Every new Android version introduces changes that bring significant security and performance improvements – and enhance the user experience of Android overall. > Some of these changes only apply to apps that explicitly declare support through their targetSdkVersion manifest attribute (also known as the target API level).
@@ -130,15 +131,15 @@ android {
         ...
 ```
 
-<h2>deployment RN docs</h2>
+## deployment RN docs
 Facebook has a really good guide on [creating your signed APK](https://facebook.github.io/react-native/docs/signed-apk-android.html), so i'll
 just add in pieces of info I found important on deployment.
 
-<h3>deployment keys on MacOS</h3>
+### deployment keys on MacOS
 I wasn't fond of keeping my app's cert password in plaintext, and neither was [Viktor Eriksson](https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/
 ). If you're running macOS I suggest storing your passwords in the OSX keychain like he did.
 
-<h3>App Versioning</h3>
+### App Versioning
 In your app's `build.gradle` you need to specify two parameters before uploading to Google Play.
 ```java
 ...
@@ -160,7 +161,7 @@ android {
 
 ```
 
-<h3>Uploading APK</h3>
+### Uploading APK
 Once you release internally, it's going to say "Pending Publication" up top for a while. It's not explained well,
 but you just need to wait that out and then it will be available to your internal team. It took mine close to 30 minutes to
 actually publish.
@@ -171,7 +172,7 @@ Soooo many devices to deal with now.
 
 ![supported-devices](/assets/resources-android-support/supported-devices.png)
 
-<h3>Internal Testing</h3>
+### Internal Testing
 For some reason you need to add all your internal tester's emails on the web console, but then it doesn't
 automatically send out the invite link via email. After your app publishes, a new  `opt-in link` will be available on your release
 which you should manually email to all the people you added above (?).

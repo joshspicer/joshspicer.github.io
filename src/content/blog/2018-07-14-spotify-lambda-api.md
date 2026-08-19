@@ -17,19 +17,19 @@ exploring what my friends listen to. I've been really curious about uses for AWS
 Let's get started!
 <br><br>
 If you're curious what the finished product looks like, look up! My header should say something like:
-<br><br>
+
 ![example](/assets/resources-spotify-lambda-post/example.png)
 
-<h2>Overview</h2>
+## Overview
 In this guide we will be hosting a function on AWS Lambda, and using Spotify's web API to return a JSON object with the user's current or last played Spotify track. We will utilize Amazon's API Gateway to create a REST endpoint that can be used anywhere
 (I use it on my personal website) to serve dynamic content to static pages. I wrote the lambda function in python, but this should be easily adaptable to work with any language.
 
-<h2>Prereqs</h2>
+## Prereqs
 - AWS Account (Free Tier)
 - Spotify account (Premium)
 - Domain to point API at (Optional)
 
-<h2>Create Spotify Developer Account</h2>
+## Create Spotify Developer Account
 
 The first step is to visit the [Spotify developer dashboard][spotifydashboard] and create a new project. This process will grant you a
 Client ID and Client Secret. You'll need to base64 encode these two values with a colon separating them.
@@ -46,7 +46,7 @@ as long as you set one and it's consistent in all the following steps. I used `h
 
 ![spotify-callback](/assets/resources-spotify-lambda-post/spotify-callback.png)
 
-<h2>Generate Refresh Token</h2>
+## Generate Refresh Token
 
 Spotify's API requires direct user authorization to access information like current track.
 User resources can only be requested by _that_ user, so this means we need to be logged
@@ -95,7 +95,7 @@ def refreshTheToken(refreshToken):
 
 ```
 
-<h2>Start a new Lambda Project</h2>
+## Start a new Lambda Project
 
 Lambda, for those unfamiliar, is a compute platform that allows you to run code in the cloud without
 the hassle of configuring an entire server instance. Code can be running by hitting a REST endpoint.
@@ -105,7 +105,7 @@ python 2. Create a role that permits basic Amazon Lambda execution, as well as D
 
 ![create-function-photo](/assets/resources-spotify-lambda-post/create-lambda.png)
 
-<h2>Configuring Python Environment</h2>
+## Configuring Python Environment
 
 Before we can continue we need to upload all the dependencies of our project into lambda so we can use them later when we start writing code. Luckily the only
 dependency not pre-packaged in the lambda environment is an HTTP requests package.
@@ -127,7 +127,7 @@ Create a zip file, and upload this to your lambda function's dashboard. Now we c
 
 ![aws-editor](/assets/resources-spotify-lambda-post/aws-editor.png)
 
-<h2>DynamoDB</h2>
+## DynamoDB
 
 I ran into a problem where I wanted to have the ability to persist access tokens between API calls. Each access token is valid for an hour,
 so it felt like a waste to refresh the token on each API call. Lambda has integration with many of AWS's services, one of which is DynamoDB.
@@ -144,7 +144,7 @@ You can then link this table in the Lambda API console under `Add triggers => Dy
 
 ![dynamo-3](/assets/resources-spotify-lambda-post/dynamo-3.png)
 
-<h2>API Gateway</h2>
+## API Gateway
 
 Ok - one more piece of setup before we can begin writing our lambda function! We need a way to invoke our function from across the internet. AWS again offers
 a service called [API Gateway](https://us-east-2.console.aws.amazon.com/apigateway/home?region=us-east-2#/apis), which translates your lambda function into a REST API.
@@ -166,12 +166,12 @@ This next page is where you'll be given the option to point the API to your lamb
 It took me a while to understand why I need "Lambda Proxy" enabled. I found a lot of articles online outlining the pros and cons of using lambda proxy.
 For me, this setting made it easy for me to return json, and to return appropriate status codes from within my python function.
 
-<h2>Optional: Set up DNS</h2>
+## Optional: Set up DNS
 
 In API Gateway on the left you'll see "Custom Domain Names". I mapped my api to `https://api.joshspicer.com/` to make it easy to remember. Follow the instructions there
 of how to configure your own DNS.
 
-<h2>Lambda function</h2>
+## Lambda function
 
 We're now ready to fill out our lambda_function file!
 <br><br>
@@ -348,7 +348,7 @@ songName: "Everybody's Lonely"
 
 ```
 
-<h2>Client-side Javascript</h2>
+## Client-side Javascript
 
 You can use this information anyway you'd like. I wanted to utilize Lambda so that I could place dynamic
 content onto my static webpage hosted on Github Pages.
@@ -385,7 +385,7 @@ Place the following onto the page you'd like to display your "now playing" line.
 </p>
 ```
 
-<h2>All done!</h2>
+## All done!
 
 [spotifydashboard]: https://developer.spotify.com/dashboard/
 [lambda]: https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions

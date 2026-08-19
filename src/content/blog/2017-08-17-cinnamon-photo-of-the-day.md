@@ -19,6 +19,7 @@ tags:
   var photo = "/assets/cinnamon/" + num + ".jpg"
   document.getElementById("cinnaImage").src = photo;
 ```
-<img style="border: 3px;border-style: solid;" class="cinnamon" id="cinnaImage" src=""/>
+
+<img class="cinnamon" id="cinnaImage" src="" alt="Cinnamon the cat, chosen for today" title="Today's Cinnamon"/>
 
 <script src="/js/whichCinnamon.js"></script>
