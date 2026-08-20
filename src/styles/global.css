@@ -536,6 +536,9 @@ input {
 
 .heading-group {
   position: relative;
+  /* h4-h6 inherit the prose size and leading; h2/h3 override below. */
+  --heading-size: 1.06rem;
+  --heading-leading: 1.72;
 }
 
 .heading-group > :is(h2, h3, h4, h5, h6) {
@@ -546,28 +549,36 @@ input {
   margin-top: 0;
 }
 
-/* The mark hangs in the page margin so it never interrupts the heading. */
-.heading-anchor {
-  display: inline-flex;
-  position: absolute;
-  top: 0;
-  right: calc(100% + 0.5rem);
-  align-items: center;
-  height: var(--heading-line, 1.9rem);
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: color 120ms ease;
-  opacity: 0.65;
-}
-
 .heading-group[data-level='2'] {
-  --heading-line: calc(1.6rem * 1.15);
+  --heading-size: 1.6rem;
+  --heading-leading: 1.15;
 }
 
 .heading-group[data-level='3'] {
-  --heading-line: calc(1.25rem * 1.15);
+  --heading-size: 1.25rem;
+  --heading-leading: 1.15;
+}
+
+/*
+ * The mark hangs in the page margin so it never interrupts the heading. It is
+ * sized and spaced from the heading's own type scale, and shares the heading's
+ * line box, so a single optical nudge centres it on the cap height at every
+ * level rather than needing a per-level correction.
+ */
+.heading-anchor {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: calc(100% + 0.42em);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: calc(var(--heading-size) * 0.6);
+  line-height: calc(var(--heading-size) * var(--heading-leading));
+  text-decoration: none;
+  /* Optical nudge: centres the glyph on the cap height rather than the line box. */
+  transform: translateY(0.065em);
+  transition: color 120ms ease;
+  opacity: 0.65;
 }
 
 .heading-anchor:hover,
@@ -584,9 +595,9 @@ input {
 
 /* Confirmation swaps the glyph in place: no toast, no badge, no reflow. */
 .heading-anchor-mark {
-  display: inline-flex;
-  justify-content: center;
+  display: inline-block;
   width: 1ch;
+  text-align: center;
 }
 
 .heading-anchor[data-copied='true'] {
@@ -601,8 +612,7 @@ input {
 
 @media (max-width: 46rem) {
   .heading-anchor {
-    right: calc(100% + 0.3rem);
-    font-size: 0.85rem;
+    right: calc(100% + 0.3em);
   }
 }
 

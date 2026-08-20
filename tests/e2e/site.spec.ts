@@ -1110,3 +1110,69 @@ test('the optimized variant is a fraction of the original download', async ({
 
   expect(variantBytes).toBeLessThan(originalBytes * 0.25);
 });
+
+test('the heading mark is proportional and optically centred at every level', async ({
+  page,
+}) => {
+  await page.goto('/HabitBridge/');
+
+  const groups = await page.locator('.heading-group').evaluateAll((nodes) => {
+    // Font metrics for the exact rendered font, so the check follows whatever
+    // the browser actually painted rather than a hard-coded number.
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d')!;
+    const metricsFor = (element: Element, text: string) => {
+      const style = getComputedStyle(element);
+      context.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      const measured = context.measureText(text);
+      const lineHeight = Number.parseFloat(style.lineHeight);
+      const content =
+        measured.fontBoundingBoxAscent + measured.fontBoundingBoxDescent;
+      return {
+        fontSize: Number.parseFloat(style.fontSize),
+        // Where the first baseline sits inside this element's box.
+        baselineOffset:
+          (lineHeight - content) / 2 + measured.fontBoundingBoxAscent,
+        inkAscent: measured.actualBoundingBoxAscent,
+        inkDescent: measured.actualBoundingBoxDescent,
+      };
+    };
+
+    return nodes.map((group) => {
+      const heading = group.querySelector('h2, h3, h4, h5, h6')!;
+      const anchor = group.querySelector('.heading-anchor')!;
+      const mark = anchor.querySelector('.heading-anchor-mark')!;
+
+      // "H" is a flat-topped cap, so its ink is the cap height exactly.
+      const headingMetrics = metricsFor(heading, 'H');
+      const markMetrics = metricsFor(mark, '#');
+      const headingBaseline =
+        heading.getBoundingClientRect().top + headingMetrics.baselineOffset;
+      const markBaseline =
+        anchor.getBoundingClientRect().top + markMetrics.baselineOffset;
+
+      const capCentre = headingBaseline - headingMetrics.inkAscent / 2;
+      const markCentre =
+        markBaseline - (markMetrics.inkAscent - markMetrics.inkDescent) / 2;
+
+      return {
+        level: (group as HTMLElement).dataset.level,
+        sizeRatio: markMetrics.fontSize / headingMetrics.fontSize,
+        centreOffset: markCentre - capCentre,
+      };
+    });
+  });
+
+  expect(groups.length).toBeGreaterThan(0);
+  const levels = new Set(groups.map((group) => group.level));
+  expect(levels.size).toBeGreaterThan(1);
+
+  for (const group of groups) {
+    // The mark scales with its heading instead of being a fixed size.
+    expect(group.sizeRatio, `h${group.level} size ratio`).toBeCloseTo(0.6, 1);
+    expect(
+      Math.abs(group.centreOffset),
+      `h${group.level} is ${group.centreOffset.toFixed(2)}px off centre`,
+    ).toBeLessThan(1.5);
+  }
+});
