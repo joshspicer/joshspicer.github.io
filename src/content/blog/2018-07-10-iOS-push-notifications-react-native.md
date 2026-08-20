@@ -15,15 +15,15 @@ featured: true
 > This guide is the combination of the numerous resources found online into **one** place, as well as commentary from
 > me in places where things went wrong.
 
-<h2>Intro</h2>
-<h3>Goal</h3>
+## Intro
+### Goal
 We have been developing [Parade](https://parade.events/) for a few months now - and this morning I decided
 I wanted to implement push notifications - seems important for an events app, right?
 <br><br>
 In this guide we're going to be configuring our client to register with Apple's Push Notification Service (APN), register with
 *our* application server, and receive both local and remote notifications. We will be configuring our own application server to dispatch notifications to
 specific users of our service on command.
-<h3>What are we working with?</h3>
+### What are we working with?
 Parade is a React Native application that we've been writing and then deploying on TestFlight throughout development. We run
 our own node/graphQL server out on AWS that serves data to and from our app.
 <br><br>
@@ -35,7 +35,7 @@ bit of convenience is going to add up fast.
 Second, I was curious *how* to do it.  I now realize it was much more complicated than I expected...but if you're reading this, that
 means I got through it and (hopefully) condensed it down into simple(r) steps below.
 
-<h2>Prereqs</h2>
+## Prereqs
 - A Valid Apple Developer Account
 - A React Native (partially) written and deployable to TestFlight
 - A Mac (xcode)
@@ -46,13 +46,13 @@ need to tack on Android, so most of what I write in this guide has that eventual
 <br><br>
 If you're not using React Native/Redux/GraphQL/Mongo this guide may still be for you, just keep in mind that's the tech stack i'm working with.
 
-<h2>Local Notifications Client-side</h2>
+## Local Notifications Client-side
 
 Lets start slow and first focus on setting up local push notifications. These are notifications that are generated
 from the client itself, and not from a remote server. Doesn't seem too useful in the long run, but definitely a good
 place for us to start.
 
-<h3>Enable in Xcode</h3>
+### Enable in Xcode
 
 Enable the push notification capability for your project in XCode. For React Native, your
 `.xcodeproj` file can be found in the `ios/` folder of your project.
@@ -62,7 +62,7 @@ need it later - so lets just do it now.
 
 ![xcode-1](/assets/resources-push-notifications/xcode-1.png)
 
-<h3>react-native-push-notification</h3>
+### react-native-push-notification
 
 I'm going to be using a package called [react-native-push-notification](https://github.com/zo0r/react-native-push-notification),
 which wraps both the Android and iOS APIs that react-native provides. This package requires manual setup for both platform. For now,
@@ -72,14 +72,14 @@ To start, add the package to your react-native project with `yarn add react-nati
 <br><br>
 ...and link with `react-native link`.
 
-<h3>iOS Manual Install</h3>
+### iOS Manual Install
 
 I followed the official React Native docs to [link push notifications](https://facebook.github.io/react-native/docs/pushnotificationios.html). This involves opening up xcode and linking some react-native libraries. Follow this guide - it's very detailed, and very important!
 <br><br>
 [This page](https://facebook.github.io/react-native/docs/linking-libraries-ios#manual-linking) goes into detail of how to manually link libraries.
 I completed all three steps, and that seemed to work.
 
-<h3>Testing Local Notification</h3>
+### Testing Local Notification
 
 In my App's main file `App.js`, I then imported `react-native-push-notification` and
 wrote the following code in the `componentDidMount` lifecycle function.
@@ -103,7 +103,7 @@ requestPermissions: true, // This is the default value. We'll be modifying this 
 ```
 
 Next time I launched the app, I was prompted to allow push notifications - looking good!
-<br><br>
+
 ![allow-push-notifs](/assets/resources-push-notifications/allow-push-notifs.png)
 
 Lets now send a local notification. We'll trigger the notification via a button in the _secret_ Parade
@@ -130,7 +130,7 @@ I tied this function to a button...
 
 ![test-local-2](/assets/resources-push-notifications/test-local-2.png)
 
-<h2>Apple Developer Config</h2>
+## Apple Developer Config
 
 We will now visit the Apple dev site to mark our app as one that will be utilizing the Apple push notification (APN) service.
 <br><br>
@@ -162,7 +162,7 @@ Nice, now its green - and we have the cert saved to our Mac's keychain.
 
 ![keychain-access-1](/assets/resources-push-notifications/keychain-access-1.png)
 
-<h2>Requesting Token from APN in React Native</h2>
+## Requesting Token from APN in React Native
 
 Lets move back to our React Native project now. We have everything set up to receive
 push notification tokens from APN.
@@ -173,13 +173,13 @@ are registered.
 <br><br>
 I found this image from a post from user [Karan Alangat](https://stackoverflow.com/questions/17262511/how-do-ios-push-notifications-work)
 on stackOverflow that helped me understand the flow.
-<br><br>
+
 ![stackOverflow photo](https://i.stack.imgur.com/6HtsK.jpg)
 
 As you can see, requesting APN tokens are retrieved via a call to the OS itself. This is how push notifications are sent to a device without every
 single application on the device listening at the same time.
 
-<h3>Testing onRegister()</h3>
+### Testing onRegister()
 
 The `react-native-push-notification` API provides a function `onRegister()` that is called whenever our app registers with the APN servers. Lets see if we can get
 Apple to send us a token.
@@ -223,7 +223,7 @@ Each time I fully quit and launch the app I see this. Our app is now officially 
 
 ![push-registered](/assets/resources-push-notifications/push-registered.png)
 
-<h3>Storing tokens remotely</h3>
+### Storing tokens remotely
 
 This part of the article is going to start blurring the lines between client and server, and will
 also be very dependent on how your app is structured.
@@ -288,24 +288,24 @@ our goal was to get this value stored in a given user's database entry, like so.
 
 ![mongoEntry](/assets/resources-push-notifications/mongoEntry.png)
 
-<h2>Server setup</h2>
+## Server setup
 
 Great! We're now on to step 4 of the flow chart above. We have the iOS APN token saved on our server.
 We now need to determine when something interesting happens to our user and utilize that `iOSPushNotifToken` to tell Apple to issue a Push notification.
 
-<h3>Developer Notification Key</h3>
+### Developer Notification Key
 
 First things, first - another key! This one is issued by Apple, and is the key we need on our server to tell Apple we're authorized to send push notifications. Visit [this page](https://developer.apple.com/account/ios/authkey/) on the developer portal to create a key. You'll receive a `.p8` file and see your `Key ID` on screen. Keep both of these - we'll need them soon!
 
 ![create-key-1](/assets/resources-push-notifications/create-key-1.png)
 
-<h3>Yet another library</h3>
+### Yet another library
 This stuff is complicated, so we're going to utilize a library called [node-pushnotifications](https://github.com/appfeel/node-pushnotifications) to make our lives easier.
 This library issues push requests to the appropriate server (Apple, Google, etc...) for all the platforms (iOS, Android, etc...) we care about. This library even decides where to send the push to based on the device token you provide - that's pretty cool!
 <br><br>
 Get this running on your node server with `yarn add node-pushnotifications`.
 
-<h3>node-pushnotifications configuration</h3>
+### node-pushnotifications configuration
 
 Everything i'm going to do can be found in much greater detail over at [node-pushnotification's](https://github.com/appfeel/node-pushnotifications) README page.
 I'm going to walkthrough how to get a barebones notification dispatch system set up on your application's server, and only for iOS (for now).
@@ -425,9 +425,9 @@ So `http://localhost:port/testPush?msg=testing123` results in...
 
 ![more-remote-push](/assets/resources-push-notifications/more-remote-push.png)
 
-<h2>Other issues (and my fixes)</h2>
+## Other issues (and my fixes)
 
-<h3>Collisions</h3>
+### Collisions
 
 When Apple sends us an APN token, they don't know who is logged in, or even the concept of our app having users.
 Therefore, if two users login on the same device, they will be given the same token from Apple.
@@ -440,7 +440,7 @@ and we didn't clear the tokens from our database, so this happens.
 
 One solution is to clear the APN token from the user's identity on logout.
 
-<h3>TestFlight == Production (??)</h3>
+### TestFlight == Production (??)
 
 Small fix. When deploying to TestFlight, the `production` flag in our `node-pushnotifications` config must be set to `true`.
 Also make sure to securely copy your key over to your hosting server (don't check it into git!).
@@ -462,7 +462,7 @@ const push = new PushNotifications(settings);
 //{...truncated...}
 ```
 
-<h2>Final Words</h2>
+## Final Words
 Push notifications are not quite as simple as I imagined! There's lots of moving pieces...and the fact that we ignored
 Android the whole time definitely scares me... Now that it's set up, Parade definitely feels more complete!
 <br><br>

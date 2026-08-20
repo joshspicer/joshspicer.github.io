@@ -20,5 +20,5 @@ redirectFrom:
 I've released the app on the iOS [App Store](https://apps.apple.com/us/app/pi-contrhole/id1507963158). If you have an iPhone or iPad, [**download the app for free!**](https://apps.apple.com/us/app/pi-contrhole/id1507963158)
 
 You can also choose to build the app yourself from [Github](https://github.com/joshspicer/pihole-mobile-app). Since it's Xamarin Forms, you can compile this app for Android as well!
-<br><br>
+
 ![1.png](/assets/resources-pihole/1.png)

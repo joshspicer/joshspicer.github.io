@@ -25,7 +25,7 @@ The iOS app helps you pinpoint your target's location within defined boundaries,
 
 This app is [free on the App Store](https://apps.apple.com/us/app/map-calipers/id6746725018)!
 
-<img src="/assets/resources-mapcalipers/cta.png" width="250" alt="Header photo of a full map">
+![MapCalipers showing a city-wide map covered in transit lines](/assets/resources-mapcalipers/cta.png)
 
 ## App Features
 
@@ -33,7 +33,7 @@ This app is [free on the App Store](https://apps.apple.com/us/app/map-calipers/i
 
 Start off by drawing the bounds of your play area. This can be a city, neighborhood, or any other defined space. The app will then display just transit that is within this area, allowing you to focus on the most relevant routes and stops.
 
-<img src="/assets/resources-mapcalipers/setup.png" width="250" alt="Setup">
+![Setting up the play area by tapping points on the map](/assets/resources-mapcalipers/setup.png "Drop points to trace the play area before the game starts")
 
 
 ### Tools
@@ -42,38 +42,35 @@ The app provides a suite of tools to help you analyze the map and your target's 
 
 Use the **Radar Tool** to quickly drop a circle and ask if the target is inside or outside. The app creates an exclusion zone based on your answer.
 
-<img src="/assets/resources-mapcalipers/radar.png" width="250" alt="Radar tool screenshot">
-
 Use the **Thermometer Tool** to pick two points and see which side of the line the target is on. Great for slicing the map in half.
 
-<img src="/assets/resources-mapcalipers/thermometer.png" width="250" alt="Thermometer tool screenshot">
-
-
 Feel creative? Use the **Custom Polygon** tool to rule out complex shapes. Perfect for excluding irregular areas.
-
-<img src="/assets/resources-mapcalipers/custom.png" width="250" alt="Custom polygon screenshot">
 
 Use the **Distance Tool** to measure the straight-line distance between two points on the map.
 
 Use the **Measure Tool** to measure distances along a path with multiple waypoints.
 
+![The radar tool asking whether the target is inside or outside a circle](/assets/resources-mapcalipers/radar.png "Radar: rule out everything inside or outside the circle")
+![The thermometer tool splitting the map along a line](/assets/resources-mapcalipers/thermometer.png "Thermometer: slice the play area in half")
+![The custom polygon tool excluding an irregular shape](/assets/resources-mapcalipers/custom.png "Custom polygon: exclude any shape you draw")
+
 ### Inspect Transit
 
 Analyze nearby bus and train routes or stops that are still within the viable search area. 
 
-<img src="/assets/resources-mapcalipers/inspect.png" width="250" alt="Inspect tool screenshot">
+![A list of bus routes and stops inside the viable search area](/assets/resources-mapcalipers/inspect.png "Only the routes and stops still in play are listed")
 
 ### Sync
 
 Share your game state with friends or collaborate on a shared map. The app allows you to push and pull game state to/from a collaboration server using a secret passphase.
 
-<img src="/assets/resources-mapcalipers/sync.png" width="250" alt="Syncing">
+![The sync settings screen with a server address and passphrase](/assets/resources-mapcalipers/sync.png "Push and pull game state with a shared passphrase")
 
 ### Timeline History
 
 Every tool use is recorded in the timeline. Jump back to previous steps to fix any mistakes.
 
-<img src="/assets/resources-mapcalipers/timeline.png" width="250" alt="Timeline history screenshot">
+![The timeline listing each tool used during a game](/assets/resources-mapcalipers/timeline.png "Jump back to any earlier step to undo a mistake")
 
 
 ## Self-hosting

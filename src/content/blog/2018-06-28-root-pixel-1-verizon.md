@@ -19,7 +19,7 @@ I was hoping to eventually root the device in order to play around with some pen
 to find an easy solution _until now_.
 <br><br>
 
-<h2>Unlock Bootloader</h2>
+## Unlock Bootloader
 
 This morning I saw a [post](https://forum.xda-developers.com/pixel-xl/how-to/how-to-unlock-bootloader-verizon-pixel-t3796030) on the xda forums by user **burduli**,
 illustrating how he unlocked the bootloader on a Verizon Pixel. His article was posted on May 27th, 2018. It's taken almost **two years** since the phone's release for this simple bootloader workaround to be found!
@@ -42,7 +42,7 @@ The steps are as follows, adapted slightly based on my experience and environmen
     `fastboot flashing unlock`
 11. Profit
 
-<h3>Notes</h3>
+### Notes
 - For `adb` and `fastboot`, I installed Android Studio on my machine and navigated to `~/Android/Sdk/platform-tools` when I wanted to use those programs. I had difficulty with the `fastboot` installed from apt that was attached to my PATH.
 <br><br>
 - I had to restart my phone twice to perform step 9. The first time, the OEM unlocking slider was grayed out. Others in the original post's comments had similar problems.
@@ -51,7 +51,7 @@ The steps are as follows, adapted slightly based on my experience and environmen
 <br><br>
 - Be aware that unlocking bootloader removes everything from your device. The fact that you factory restore in step 3 means you should be ok with this...
 
-<h2>Rooting Prereqs</h2>
+## Rooting Prereqs
 
 These are the requirements and files I found necessary.
 
@@ -62,7 +62,7 @@ These are the requirements and files I found necessary.
 - [twrp-pixel-installer-sailfish-3.2.1-2.zip](https://dl.twrp.me/sailfish/twrp-pixel-installer-sailfish-3.2.1-2.zip.html) (downloaded to **device file system** BEFORE starting)
 - [Magisk](https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445) (downloaded to **device file system** BEFORE starting)
 
-<h2>Get rid of all the Verizon</h2>
+## Get rid of all the Verizon
 
 Now i'm not positive if this step is essential, but after encountering difficulty I decided to reimage the phone with an official Google
 image. Either way, can't hurt to start with a clean slate.
@@ -71,7 +71,7 @@ Download the image above and follow this steps Google provides on their [factory
 Essentially, you'll want to unzip the image archive, plug in your device, and run the `flash-all.sh` it provides. You'll need to make sure the
 correct `fastboot` is in your PATH. Mine wasn't, so I modified the four spots that `fastboot` was called in the script and wrote out the full path (`~/Android/Sdk/platform-tools/fastboot`).
 
-<h2>Prep TWRP</h2>
+## Prep TWRP
 
 First off, make sure to set a PIN number in the OS before continuing. You need a PIN so TWRP can decrypt and access the file system later.
 <br><br>
@@ -82,7 +82,7 @@ Install the .img file from above, move it to your `platform-tools` folder and re
 
 `mv ~/Downloads/twrp-3.2.1-2-sailfish.img ~/Android/Sdk/platform-tools/twrp.img`
 
-<h2>Load TWRP</h2>
+## Load TWRP
 
 Now we're ready to load TWRP onto our phone. Start bootloader mode by holding down **power button + volume down** and plug in your phone. If you see an Android lying on his back, you're in the right spot. Try running `fastboot devices` - you should see your device show up.
 
@@ -92,7 +92,7 @@ Boot from the twrp image we just moved to the `platform-tools` directory by issu
 
 `fastboot boot twrp.img`
 
-<h2>Install TWRP</h2>
+## Install TWRP
 
 Great! You should now be booted into the twrp interface.
 
@@ -102,7 +102,7 @@ Press the "install" button, navigate to your Downloads folder, and install the `
 <br><br>
 Now go back a few steps to the page we started at, press the `restart` button, and then press `recovery`. You should now boot into a version of TWRP running entirely on your device. You can use TWRP to do a whole bunch of things...one of them being rooting the device.
 
-<h2>Actually root the device</h2>
+## Actually root the device
 
 Same as last time! Press the "install" button, but this time you're installing the `Magisk` zip you downloaded at the start of this guide.
 <br><br>

@@ -11,7 +11,7 @@ tags:
   - music
 ---
 
-<h2>Intro</h2>
+## Intro
 
 I love discovering new music.
 <br><br>
@@ -24,7 +24,7 @@ step further, letting _anyone_ add to my queue.
 Well ok...not _exactly_ my queue. Song get added instead to a [playlist called "Josh's Public Queue"](https://open.spotify.com/user/joshspicer37/playlist/0OBq0h6EjCmaPXjeCB4IlM?si=6ZeWyAiRR0u51UJK-7Hb_g). You can follow and listen to that
 playlist, and of course add song recommendations through this site.
 
-<h2>How does it work!?</h2>
+## How does it work!?
 The backend service runs as an AWS Lambda function, just like my **[Spotify "now playing" post](/spotify-now-playing)**. That post will give you the background necessary in getting a Spotify client ID, as well as setting up AWS DynamoDB, API Gateway, and Lambda.
 
 <br>

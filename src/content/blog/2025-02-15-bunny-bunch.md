@@ -66,28 +66,15 @@ Win by collecting either:
 - 7 different types of bunnies
 - 2 types with at least 3 bunnies each
 
+![A bunny card moving from the hand into the grid of played cards](/assets/resources-bunny-bunch/2.gif "Playing a bunny and collecting cards")
 
-![2.gif](/assets/resources-bunny-bunch/2.gif)
-<div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Playing a bunny and collecting cards</small>
-</div>
+![Matching bunny cards being grouped together on the board](/assets/resources-bunny-bunch/3.gif "Forming a bunch")
 
-![3.gif](/assets/resources-bunny-bunch/3.gif)
-<div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Forming a bunch</small>
-</div>
+![A new card being drawn from the deck into the player's hand](/assets/resources-bunny-bunch/4.gif "Drawing from the deck")
 
-![4.gif](/assets/resources-bunny-bunch/4.gif)
-<div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Drawing from the deck</small>
-</div>
+![The main menu appearing over the board](/assets/resources-bunny-bunch/5.gif "Shake your phone (or press 'M' on a mac) to access the main menu")
 
-![5.gif](/assets/resources-bunny-bunch/5.gif)
-<div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Shake your phone (or press 'M' on a mac) to access the main menu</small>
-</div>
-
-
-![6.jpg](/assets/resources-bunny-bunch/6.jpg)
-<div markdown="1" style="text-align: center; margin-bottom: 20px;"><small>Play on your TV!</small>
-</div>
-
+![Bunny Bunch running on a living room television](/assets/resources-bunny-bunch/6.jpg "Play on your TV!")
 
 ### Multi-Device Play
 
