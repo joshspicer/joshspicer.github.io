@@ -23,7 +23,7 @@ The iOS app helps you pinpoint your target's location within defined boundaries,
 
 <!-- The app is available [for free on the App Store](#)! -->
 
-This app is [free on the App Store](https://apps.apple.com/us/app/map-calipers/id6746725018)!
+This app is [free on the App Store](https://apps.apple.com/us/app/map-calipers/id6746725018)! Want to try new features early? [Join the beta on TestFlight](#testflight).
 
 ![MapCalipers showing a city-wide map covered in transit lines](/assets/resources-mapcalipers/cta.png)
 
@@ -72,6 +72,18 @@ Every tool use is recorded in the timeline. Jump back to previous steps to fix a
 
 ![The timeline listing each tool used during a game](/assets/resources-mapcalipers/timeline.png "Jump back to any earlier step to undo a mistake")
 
+
+## TestFlight
+
+Want a sneak peek at what's coming next? Join the public beta on TestFlight and try new features before they reach the App Store.
+
+**[Join the MapCalipers beta on TestFlight →](https://testflight.apple.com/join/JbP7kjgm)**
+
+> **A friendly heads-up:** beta builds are a work in progress. Things may be rough around the edges, features can change (or break) from one build to the next, and now and then something might not work quite right. If you have an important game coming up, the App Store version is the safest bet.
+>
+> Syncing works best when everyone in your game is on the same version, so beta and App Store players may not be able to share a game. See [Docker Image Versions](#docker-image-versions) for details.
+>
+> Found a bug or have an idea? I'd love to hear about it! Send me an [email](/contact) or use TestFlight's built-in feedback.
 
 ## Self-hosting
 
