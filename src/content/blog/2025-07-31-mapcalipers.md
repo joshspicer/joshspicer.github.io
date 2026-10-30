@@ -36,6 +36,41 @@ Start off by drawing the bounds of your play area. This can be a city, neighborh
 ![Setting up the play area by tapping points on the map](/assets/resources-mapcalipers/setup.png "Drop points to trace the play area before the game starts")
 
 
+### Game Boundaries in Transit Feeds
+
+_New in version 1.10._
+
+Instead of tapping out your play area by hand, a transit feed can come with its own **game boundary**. This is handy when you're sharing a custom map with friends: everyone can import the same file and start from the same area.
+
+When you import a feed that includes a boundary, MapCalipers asks whether you'd like to use it as your game region. Choosing **Set as Game Region** makes it your play area and resets your current game progress, so you won't lose a game in progress by accident.
+
+You can also find it later:
+
+- **Feed details:** open **Settings → Transit Feeds** and tap a feed. A **Game Region** section shows a mini-map of the boundary, how many of the feed's stops fall inside it, and buttons to **Set Active Region** or **Edit** it first. Feeds with a boundary show a small map icon in the list.
+- **Polygon region editor:** use **Load from Feed** to start from a feed's boundary and tweak it.
+- **First-time setup:** pick a feed that includes a boundary and your play area is filled in for you.
+
+#### Making a boundary
+
+The easiest way is [**GTFS Editor**](https://joshspicer.com/gtfs-editor): draw a **Game Border** on the map, or let it auto-generate one around all of your stops, and it is included when you export your GTFS ZIP.
+
+If you're building a feed by hand, add a file named `mapcalipers_game_region.txt` to the ZIP, alongside `stops.txt` and `routes.txt`:
+
+```
+point_sequence,point_lat,point_lon
+1,47.6205,-122.3493
+2,47.6097,-122.3331
+3,47.5952,-122.3316
+```
+
+- The points are joined in order to form a polygon, so you need **at least 3** valid points.
+- `point_sequence` sets the order. If you leave that column out, the rows are used in file order.
+- `game_region.txt` and `mapcalipers_game_border.txt` are also recognised, and the latitude and longitude columns can be named `lat`/`lon` (or `latitude`/`longitude`, `stop_lat`/`stop_lon`).
+- Rows with a missing or out-of-range coordinate are skipped.
+
+This is a MapCalipers extension to GTFS, so other transit tools simply ignore the file. For now, boundaries are read from feeds you import onto your device, not from server-hosted cities.
+
+
 ### Tools
 
 The app provides a suite of tools to help you analyze the map and your target's location. Each tool is designed to answer specific questions about the target's position relative to landmarks, transit routes, and other features. For example:
@@ -149,6 +184,8 @@ Want to create a completely custom transit map for your game? Check out [**GTFS 
 With GTFS Editor, you can click the map to add stops, draw routes between waypoints, and export a valid GTFS ZIP file. The exported file can be imported directly into MapCalipers via the share sheet or file picker, or hosted on your own MapCalipers server using a local path in `gtfs_config.json`. All data remains client-side in your browser—no server required!
 
 This is perfect for creating fictional transit systems, board game scenarios, or any custom map layout you can imagine.
+
+You can also draw a game boundary for your map, which MapCalipers can use as the play area. See [Game Boundaries in Transit Feeds](#game-boundaries-in-transit-feeds).
 
 ## Disclaimers
 
