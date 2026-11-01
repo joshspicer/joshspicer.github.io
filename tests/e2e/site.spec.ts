@@ -454,7 +454,7 @@ test('clearing saved settings resets local and session storage', async ({
   );
 });
 
-test('clicking either highlight cycles every highlight together', async ({
+test('clicking any highlight cycles every highlight together', async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -470,13 +470,23 @@ test('clicking either highlight cycles every highlight together', async ({
     'data-highlight-tone',
     'coral',
   );
-  const inlineHighlight = page.locator('.marker-highlight');
-  expect(await inlineHighlight.evaluate((node) => node.tagName)).toBe('SPAN');
-  await expect(inlineHighlight).not.toHaveAttribute('href', /.+/);
-  await inlineHighlight.click();
+
+  // The introduction highlights several phrases; each is a plain span, never a link.
+  const inlineHighlights = page.locator('.marker-highlight');
+  expect(await inlineHighlights.count()).toBeGreaterThan(1);
+  for (const highlight of await inlineHighlights.all()) {
+    expect(await highlight.evaluate((node) => node.tagName)).toBe('SPAN');
+    await expect(highlight).not.toHaveAttribute('href', /.+/);
+  }
+  await inlineHighlights.first().click();
   await expect(page.locator('html')).toHaveAttribute(
     'data-highlight-tone',
     'mint',
+  );
+  await inlineHighlights.last().click();
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-highlight-tone',
+    'blue',
   );
 
   const backgrounds = await page
@@ -486,13 +496,13 @@ test('clicking either highlight cycles every highlight together', async ({
     );
   expect(new Set(backgrounds).size).toBe(1);
   expect(await page.evaluate(() => sessionStorage.getItem('site-highlight-tone'))).toBe(
-    'mint',
+    'blue',
   );
 
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute(
     'data-highlight-tone',
-    'mint',
+    'blue',
   );
 });
 
