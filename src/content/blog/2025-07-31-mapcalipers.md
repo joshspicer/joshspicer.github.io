@@ -23,7 +23,7 @@ The iOS app helps you pinpoint your target's location within defined boundaries,
 
 <!-- The app is available [for free on the App Store](#)! -->
 
-This app is [free on the App Store](https://apps.apple.com/us/app/map-calipers/id6746725018)!
+This app is [free on the App Store](https://apps.apple.com/us/app/map-calipers/id6746725018)! Want to try new features early? [Join the beta on TestFlight](#testflight).
 
 ![MapCalipers showing a city-wide map covered in transit lines](/assets/resources-mapcalipers/cta.png)
 
@@ -107,6 +107,12 @@ Every tool use is recorded in the timeline. Jump back to previous steps to fix a
 
 ![The timeline listing each tool used during a game](/assets/resources-mapcalipers/timeline.png "Jump back to any earlier step to undo a mistake")
 
+
+## TestFlight
+
+Beta builds are occasionally available to trial new features early.  Features may be added or removed between beta builds, so please use at your own risk!
+
+**[Join the MapCalipers beta on TestFlight →](https://testflight.apple.com/join/JbP7kjgm)**
 
 ## Self-hosting
 
